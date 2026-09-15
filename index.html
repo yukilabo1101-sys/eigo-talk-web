@@ -3,510 +3,3060 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fff8e8">
+<meta name="theme-color" content="#fff9e9">
 <title>えいごトーク！</title>
-<style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--text:#49392f;--sub:#75665d;--paper:#fffdf8;--line:#dfcdb8;--green:#bce9cd;--green2:#57966e;--blue:#d6eef8;--blue2:#588fa7;--pink:#f6d3de;--pink2:#aa6579;--yellow:#f6dfa0;--nav:84px}
-html,body{margin:0;width:100%;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--text);background:#f3efe5;font-size:17px;-webkit-text-size-adjust:100%}
-body{overflow-x:hidden}button,input,select{font:inherit}button{border:0;cursor:pointer;touch-action:manipulation}button:disabled{opacity:.55}
-#app{width:100%;max-width:480px;min-height:100dvh;margin:auto;background-image:linear-gradient(rgba(255,249,233,.84),rgba(232,247,241,.88)),url('assets/bg_school.webp');background-size:cover;background-position:center;background-attachment:fixed;position:relative}
-header{position:sticky;top:0;z-index:100;min-height:66px;padding:calc(8px + env(safe-area-inset-top)) 13px 8px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,250,239,.97);border-bottom:2px solid rgba(90,65,47,.12)}
-.brand{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:900}.brandIcon{font-size:34px}.headerRight{display:flex;gap:7px}.headerBtn{min-height:44px;min-width:48px;padding:6px 11px;border:2px solid #e2cfb9;border-radius:999px;background:white;color:var(--text);font-weight:900}
-main{padding:14px 13px calc(var(--nav) + 28px + env(safe-area-inset-bottom))}
-.card{width:100%;margin-bottom:14px;padding:20px 16px;border:3px solid var(--line);border-radius:27px;background:rgba(255,253,248,.98);box-shadow:0 5px 0 rgba(88,64,45,.10)}.center{text-align:center}
-.bigEmoji{font-size:78px;line-height:1.15}.lessonEmoji{font-size:68px;line-height:1.15}.title{margin:9px 0 7px;font-size:27px;font-weight:900;line-height:1.35}.sub{color:var(--sub);font-size:16px;font-weight:700;line-height:1.6}
-.english{margin:18px 0 6px;color:#28627f;font-size:41px;font-weight:900;line-height:1.15}.japanese{margin-bottom:14px;color:var(--sub);font-size:21px;font-weight:900}.prompt{margin:17px 0;padding:17px;border:3px solid #d0aa4f;border-radius:22px;background:#fff0ba;font-size:22px;font-weight:900;line-height:1.5}
-.primary,.secondary,.plain{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:900}.primary{min-height:68px;margin-top:15px;border:3px solid var(--green2);border-radius:22px;background:var(--green);color:#31553e;box-shadow:0 5px 0 #77b48a;font-size:20px}.secondary{min-height:61px;margin-top:11px;border:3px solid var(--blue2);border-radius:21px;background:var(--blue);color:#315a70;font-size:19px}.plain{min-height:57px;margin-top:10px;border:3px solid #dbc8b5;border-radius:20px;background:white;color:var(--text);font-size:17px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:15px}.stat{padding:15px 8px;border:3px solid #876955;border-radius:24px;background:white;text-align:center}.statIcon{font-size:33px}.statValue{font-size:37px;font-weight:900}.statLabel{color:var(--sub);font-size:14px;font-weight:900}
-.menu{display:grid;gap:11px}.menuBtn{width:100%;min-height:93px;padding:12px;display:grid;grid-template-columns:58px minmax(0,1fr) 20px;gap:10px;align-items:center;border:3px solid #dac8b7;border-radius:23px;background:white;text-align:left}.menuIcon{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:#fff0c7;font-size:32px}.menuTitle{font-size:19px;font-weight:900}.menuText{margin-top:3px;color:var(--sub);font-size:14px;font-weight:700}.arrow{font-size:28px;color:#9e8878}
-.training{display:grid;grid-template-columns:1fr 1fr;gap:11px}.trainingBtn{min-height:144px;padding:14px 8px;border:3px solid #dbc8b6;border-radius:24px;background:white;text-align:center}.trainingIcon{font-size:50px}.trainingTitle{margin-top:5px;font-size:19px;font-weight:900}.trainingText{margin-top:3px;color:var(--sub);font-size:13px;font-weight:700}
-.progressCard{margin-bottom:13px;padding:12px 14px;border:3px solid rgba(100,70,50,.17);border-radius:20px;background:rgba(255,253,248,.98)}.progress{height:13px;overflow:hidden;border-radius:999px;background:#e7ddd2}.progressFill{height:100%;background:linear-gradient(90deg,#efc64e,#e9a5b7)}.progressText{margin-top:5px;text-align:right;color:var(--sub);font-size:14px;font-weight:900}
-.micArea{margin:23px 0 15px;text-align:center}.mic{width:134px;height:134px;border:4px solid var(--pink2);border-radius:50%;background:var(--pink);box-shadow:0 8px 0 #c57e92;font-size:63px}.mic.listening{animation:pulse .6s infinite alternate}.mic.preparing{animation:pulse .9s infinite alternate;background:#f7e5b8}@keyframes pulse{to{transform:scale(1.07)}}.micText{margin-top:13px;color:var(--sub);font-size:16px;font-weight:900}
-.voiceResult{min-height:84px;margin-top:14px;padding:13px;border:3px solid #b8dce9;border-radius:20px;background:#effaff;color:#416a7c;font-weight:800;text-align:center}.feedback{display:none;margin-top:12px;padding:13px;border-radius:18px;font-size:16px;font-weight:900}.feedback.good{display:block;background:#e1f5e8;border:2px solid #96d2aa;color:#315d40}.feedback.retry{display:block;background:#fff0d4;border:2px solid #e2bd74;color:#76501e}
-.choices{display:grid;gap:11px;margin-top:15px}.choice{min-height:73px;padding:11px;border:3px solid #80b2c8;border-radius:21px;background:#edf9fd;color:#315d74;font-size:21px;font-weight:900}
-.fallback{display:none;margin-top:10px;padding:12px;border:2px dashed #c9a973;border-radius:17px;background:#fff9e9}.fallback.show{display:block}.fallbackText{font-size:14px;color:#776351;font-weight:700;line-height:1.5}
-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:200;width:100%;max-width:480px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border-top:2px solid #dfcdb9;background:rgba(255,250,240,.99)}.navBtn{min-height:72px;border-radius:18px;background:transparent;color:#65574e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:900}.navIcon{font-size:28px}.navBtn.active{background:#f6e3a1;color:#714e18}
-.modal{display:none;position:fixed;inset:0;z-index:1000;padding:14px;background:rgba(48,37,30,.54);align-items:center;justify-content:center}.modal.show{display:flex}.modalBox{width:100%;max-width:420px;padding:22px 16px;border:4px solid #896854;border-radius:27px;background:#fffdf8;text-align:center}.field{width:100%;min-height:58px;margin:7px 0;padding:12px;border:3px solid #d8c5b2;border-radius:17px;background:white;font-size:18px;font-weight:800}.notice{margin-top:12px;padding:13px;border-radius:18px;background:#eef9fd;color:#426776;text-align:left;font-size:14px;font-weight:700;line-height:1.65}
-#toast{position:fixed;left:50%;bottom:calc(var(--nav) + 23px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2000;width:calc(100% - 30px);max-width:410px;padding:12px;border-radius:17px;background:rgba(65,51,42,.95);color:white;text-align:center;font-size:15px;font-weight:900;opacity:0;pointer-events:none;transition:opacity .18s}#toast.show{opacity:1}
 
-.assetImg{display:block;object-fit:contain;user-select:none;-webkit-user-drag:none}
-.brandLogo{width:42px;height:42px;object-fit:contain}
-.heroArt{width:132px;height:132px;margin:0 auto 4px;filter:drop-shadow(0 7px 8px rgba(92,66,45,.12))}
-.lessonArt{width:100px;height:100px;margin:0 auto 4px;filter:drop-shadow(0 5px 7px rgba(92,66,45,.10))}
-.navImg{width:30px;height:30px;object-fit:contain}
-.statImg{width:36px;height:36px;margin:0 auto 4px;object-fit:contain}
-.menuIcon img{width:48px;height:48px;object-fit:contain}
-.trainingIcon img{width:62px;height:62px;object-fit:contain;margin:auto}
-.mic img{width:76px;height:76px;object-fit:contain;margin:auto}
-.resultArt{width:94px;height:94px;object-fit:contain;margin:0 auto 5px}
-.profileArt{width:92px;height:92px;object-fit:contain;margin:0 auto 8px}
-.card{backdrop-filter:blur(2px)}
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --text:#49382f;
+  --sub:#75665d;
+  --paper:#fffdf8;
+  --line:#decbb5;
+
+  --green:#c8efd5;
+  --green-dark:#5a9a70;
+
+  --blue:#d9f1fb;
+  --blue-dark:#5d95ad;
+
+  --pink:#f7d9e3;
+  --pink-dark:#b36d82;
+
+  --yellow:#f8e49e;
+  --orange:#f3a04d;
+
+  --nav-height:84px;
+}
+
+html,
+body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    Meiryo,
+    sans-serif;
+
+  color:var(--text);
+  background:#f3efe5;
+
+  font-size:17px;
+
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+button:disabled{
+  opacity:.55;
+}
+
+#app{
+  position:relative;
+
+  width:100%;
+  max-width:480px;
+  min-height:100dvh;
+
+  margin:auto;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 8% 11%,
+      rgba(255,255,255,.88) 0 23px,
+      transparent 24px
+    ),
+    radial-gradient(
+      circle at 18% 11%,
+      rgba(255,255,255,.82) 0 32px,
+      transparent 33px
+    ),
+    radial-gradient(
+      circle at 91% 20%,
+      rgba(255,255,255,.85) 0 30px,
+      transparent 31px
+    ),
+    radial-gradient(
+      circle at 78% 20%,
+      rgba(255,255,255,.78) 0 20px,
+      transparent 21px
+    ),
+    linear-gradient(
+      180deg,
+      #cfeeff 0%,
+      #eaf9f4 53%,
+      #e1f3c5 78%,
+      #f7f0dd 100%
+    );
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  min-height:70px;
+
+  padding:
+    calc(8px + env(safe-area-inset-top))
+    13px
+    8px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:rgba(255,250,239,.97);
+
+  border-bottom:2px solid rgba(90,65,47,.12);
+
+  backdrop-filter:blur(10px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  font-size:21px;
+  font-weight:900;
+}
+
+.brandArt{
+  width:45px;
+  height:45px;
+  flex:0 0 45px;
+}
+
+.headerRight{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.headerBtn{
+  min-height:46px;
+  min-width:50px;
+
+  padding:6px 12px;
+
+  border:3px solid #e2cfb9;
+  border-radius:999px;
+
+  background:#fff;
+
+  color:var(--text);
+
+  font-weight:900;
+}
+
+.profileButton{
+  width:49px;
+  height:49px;
+
+  padding:3px;
+
+  overflow:hidden;
+}
+
+.profileButton svg{
+  width:100%;
+  height:100%;
+}
+
+main{
+  position:relative;
+  z-index:2;
+
+  padding:
+    14px
+    13px
+    calc(
+      var(--nav-height)
+      + 30px
+      + env(safe-area-inset-bottom)
+    );
+}
+
+.card{
+  width:100%;
+
+  margin-bottom:14px;
+
+  padding:20px 16px;
+
+  border:3px solid var(--line);
+
+  border-radius:28px;
+
+  background:rgba(255,253,248,.96);
+
+  box-shadow:
+    0 6px 0 rgba(88,64,45,.10);
+
+  backdrop-filter:blur(4px);
+}
+
+.center{
+  text-align:center;
+}
+
+.heroArt{
+  display:block;
+
+  width:142px;
+  height:142px;
+
+  margin:0 auto 4px;
+
+  filter:
+    drop-shadow(
+      0 7px 6px
+      rgba(88,64,45,.10)
+    );
+}
+
+.lessonArt{
+  display:block;
+
+  width:110px;
+  height:110px;
+
+  margin:0 auto 4px;
+}
+
+.resultArt{
+  width:105px;
+  height:105px;
+
+  margin:0 auto 4px;
+}
+
+.title{
+  margin:9px 0 7px;
+
+  font-size:27px;
+  font-weight:900;
+
+  line-height:1.35;
+}
+
+.sub{
+  color:var(--sub);
+
+  font-size:16px;
+  font-weight:700;
+
+  line-height:1.6;
+}
+
+.english{
+  margin:18px 0 6px;
+
+  color:#28627f;
+
+  font-size:41px;
+  font-weight:900;
+
+  line-height:1.15;
+}
+
+.japanese{
+  margin-bottom:14px;
+
+  color:var(--sub);
+
+  font-size:21px;
+  font-weight:900;
+}
+
+.prompt{
+  margin:17px 0;
+
+  padding:17px;
+
+  border:3px solid #d0aa4f;
+
+  border-radius:22px;
+
+  background:#fff0ba;
+
+  font-size:22px;
+  font-weight:900;
+
+  line-height:1.5;
+}
+
+.primary,
+.secondary,
+.plain{
+  width:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+
+  font-weight:900;
+}
+
+.primary{
+  min-height:68px;
+
+  margin-top:15px;
+
+  border:3px solid var(--green-dark);
+
+  border-radius:22px;
+
+  background:var(--green);
+
+  color:#31553e;
+
+  box-shadow:0 5px 0 #7bb68c;
+
+  font-size:20px;
+}
+
+.secondary{
+  min-height:61px;
+
+  margin-top:11px;
+
+  border:3px solid var(--blue-dark);
+
+  border-radius:21px;
+
+  background:var(--blue);
+
+  color:#315a70;
+
+  font-size:19px;
+}
+
+.plain{
+  min-height:57px;
+
+  margin-top:10px;
+
+  border:3px solid #dbc8b5;
+
+  border-radius:20px;
+
+  background:#fff;
+
+  color:var(--text);
+
+  font-size:17px;
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:11px;
+
+  margin-bottom:15px;
+}
+
+.stat{
+  padding:14px 8px;
+
+  border:3px solid #876955;
+
+  border-radius:24px;
+
+  background:rgba(255,255,255,.96);
+
+  text-align:center;
+}
+
+.statArt{
+  width:49px;
+  height:49px;
+
+  margin:auto;
+}
+
+.statValue{
+  font-size:37px;
+  font-weight:900;
+}
+
+.statLabel{
+  color:var(--sub);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.menu{
+  display:grid;
+  gap:11px;
+}
+
+.menuBtn{
+  width:100%;
+
+  min-height:95px;
+
+  padding:12px;
+
+  display:grid;
+
+  grid-template-columns:
+    62px
+    minmax(0,1fr)
+    20px;
+
+  gap:10px;
+
+  align-items:center;
+
+  border:3px solid #dac8b7;
+
+  border-radius:23px;
+
+  background:rgba(255,255,255,.97);
+
+  text-align:left;
+}
+
+.menuIcon{
+  width:58px;
+  height:58px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:#fff2c8;
+}
+
+.menuIcon svg{
+  width:52px;
+  height:52px;
+}
+
+.menuTitle{
+  font-size:19px;
+  font-weight:900;
+}
+
+.menuText{
+  margin-top:3px;
+
+  color:var(--sub);
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.arrow{
+  font-size:28px;
+  color:#9e8878;
+}
+
+.training{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:11px;
+}
+
+.trainingBtn{
+  min-height:158px;
+
+  padding:13px 7px;
+
+  border:3px solid #dbc8b6;
+
+  border-radius:24px;
+
+  background:rgba(255,255,255,.97);
+
+  text-align:center;
+}
+
+.trainingIcon{
+  width:78px;
+  height:78px;
+
+  margin:auto;
+}
+
+.trainingTitle{
+  margin-top:5px;
+
+  font-size:19px;
+  font-weight:900;
+}
+
+.trainingText{
+  margin-top:3px;
+
+  color:var(--sub);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.progressCard{
+  margin-bottom:13px;
+
+  padding:12px 14px;
+
+  border:3px solid rgba(100,70,50,.17);
+
+  border-radius:20px;
+
+  background:rgba(255,253,248,.97);
+}
+
+.progress{
+  height:13px;
+
+  overflow:hidden;
+
+  border-radius:999px;
+
+  background:#e7ddd2;
+}
+
+.progressFill{
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #efc64e,
+      #e9a5b7
+    );
+}
+
+.progressText{
+  margin-top:5px;
+
+  text-align:right;
+
+  color:var(--sub);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.micArea{
+  margin:23px 0 15px;
+
+  text-align:center;
+}
+
+.mic{
+  width:138px;
+  height:138px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:4px solid var(--pink-dark);
+
+  border-radius:50%;
+
+  background:var(--pink);
+
+  box-shadow:
+    0 8px 0 #c9879a;
+}
+
+.mic svg{
+  width:88px;
+  height:88px;
+}
+
+.mic.listening{
+  animation:
+    pulse
+    .6s
+    infinite
+    alternate;
+}
+
+.mic.preparing{
+  animation:
+    pulse
+    .9s
+    infinite
+    alternate;
+
+  background:#f8e5b8;
+}
+
+@keyframes pulse{
+  to{
+    transform:scale(1.07);
+  }
+}
+
+.micText{
+  margin-top:13px;
+
+  color:var(--sub);
+
+  font-size:16px;
+  font-weight:900;
+}
+
+.voiceResult{
+  min-height:100px;
+
+  margin-top:14px;
+
+  padding:14px;
+
+  border:3px solid #b8dce9;
+
+  border-radius:20px;
+
+  background:#effaff;
+
+  color:#416a7c;
+
+  font-weight:800;
+
+  text-align:center;
+}
+
+.feedback{
+  display:none;
+
+  margin-top:12px;
+
+  padding:13px;
+
+  border-radius:18px;
+
+  font-size:16px;
+  font-weight:900;
+}
+
+.feedback.good{
+  display:block;
+
+  background:#e1f5e8;
+
+  border:2px solid #96d2aa;
+
+  color:#315d40;
+}
+
+.feedback.retry{
+  display:block;
+
+  background:#fff0d4;
+
+  border:2px solid #e2bd74;
+
+  color:#76501e;
+}
+
+.choices{
+  display:grid;
+
+  gap:11px;
+
+  margin-top:15px;
+}
+
+.choice{
+  min-height:73px;
+
+  padding:11px;
+
+  border:3px solid #80b2c8;
+
+  border-radius:21px;
+
+  background:#edf9fd;
+
+  color:#315d74;
+
+  font-size:21px;
+  font-weight:900;
+}
+
+.fallback{
+  display:none;
+
+  margin-top:10px;
+
+  padding:12px;
+
+  border:2px dashed #c9a973;
+
+  border-radius:17px;
+
+  background:#fff9e9;
+}
+
+.fallback.show{
+  display:block;
+}
+
+.fallbackText{
+  font-size:14px;
+
+  color:#776351;
+
+  font-weight:700;
+
+  line-height:1.5;
+}
+
+nav{
+  position:fixed;
+
+  left:50%;
+  bottom:0;
+
+  transform:translateX(-50%);
+
+  z-index:200;
+
+  width:100%;
+  max-width:480px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:4px;
+
+  padding:
+    6px
+    6px
+    calc(
+      6px
+      + env(safe-area-inset-bottom)
+    );
+
+  border-top:2px solid #dfcdb9;
+
+  background:rgba(255,250,240,.98);
+
+  backdrop-filter:blur(12px);
+}
+
+.navBtn{
+  min-height:74px;
+
+  border-radius:18px;
+
+  background:transparent;
+
+  color:#65574e;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:2px;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.navIcon{
+  width:34px;
+  height:34px;
+}
+
+.navBtn.active{
+  background:#f6e3a1;
+
+  color:#714e18;
+}
+
+.modal{
+  display:none;
+
+  position:fixed;
+  inset:0;
+
+  z-index:1000;
+
+  padding:14px;
+
+  background:
+    rgba(
+      48,
+      37,
+      30,
+      .54
+    );
+
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  width:100%;
+  max-width:420px;
+
+  padding:22px 16px;
+
+  border:4px solid #896854;
+
+  border-radius:27px;
+
+  background:#fffdf8;
+
+  text-align:center;
+}
+
+.profileArt{
+  width:110px;
+  height:110px;
+
+  margin:auto;
+}
+
+.field{
+  width:100%;
+
+  min-height:58px;
+
+  margin:7px 0;
+
+  padding:12px;
+
+  border:3px solid #d8c5b2;
+
+  border-radius:17px;
+
+  background:#fff;
+
+  font-size:18px;
+  font-weight:800;
+}
+
+.notice{
+  margin-top:12px;
+
+  padding:13px;
+
+  border-radius:18px;
+
+  background:#eef9fd;
+
+  color:#426776;
+
+  text-align:left;
+
+  font-size:14px;
+  font-weight:700;
+
+  line-height:1.65;
+}
+
+#toast{
+  position:fixed;
+
+  left:50%;
+
+  bottom:
+    calc(
+      var(--nav-height)
+      + 23px
+      + env(safe-area-inset-bottom)
+    );
+
+  transform:translateX(-50%);
+
+  z-index:2000;
+
+  width:calc(100% - 30px);
+  max-width:410px;
+
+  padding:12px;
+
+  border-radius:17px;
+
+  background:rgba(65,51,42,.95);
+
+  color:#fff;
+
+  text-align:center;
+
+  font-size:15px;
+  font-weight:900;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:opacity .18s;
+}
+
+#toast.show{
+  opacity:1;
+}
+
+svg{
+  overflow:visible;
+}
+
+@media(max-width:360px){
+  .title{
+    font-size:24px;
+  }
+
+  .english{
+    font-size:37px;
+  }
+
+  .trainingBtn{
+    min-height:150px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div id="app">
+
 <header>
-  <div class="brand"><img class="brandLogo" id="brandLogo" alt="ひよこ"><span>えいごトーク！</span></div>
-  <div class="headerRight">
-    <button id="gradeBtn" class="headerBtn" onclick="openProfile()">1ねん</button>
-    <button class="headerBtn" onclick="openProfile()">🙂</button>
+
+  <div class="brand">
+
+    <div
+      id="brandArt"
+      class="brandArt"
+    ></div>
+
+    <span>
+      えいごトーク！
+    </span>
+
   </div>
+
+  <div class="headerRight">
+
+    <button
+      id="gradeBtn"
+      class="headerBtn"
+      onclick="openProfile()"
+    >
+      1ねん
+    </button>
+
+    <button
+      class="headerBtn profileButton"
+      onclick="openProfile()"
+      aria-label="プロフィール"
+    >
+
+      <span id="headerProfileArt"></span>
+
+    </button>
+
+  </div>
+
 </header>
+
 <main id="screen"></main>
+
 <nav>
-  <button id="navHome" class="navBtn active" onclick="go('home')"><img class="navImg" id="navHomeImg" alt="ホーム">きょう</button>
-  <button id="navTrain" class="navBtn" onclick="go('train')"><img class="navImg" id="navTrainImg" alt="れんしゅう">れんしゅう</button>
-  <button id="navTalk" class="navBtn" onclick="go('talk')"><img class="navImg" id="navTalkImg" alt="かいわ">かいわ</button>
-  <button id="navReward" class="navBtn" onclick="go('reward')"><img class="navImg" id="navRewardImg" alt="ごほうび">ごほうび</button>
+
+  <button
+    id="navHome"
+    class="navBtn active"
+    onclick="go('home')"
+  >
+
+    <span
+      id="navHomeArt"
+      class="navIcon"
+    ></span>
+
+    きょう
+  </button>
+
+  <button
+    id="navTrain"
+    class="navBtn"
+    onclick="go('train')"
+  >
+
+    <span
+      id="navTrainArt"
+      class="navIcon"
+    ></span>
+
+    れんしゅう
+  </button>
+
+  <button
+    id="navTalk"
+    class="navBtn"
+    onclick="go('talk')"
+  >
+
+    <span
+      id="navTalkArt"
+      class="navIcon"
+    ></span>
+
+    かいわ
+  </button>
+
+  <button
+    id="navReward"
+    class="navBtn"
+    onclick="go('reward')"
+  >
+
+    <span
+      id="navRewardArt"
+      class="navIcon"
+    ></span>
+
+    ごほうび
+  </button>
+
 </nav>
+
 </div>
+
 <div id="toast"></div>
 
-<div id="profileModal" class="modal">
+<div
+  id="profileModal"
+  class="modal"
+>
+
   <div class="modalBox">
-    <img class="profileArt" id="profileArt" alt="プロフィール">
-    <div class="title">プレイヤー</div>
-    <input id="nameInput" class="field" maxlength="20" placeholder="ニックネーム">
-    <select id="gradeInput" class="field">
-      <option value="1">1ねん</option>
-      <option value="2">2ねん</option>
-      <option value="3">3ねん</option>
-      <option value="4">4ねん</option>
+
+    <div
+      id="profileArt"
+      class="profileArt"
+    ></div>
+
+    <div class="title">
+      プレイヤー
+    </div>
+
+    <input
+      id="nameInput"
+      class="field"
+      maxlength="20"
+      placeholder="ニックネーム"
+    >
+
+    <select
+      id="gradeInput"
+      class="field"
+    >
+
+      <option value="1">
+        1ねん
+      </option>
+
+      <option value="2">
+        2ねん
+      </option>
+
+      <option value="3">
+        3ねん
+      </option>
+
+      <option value="4">
+        4ねん
+      </option>
+
     </select>
-    <button class="primary" onclick="saveProfile()">✓ ほぞん</button>
-    <button class="plain" onclick="closeModal('profileModal')">とじる</button>
+
+    <button
+      class="primary"
+      onclick="saveProfile()"
+    >
+      ✓ ほぞん
+    </button>
+
+    <button
+      class="plain"
+      onclick="closeModal('profileModal')"
+    >
+      とじる
+    </button>
+
   </div>
+
 </div>
 
-<div id="micHelpModal" class="modal">
+<div
+  id="micHelpModal"
+  class="modal"
+>
+
   <div class="modalBox">
-    <div class="bigEmoji">🎤</div>
-    <div class="title">マイクについて</div>
-    <div id="micHelpText" class="notice"></div>
-    <button class="primary" onclick="closeModal('micHelpModal')">わかった</button>
+
+    <div
+      id="micHelpArt"
+      class="profileArt"
+    ></div>
+
+    <div class="title">
+      マイクについて
+    </div>
+
+    <div
+      id="micHelpText"
+      class="notice"
+    ></div>
+
+    <button
+      class="primary"
+      onclick="closeModal('micHelpModal')"
+    >
+      わかった
+    </button>
+
   </div>
+
 </div>
 
 <script>
-const ASSETS={
-  "mascot_chick":"assets/mascot_chick_wave.webp",
-  "avatar_chick":"assets/avatar_chick.webp",
-  "bear_book":"assets/bear_teacher_book.webp",
-  "bear_speak":"assets/bear_teacher_speak.webp",
-  "chick_listen":"assets/chick_listen.webp",
-  "chick_review":"assets/chick_review.webp",
-  "chick_quiz":"assets/chick_quiz.webp",
-  "conversation":"assets/conversation_friends.webp",
-  "fox_happy":"assets/fox_happy.webp",
-  "result_great":"assets/result_great.webp",
-  "result_good":"assets/result_good.webp",
-  "result_retry":"assets/result_retry.webp",
-  "status_mic_ready":"assets/status_mic_ready.webp",
-  "icon_home":"assets/icon_home.webp",
-  "icon_train":"assets/icon_train.webp",
-  "icon_talk":"assets/icon_talk.webp",
-  "icon_reward":"assets/icon_reward.webp",
-  "icon_mic":"assets/icon_mic.webp",
-  "icon_coin":"assets/icon_coin.webp",
-  "icon_streak":"assets/icon_streak.webp",
-  "icon_trophy":"assets/icon_trophy.webp",
-  "bg_school":"assets/bg_school.webp"
-};
 
-function assetImg(name,cls="assetImg",alt=""){
-  return `<img class="${cls}" src="${ASSETS[name]}" alt="${escapeHtml(alt)}" decoding="async">`;
+/* =====================================================
+   SVGイラスト
+   外部画像を一切使わない1ファイル完結版
+===================================================== */
+
+function svgWrap(
+  body,
+  className = '',
+  label = ''
+){
+
+  return `
+    <svg
+      class="${className}"
+      viewBox="0 0 120 120"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="${escapeHtml(label)}"
+    >
+      ${body}
+    </svg>
+  `;
 }
 
+function chickBase(){
+
+  return `
+    <ellipse
+      cx="60"
+      cy="66"
+      rx="35"
+      ry="38"
+      fill="#FFD94F"
+      stroke="#8C5A1F"
+      stroke-width="3"
+    />
+
+    <circle
+      cx="60"
+      cy="39"
+      r="28"
+      fill="#FFE566"
+      stroke="#8C5A1F"
+      stroke-width="3"
+    />
+
+    <path
+      d="M55 13
+         C57 5 64 5 66 13
+         C70 8 76 11 72 18"
+      fill="#FFE566"
+      stroke="#8C5A1F"
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+
+    <ellipse
+      cx="31"
+      cy="67"
+      rx="14"
+      ry="20"
+      fill="#FFE566"
+      stroke="#8C5A1F"
+      stroke-width="3"
+      transform="rotate(-20 31 67)"
+    />
+
+    <ellipse
+      cx="89"
+      cy="67"
+      rx="14"
+      ry="20"
+      fill="#FFE566"
+      stroke="#8C5A1F"
+      stroke-width="3"
+      transform="rotate(20 89 67)"
+    />
+
+    <circle
+      cx="49"
+      cy="37"
+      r="4"
+      fill="#3C2517"
+    />
+
+    <circle
+      cx="71"
+      cy="37"
+      r="4"
+      fill="#3C2517"
+    />
+
+    <ellipse
+      cx="42"
+      cy="49"
+      rx="7"
+      ry="4"
+      fill="#F6A1A0"
+      opacity=".85"
+    />
+
+    <ellipse
+      cx="78"
+      cy="49"
+      rx="7"
+      ry="4"
+      fill="#F6A1A0"
+      opacity=".85"
+    />
+
+    <path
+      d="M53 46 L67 46 L60 55 Z"
+      fill="#F7941D"
+      stroke="#B85D0C"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M52 59
+         Q60 68 68 59"
+      fill="none"
+      stroke="#623519"
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+
+    <path
+      d="M43 104
+         q-9 7 -17 1"
+      fill="none"
+      stroke="#E67E13"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+
+    <path
+      d="M77 104
+         q9 7 17 1"
+      fill="none"
+      stroke="#E67E13"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+  `;
+}
+
+function bearBase(){
+
+  return `
+    <circle
+      cx="38"
+      cy="28"
+      r="12"
+      fill="#A96C45"
+      stroke="#65402D"
+      stroke-width="3"
+    />
+
+    <circle
+      cx="82"
+      cy="28"
+      r="12"
+      fill="#A96C45"
+      stroke="#65402D"
+      stroke-width="3"
+    />
+
+    <circle
+      cx="60"
+      cy="48"
+      r="34"
+      fill="#B87850"
+      stroke="#65402D"
+      stroke-width="3"
+    />
+
+    <ellipse
+      cx="60"
+      cy="81"
+      rx="35"
+      ry="31"
+      fill="#6FA9E4"
+      stroke="#65402D"
+      stroke-width="3"
+    />
+
+    <ellipse
+      cx="60"
+      cy="55"
+      rx="18"
+      ry="15"
+      fill="#F7E2D0"
+    />
+
+    <circle
+      cx="49"
+      cy="43"
+      r="4"
+      fill="#3A2419"
+    />
+
+    <circle
+      cx="71"
+      cy="43"
+      r="4"
+      fill="#3A2419"
+    />
+
+    <ellipse
+      cx="60"
+      cy="51"
+      rx="5"
+      ry="4"
+      fill="#3A2419"
+    />
+
+    <path
+      d="M51 57
+         Q60 67 69 57"
+      fill="none"
+      stroke="#3A2419"
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+
+    <ellipse
+      cx="42"
+      cy="57"
+      rx="7"
+      ry="4"
+      fill="#F29A9A"
+    />
+
+    <ellipse
+      cx="78"
+      cy="57"
+      rx="7"
+      ry="4"
+      fill="#F29A9A"
+    />
+
+    <path
+      d="M52 68
+         L60 76
+         L68 68
+         L68 82
+         L60 76
+         L52 82
+         Z"
+      fill="#225FA9"
+      stroke="#184A84"
+      stroke-width="2"
+    />
+  `;
+}
+
+function art(
+  name,
+  className = '',
+  label = ''
+){
+
+  if(name === 'mascot'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <path
+          d="M26 60
+             Q13 49 12 34"
+          fill="none"
+          stroke="#8C5A1F"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M14 33
+             q-9 -4 -10 -12"
+          fill="none"
+          stroke="#F2A51A"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M19 29
+             q-2 -10 4 -15"
+          fill="none"
+          stroke="#F2A51A"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <circle
+          cx="97"
+          cy="26"
+          r="5"
+          fill="#FFCB35"
+        />
+
+        <circle
+          cx="104"
+          cy="38"
+          r="3"
+          fill="#FF9E34"
+        />
+      `,
+      className,
+      label || 'ひよこ'
+    );
+  }
+
+  if(name === 'listen'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <path
+          d="M34 38
+             C35 10 85 10 86 38"
+          fill="none"
+          stroke="#287FC8"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+
+        <rect
+          x="25"
+          y="34"
+          width="13"
+          height="29"
+          rx="6"
+          fill="#4DA7ED"
+          stroke="#155D9C"
+          stroke-width="3"
+        />
+
+        <rect
+          x="82"
+          y="34"
+          width="13"
+          height="29"
+          rx="6"
+          fill="#4DA7ED"
+          stroke="#155D9C"
+          stroke-width="3"
+        />
+
+        <path
+          d="M92 15
+             q8 8 0 16"
+          fill="none"
+          stroke="#E74C78"
+          stroke-width="4"
+        />
+
+        <circle
+          cx="92"
+          cy="14"
+          r="4"
+          fill="#E74C78"
+        />
+
+        <path
+          d="M105 23
+             q8 8 0 16"
+          fill="none"
+          stroke="#2A86E8"
+          stroke-width="4"
+        />
+
+        <circle
+          cx="105"
+          cy="22"
+          r="4"
+          fill="#2A86E8"
+        />
+      `,
+      className,
+      label || '英語をきくひよこ'
+    );
+  }
+
+  if(name === 'review'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <path
+          d="M31 72
+             Q44 64 59 72
+             L59 101
+             Q44 92 31 100
+             Z"
+          fill="#67A96B"
+          stroke="#376E42"
+          stroke-width="3"
+        />
+
+        <path
+          d="M61 72
+             Q76 64 89 72
+             L89 100
+             Q76 92 61 101
+             Z"
+          fill="#67A96B"
+          stroke="#376E42"
+          stroke-width="3"
+        />
+
+        <line
+          x1="60"
+          y1="73"
+          x2="60"
+          y2="101"
+          stroke="#376E42"
+          stroke-width="3"
+        />
+      `,
+      className,
+      label || '本を読むひよこ'
+    );
+  }
+
+  if(name === 'quiz'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <rect
+          x="75"
+          y="8"
+          width="36"
+          height="36"
+          rx="12"
+          fill="#FFF7D7"
+          stroke="#DE9A2C"
+          stroke-width="3"
+        />
+
+        <text
+          x="93"
+          y="34"
+          text-anchor="middle"
+          font-size="28"
+          font-weight="900"
+          fill="#E77B17"
+        >
+          ?
+        </text>
+
+        <circle
+          cx="29"
+          cy="23"
+          r="5"
+          fill="#F6BF32"
+        />
+
+        <path
+          d="M19 13 L24 19"
+          stroke="#F6BF32"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M10 26 L18 27"
+          stroke="#F6BF32"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      `,
+      className,
+      label || 'クイズのひよこ'
+    );
+  }
+
+  if(name === 'bearSpeak'){
+
+    return svgWrap(
+      `
+        ${bearBase()}
+
+        <path
+          d="M88 69
+             L105 50"
+          fill="none"
+          stroke="#6A4329"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <circle
+          cx="106"
+          cy="47"
+          r="6"
+          fill="#F0A51D"
+          stroke="#8A571C"
+          stroke-width="2"
+        />
+
+        <path
+          d="M96 31
+             q11 8 0 17"
+          fill="none"
+          stroke="#F09B22"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M104 24
+             q10 4 11 12"
+          fill="none"
+          stroke="#F09B22"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      `,
+      className,
+      label || 'くま先生'
+    );
+  }
+
+  if(name === 'conversation'){
+
+    return svgWrap(
+      `
+        <g transform="translate(-17 18) scale(.73)">
+          ${chickBase()}
+        </g>
+
+        <g transform="translate(44 25) scale(.62)">
+          ${bearBase()}
+        </g>
+
+        <rect
+          x="15"
+          y="5"
+          width="37"
+          height="25"
+          rx="12"
+          fill="#74C4F4"
+          stroke="#2E83B8"
+          stroke-width="3"
+        />
+
+        <circle
+          cx="27"
+          cy="17"
+          r="3"
+          fill="#fff"
+        />
+
+        <circle
+          cx="34"
+          cy="17"
+          r="3"
+          fill="#fff"
+        />
+
+        <circle
+          cx="41"
+          cy="17"
+          r="3"
+          fill="#fff"
+        />
+
+        <rect
+          x="69"
+          y="7"
+          width="38"
+          height="25"
+          rx="12"
+          fill="#F49AB7"
+          stroke="#B5577A"
+          stroke-width="3"
+        />
+
+        <circle
+          cx="81"
+          cy="19"
+          r="3"
+          fill="#fff"
+        />
+
+        <circle
+          cx="88"
+          cy="19"
+          r="3"
+          fill="#fff"
+        />
+
+        <circle
+          cx="95"
+          cy="19"
+          r="3"
+          fill="#fff"
+        />
+      `,
+      className,
+      label || '英会話'
+    );
+  }
+
+  if(name === 'mic'){
+
+    return svgWrap(
+      `
+        <rect
+          x="48"
+          y="16"
+          width="24"
+          height="53"
+          rx="12"
+          fill="#677681"
+          stroke="#39434A"
+          stroke-width="4"
+        />
+
+        <path
+          d="M37 58
+             C37 82 83 82 83 58"
+          fill="none"
+          stroke="#39434A"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+
+        <line
+          x1="60"
+          y1="83"
+          x2="60"
+          y2="101"
+          stroke="#39434A"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+
+        <line
+          x1="44"
+          y1="103"
+          x2="76"
+          y2="103"
+          stroke="#39434A"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+
+        <line
+          x1="53"
+          y1="29"
+          x2="67"
+          y2="29"
+          stroke="#BAC6CD"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <line
+          x1="53"
+          y1="40"
+          x2="67"
+          y2="40"
+          stroke="#BAC6CD"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      `,
+      className,
+      label || 'マイク'
+    );
+  }
+
+  if(name === 'coin'){
+
+    return svgWrap(
+      `
+        <circle
+          cx="60"
+          cy="60"
+          r="42"
+          fill="#FFD84D"
+          stroke="#CB8A1B"
+          stroke-width="6"
+        />
+
+        <circle
+          cx="60"
+          cy="60"
+          r="32"
+          fill="#FFE77B"
+          stroke="#E3A524"
+          stroke-width="3"
+        />
+
+        <path
+          d="M60 38
+             L67 52
+             L83 54
+             L71 65
+             L75 81
+             L60 73
+             L45 81
+             L49 65
+             L37 54
+             L53 52
+             Z"
+          fill="#F2A51A"
+        />
+      `,
+      className,
+      label || 'ポイント'
+    );
+  }
+
+  if(name === 'flame'){
+
+    return svgWrap(
+      `
+        <path
+          d="M62 10
+             C76 33 96 38 91 68
+             C87 94 70 108 51 106
+             C25 103 17 82 27 61
+             C35 45 51 39 49 20
+             C58 26 61 31 64 39
+             C67 29 66 20 62 10
+             Z"
+          fill="#FF6B32"
+          stroke="#C74421"
+          stroke-width="4"
+        />
+
+        <path
+          d="M60 50
+             C70 64 77 69 73 82
+             C70 94 60 99 50 94
+             C41 89 40 78 45 69
+             C50 61 56 58 60 50
+             Z"
+          fill="#FFD33D"
+        />
+      `,
+      className,
+      label || 'れんぞく'
+    );
+  }
+
+  if(name === 'trophy'){
+
+    return svgWrap(
+      `
+        <path
+          d="M40 23
+             H80
+             V50
+             C80 69 70 79 60 79
+             C50 79 40 69 40 50
+             Z"
+          fill="#FFD84C"
+          stroke="#B97718"
+          stroke-width="4"
+        />
+
+        <path
+          d="M40 31
+             H25
+             C24 51 32 61 44 61"
+          fill="none"
+          stroke="#B97718"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M80 31
+             H95
+             C96 51 88 61 76 61"
+          fill="none"
+          stroke="#B97718"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <line
+          x1="60"
+          y1="79"
+          x2="60"
+          y2="93"
+          stroke="#B97718"
+          stroke-width="6"
+        />
+
+        <rect
+          x="42"
+          y="92"
+          width="36"
+          height="12"
+          rx="5"
+          fill="#B97718"
+        />
+
+        <path
+          d="M60 32
+             L65 43
+             L77 44
+             L68 52
+             L71 64
+             L60 58
+             L49 64
+             L52 52
+             L43 44
+             L55 43
+             Z"
+          fill="#FFF0A0"
+        />
+      `,
+      className,
+      label || 'トロフィー'
+    );
+  }
+
+  if(name === 'gift'){
+
+    return svgWrap(
+      `
+        <rect
+          x="25"
+          y="46"
+          width="70"
+          height="56"
+          rx="8"
+          fill="#F05F66"
+          stroke="#A73B44"
+          stroke-width="4"
+        />
+
+        <rect
+          x="19"
+          y="37"
+          width="82"
+          height="18"
+          rx="7"
+          fill="#F87378"
+          stroke="#A73B44"
+          stroke-width="4"
+        />
+
+        <rect
+          x="54"
+          y="38"
+          width="13"
+          height="64"
+          fill="#FFD65A"
+        />
+
+        <path
+          d="M60 37
+             C45 36 36 26 42 19
+             C50 10 59 25 60 37"
+          fill="#FFD65A"
+          stroke="#B27B1B"
+          stroke-width="3"
+        />
+
+        <path
+          d="M60 37
+             C75 36 84 26 78 19
+             C70 10 61 25 60 37"
+          fill="#FFD65A"
+          stroke="#B27B1B"
+          stroke-width="3"
+        />
+      `,
+      className,
+      label || 'ごほうび'
+    );
+  }
+
+  if(name === 'home'){
+
+    return svgWrap(
+      `
+        <path
+          d="M19 57
+             L60 20
+             L101 57"
+          fill="#EF705B"
+          stroke="#8E4C3D"
+          stroke-width="5"
+          stroke-linejoin="round"
+        />
+
+        <rect
+          x="29"
+          y="54"
+          width="62"
+          height="50"
+          rx="6"
+          fill="#FFF7DF"
+          stroke="#8E4C3D"
+          stroke-width="5"
+        />
+
+        <rect
+          x="52"
+          y="70"
+          width="18"
+          height="34"
+          rx="5"
+          fill="#B97847"
+        />
+
+        <rect
+          x="35"
+          y="65"
+          width="13"
+          height="14"
+          rx="2"
+          fill="#73C4F2"
+        />
+
+        <rect
+          x="75"
+          y="65"
+          width="13"
+          height="14"
+          rx="2"
+          fill="#73C4F2"
+        />
+      `,
+      className,
+      label || 'ホーム'
+    );
+  }
+
+  if(name === 'headphones'){
+
+    return svgWrap(
+      `
+        <path
+          d="M25 65
+             C25 21 95 21 95 65"
+          fill="none"
+          stroke="#2479C8"
+          stroke-width="13"
+          stroke-linecap="round"
+        />
+
+        <rect
+          x="17"
+          y="57"
+          width="20"
+          height="36"
+          rx="10"
+          fill="#4AA6ED"
+          stroke="#185F9E"
+          stroke-width="4"
+        />
+
+        <rect
+          x="83"
+          y="57"
+          width="20"
+          height="36"
+          rx="10"
+          fill="#4AA6ED"
+          stroke="#185F9E"
+          stroke-width="4"
+        />
+
+        <path
+          d="M47 65
+             Q60 77 73 65"
+          fill="none"
+          stroke="#F0A21B"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+      `,
+      className,
+      label || 'れんしゅう'
+    );
+  }
+
+  if(name === 'chat'){
+
+    return svgWrap(
+      `
+        <rect
+          x="12"
+          y="26"
+          width="61"
+          height="48"
+          rx="22"
+          fill="#75C7F4"
+          stroke="#2E83B9"
+          stroke-width="4"
+        />
+
+        <path
+          d="M30 73
+             L23 91
+             L45 76"
+          fill="#75C7F4"
+          stroke="#2E83B9"
+          stroke-width="4"
+          stroke-linejoin="round"
+        />
+
+        <rect
+          x="57"
+          y="51"
+          width="52"
+          height="42"
+          rx="20"
+          fill="#F49AB7"
+          stroke="#B5577A"
+          stroke-width="4"
+        />
+
+        <path
+          d="M92 90
+             L101 104
+             L78 93"
+          fill="#F49AB7"
+          stroke="#B5577A"
+          stroke-width="4"
+          stroke-linejoin="round"
+        />
+
+        <circle cx="30" cy="49" r="4" fill="#fff"/>
+        <circle cx="43" cy="49" r="4" fill="#fff"/>
+        <circle cx="56" cy="49" r="4" fill="#fff"/>
+
+        <circle cx="71" cy="70" r="4" fill="#fff"/>
+        <circle cx="83" cy="70" r="4" fill="#fff"/>
+        <circle cx="95" cy="70" r="4" fill="#fff"/>
+      `,
+      className,
+      label || 'かいわ'
+    );
+  }
+
+  if(name === 'profile'){
+
+    return svgWrap(
+      `
+        <circle
+          cx="60"
+          cy="60"
+          r="51"
+          fill="#FFF1A8"
+          stroke="#DEB858"
+          stroke-width="4"
+        />
+
+        <circle
+          cx="60"
+          cy="48"
+          r="20"
+          fill="#FFD94F"
+          stroke="#8C5A1F"
+          stroke-width="3"
+        />
+
+        <ellipse
+          cx="60"
+          cy="83"
+          rx="27"
+          ry="21"
+          fill="#FFD94F"
+          stroke="#8C5A1F"
+          stroke-width="3"
+        />
+
+        <circle cx="52" cy="45" r="3" fill="#3C2517"/>
+        <circle cx="68" cy="45" r="3" fill="#3C2517"/>
+
+        <path
+          d="M54 52
+             Q60 58 66 52"
+          fill="none"
+          stroke="#623519"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      `,
+      className,
+      label || 'プロフィール'
+    );
+  }
+
+  if(name === 'great'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <path
+          d="M15 20
+             L19 29
+             L29 30
+             L21 36
+             L24 46
+             L15 40
+             L6 46
+             L9 36
+             L1 30
+             L11 29
+             Z"
+          fill="#FFD83D"
+        />
+
+        <path
+          d="M100 12
+             L104 21
+             L114 22
+             L106 28
+             L109 38
+             L100 32
+             L91 38
+             L94 28
+             L86 22
+             L96 21
+             Z"
+          fill="#FFD83D"
+        />
+
+        <circle
+          cx="92"
+          cy="50"
+          r="7"
+          fill="#FFB731"
+        />
+      `,
+      className,
+      label || 'とてもよく言えた'
+    );
+  }
+
+  if(name === 'good'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <circle
+          cx="93"
+          cy="24"
+          r="20"
+          fill="#7BCB90"
+          stroke="#3C8D58"
+          stroke-width="4"
+        />
+
+        <path
+          d="M83 24
+             L90 31
+             L104 16"
+          fill="none"
+          stroke="#fff"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      `,
+      className,
+      label || 'ちゃんと伝わった'
+    );
+  }
+
+  if(name === 'retry'){
+
+    return svgWrap(
+      `
+        ${chickBase()}
+
+        <path
+          d="M89 16
+             C103 25 103 43 91 51"
+          fill="#71C5F3"
+          stroke="#2A8CC2"
+          stroke-width="3"
+        />
+
+        <path
+          d="M89 16
+             C83 26 83 39 91 51"
+          fill="#9CDBF7"
+        />
+
+        <circle
+          cx="101"
+          cy="59"
+          r="5"
+          fill="#71C5F3"
+        />
+      `,
+      className,
+      label || 'もう一回'
+    );
+  }
+
+  return '';
+}
+
+/* =====================================================
+   学習データ
+===================================================== */
+
 const WORDS={
-1:[
-  ['Apple','りんご'],
-  ['Banana','バナナ'],
-  ['Orange','オレンジ'],
-  ['Dog','いぬ'],
-  ['Cat','ねこ'],
-  ['Bird','とり'],
-  ['Fish','さかな'],
-  ['Red','あか'],
-  ['Blue','あお'],
-  ['Yellow','きいろ'],
-  ['Green','みどり'],
-  ['Pink','ピンク'],
-  ['One','1'],
-  ['Two','2'],
-  ['Three','3'],
-  ['Four','4'],
-  ['Five','5'],
-  ['Sun','たいよう'],
-  ['Moon','つき'],
-  ['Star','ほし']
-],
-2:[
-  ['Book','ほん'],
-  ['Pen','ペン'],
-  ['Pencil','えんぴつ'],
-  ['Bag','かばん'],
-  ['Desk','つくえ'],
-  ['Chair','いす'],
-  ['School','がっこう'],
-  ['House','いえ'],
-  ['Park','こうえん'],
-  ['Car','くるま'],
-  ['Bus','バス'],
-  ['Bike','じてんしゃ'],
-  ['Milk','ぎゅうにゅう'],
-  ['Water','みず'],
-  ['Rice','ごはん'],
-  ['Bread','パン'],
-  ['Eye','め'],
-  ['Nose','はな'],
-  ['Hand','て'],
-  ['Foot','あし']
-],
-3:[
-  ['Father','おとうさん'],
-  ['Mother','おかあさん'],
-  ['Brother','おにいさん・おとうと'],
-  ['Sister','おねえさん・いもうと'],
-  ['Teacher','せんせい'],
-  ['Student','せいと'],
-  ['Soccer','サッカー'],
-  ['Baseball','やきゅう'],
-  ['Tennis','テニス'],
-  ['Swim','およぐ'],
-  ['Run','はしる'],
-  ['Walk','あるく'],
-  ['Jump','とぶ'],
-  ['Eat','たべる'],
-  ['Drink','のむ'],
-  ['Sleep','ねる'],
-  ['Sunny','はれ'],
-  ['Rainy','あめ'],
-  ['Cloudy','くもり'],
-  ['Snow','ゆき']
-],
-4:[
-  ['Hello!','Hello!','こんにちは！'],
-  ['Good morning!','Good morning!','おはよう！'],
-  ['Good afternoon!','Good afternoon!','こんにちは！'],
-  ['Good night!','Good night!','おやすみなさい！'],
-  ['See you!','See you!','またね！'],
-  ['Bye!','Bye!','さようなら！'],
-  ['How are you?', "I'm fine.",'元気です'],
-  ["What's your name?","My name is Ken.",'ぼくの名前はケンです'],
-  ['How old are you?',"I'm ten.",'10さいです'],
-  ['Thank you!',"You're welcome.",'どういたしまして'],
-  ["I'm sorry.","That's OK.",'だいじょうぶです'],
-  ['Nice to meet you.','Nice to meet you, too.','こちらこそよろしく'],
-  ['Do you like apples?','Yes, I do.','はい、好きです'],
-  ['Do you like soccer?','Yes, I do.','はい、好きです'],
-  ['What do you like?','I like cats.','ねこが好きです'],
-  ["What's this?","It's a dog.",'犬です'],
-  ['What color is it?',"It's red.",'赤です'],
-  ['Can you swim?','Yes, I can.','はい、できます'],
-  ['Are you ready?','Yes!','はい！'],
-  ['Have a nice day!','You too!','あなたもね！']
-]
+
+  1:[
+    ['Apple','りんご'],
+    ['Banana','バナナ'],
+    ['Orange','オレンジ'],
+    ['Dog','いぬ'],
+    ['Cat','ねこ'],
+    ['Bird','とり'],
+    ['Fish','さかな'],
+    ['Red','あか'],
+    ['Blue','あお'],
+    ['Yellow','きいろ'],
+    ['Green','みどり'],
+    ['Pink','ピンク'],
+    ['One','1'],
+    ['Two','2'],
+    ['Three','3'],
+    ['Four','4'],
+    ['Five','5'],
+    ['Sun','たいよう'],
+    ['Moon','つき'],
+    ['Star','ほし']
+  ],
+
+  2:[
+    ['Book','ほん'],
+    ['Pen','ペン'],
+    ['Pencil','えんぴつ'],
+    ['Bag','かばん'],
+    ['Desk','つくえ'],
+    ['Chair','いす'],
+    ['School','がっこう'],
+    ['House','いえ'],
+    ['Park','こうえん'],
+    ['Car','くるま'],
+    ['Bus','バス'],
+    ['Bike','じてんしゃ'],
+    ['Milk','ぎゅうにゅう'],
+    ['Water','みず'],
+    ['Rice','ごはん'],
+    ['Bread','パン'],
+    ['Eye','め'],
+    ['Nose','はな'],
+    ['Hand','て'],
+    ['Foot','あし']
+  ],
+
+  3:[
+    ['Father','おとうさん'],
+    ['Mother','おかあさん'],
+    ['Brother','おにいさん・おとうと'],
+    ['Sister','おねえさん・いもうと'],
+    ['Teacher','せんせい'],
+    ['Student','せいと'],
+    ['Soccer','サッカー'],
+    ['Baseball','やきゅう'],
+    ['Tennis','テニス'],
+    ['Swim','およぐ'],
+    ['Run','はしる'],
+    ['Walk','あるく'],
+    ['Jump','とぶ'],
+    ['Eat','たべる'],
+    ['Drink','のむ'],
+    ['Sleep','ねる'],
+    ['Sunny','はれ'],
+    ['Rainy','あめ'],
+    ['Cloudy','くもり'],
+    ['Snow','ゆき']
+  ],
+
+  4:[
+    ['Hello!','Hello!','こんにちは！'],
+    ['Good morning!','Good morning!','おはよう！'],
+    ['Good afternoon!','Good afternoon!','こんにちは！'],
+    ['Good night!','Good night!','おやすみなさい！'],
+    ['See you!','See you!','またね！'],
+    ['Bye!','Bye!','さようなら！'],
+    ['How are you?', "I'm fine.",'元気です'],
+    ["What's your name?","My name is Ken.",'ぼくの名前はケンです'],
+    ['How old are you?',"I'm ten.",'10さいです'],
+    ['Thank you!',"You're welcome.",'どういたしまして'],
+    ["I'm sorry.","That's OK.",'だいじょうぶです'],
+    ['Nice to meet you.','Nice to meet you, too.','こちらこそよろしく'],
+    ['Do you like apples?','Yes, I do.','はい、好きです'],
+    ['Do you like soccer?','Yes, I do.','はい、好きです'],
+    ['What do you like?','I like cats.','ねこが好きです'],
+    ["What's this?","It's a dog.",'犬です'],
+    ['What color is it?',"It's red.",'赤です'],
+    ['Can you swim?','Yes, I can.','はい、できます'],
+    ['Are you ready?','Yes!','はい！'],
+    ['Have a nice day!','You too!','あなたもね！']
+  ]
+
 };
 
 const MISSIONS={
-1:[
- {
-   title:'こんにちは',
-   scene:'ともだちに会ったよ',
-   turns:[
-     {
-       bot:'Hello!',
-       answers:['Hello!','Hi!'],
-       hint:'こんにちは！'
-     }
-   ]
- },
- {
-   title:'ありがとう',
-   scene:'ものをもらったよ',
-   turns:[
-     {
-       bot:'Here you are.',
-       answers:['Thank you!','Thank you'],
-       hint:'ありがとう！'
-     }
-   ]
- },
- {
-   title:'またね',
-   scene:'ともだちと別れるよ',
-   turns:[
-     {
-       bot:'Bye!',
-       answers:['Bye!','Bye','See you!'],
-       hint:'またね！'
-     }
-   ]
- }
-],
-2:[
- {
-   title:'なまえ',
-   scene:'はじめて会ったよ',
-   turns:[
-     {
-       bot:"What's your name?",
-       answers:['My name is Ken.',"I'm Ken."],
-       hint:'ぼくの名前はケンです'
-     }
-   ]
- },
- {
-   title:'すきなもの',
-   scene:'りんごが好きかな？',
-   turns:[
-     {
-       bot:'Do you like apples?',
-       answers:['Yes, I do.','Yes.'],
-       hint:'はい、好きです'
-     }
-   ]
- },
- {
-   title:'なんさい？',
-   scene:'自己紹介しよう',
-   turns:[
-     {
-       bot:'How old are you?',
-       answers:["I'm eight.","I'm nine.","I'm ten."],
-       hint:'自分の年齢を英語で言おう'
-     }
-   ]
- }
-],
-3:[
- {
-   title:'げんき？',
-   scene:'朝、ともだちと会ったよ',
-   turns:[
-     {
-       bot:'How are you?',
-       answers:["I'm fine.","I'm good.","I'm great."],
-       hint:'元気です'
-     }
-   ]
- },
- {
-   title:'できること',
-   scene:'できることを話そう',
-   turns:[
-     {
-       bot:'Can you swim?',
-       answers:['Yes, I can.',"No, I can't."],
-       hint:'はい、できます／いいえ、できません'
-     }
-   ]
- },
- {
-   title:'もういちど',
-   scene:'聞き取れなかった！',
-   turns:[
-     {
-       bot:"Let's play soccer after school!",
-       answers:['One more time, please.','Please say it again.'],
-       hint:'もう一度お願いします'
-     }
-   ]
- }
-],
-4:[
- {
-   title:'朝のあいさつ',
-   scene:'学校で友達に会いました',
-   turns:[
-     {
-       bot:'Good morning!',
-       answers:['Good morning!'],
-       hint:'おはよう！'
-     },
-     {
-       bot:'How are you?',
-       answers:["I'm fine.","I'm good.","I'm great."],
-       hint:'元気です'
-     },
-     {
-       bot:'Have a nice day!',
-       answers:['You too!'],
-       hint:'あなたもね！'
-     }
-   ]
- },
- {
-   title:'自己紹介',
-   scene:'新しい友達に会いました',
-   turns:[
-     {
-       bot:"What's your name?",
-       answers:['My name is Ken.',"I'm Ken."],
-       hint:'ぼくの名前はケンです'
-     },
-     {
-       bot:'Nice to meet you.',
-       answers:['Nice to meet you, too.'],
-       hint:'こちらこそよろしく'
-     }
-   ]
- },
- {
-   title:'聞き返す',
-   scene:'英語が聞き取れません',
-   turns:[
-     {
-       bot:"Let's start!",
-       answers:['One more time, please.','Please say it again.'],
-       hint:'もう一度お願いします'
-     }
-   ]
- }
-]
+
+  1:[
+    {
+      title:'こんにちは',
+      scene:'ともだちに会ったよ',
+      turns:[
+        {
+          bot:'Hello!',
+          answers:[
+            'Hello!',
+            'Hi!'
+          ],
+          hint:'こんにちは！'
+        }
+      ]
+    },
+
+    {
+      title:'ありがとう',
+      scene:'ものをもらったよ',
+      turns:[
+        {
+          bot:'Here you are.',
+          answers:[
+            'Thank you!',
+            'Thank you'
+          ],
+          hint:'ありがとう！'
+        }
+      ]
+    },
+
+    {
+      title:'またね',
+      scene:'ともだちと別れるよ',
+      turns:[
+        {
+          bot:'Bye!',
+          answers:[
+            'Bye!',
+            'Bye',
+            'See you!'
+          ],
+          hint:'またね！'
+        }
+      ]
+    }
+  ],
+
+  2:[
+    {
+      title:'なまえ',
+      scene:'はじめて会ったよ',
+      turns:[
+        {
+          bot:"What's your name?",
+          answers:[
+            'My name is Ken.',
+            "I'm Ken."
+          ],
+          hint:'ぼくの名前はケンです'
+        }
+      ]
+    },
+
+    {
+      title:'すきなもの',
+      scene:'りんごが好きかな？',
+      turns:[
+        {
+          bot:'Do you like apples?',
+          answers:[
+            'Yes, I do.',
+            'Yes.'
+          ],
+          hint:'はい、好きです'
+        }
+      ]
+    },
+
+    {
+      title:'なんさい？',
+      scene:'自己紹介しよう',
+      turns:[
+        {
+          bot:'How old are you?',
+          answers:[
+            "I'm eight.",
+            "I'm nine.",
+            "I'm ten."
+          ],
+          hint:'自分の年齢を英語で言おう'
+        }
+      ]
+    }
+  ],
+
+  3:[
+    {
+      title:'げんき？',
+      scene:'朝、ともだちと会ったよ',
+      turns:[
+        {
+          bot:'How are you?',
+          answers:[
+            "I'm fine.",
+            "I'm good.",
+            "I'm great."
+          ],
+          hint:'元気です'
+        }
+      ]
+    },
+
+    {
+      title:'できること',
+      scene:'できることを話そう',
+      turns:[
+        {
+          bot:'Can you swim?',
+          answers:[
+            'Yes, I can.',
+            "No, I can't."
+          ],
+          hint:'はい、できます／いいえ、できません'
+        }
+      ]
+    },
+
+    {
+      title:'もういちど',
+      scene:'聞き取れなかった！',
+      turns:[
+        {
+          bot:"Let's play soccer after school!",
+          answers:[
+            'One more time, please.',
+            'Please say it again.'
+          ],
+          hint:'もう一度お願いします'
+        }
+      ]
+    }
+  ],
+
+  4:[
+    {
+      title:'朝のあいさつ',
+      scene:'学校で友達に会いました',
+      turns:[
+        {
+          bot:'Good morning!',
+          answers:[
+            'Good morning!'
+          ],
+          hint:'おはよう！'
+        },
+
+        {
+          bot:'How are you?',
+          answers:[
+            "I'm fine.",
+            "I'm good.",
+            "I'm great."
+          ],
+          hint:'元気です'
+        },
+
+        {
+          bot:'Have a nice day!',
+          answers:[
+            'You too!'
+          ],
+          hint:'あなたもね！'
+        }
+      ]
+    },
+
+    {
+      title:'自己紹介',
+      scene:'新しい友達に会いました',
+      turns:[
+        {
+          bot:"What's your name?",
+          answers:[
+            'My name is Ken.',
+            "I'm Ken."
+          ],
+          hint:'ぼくの名前はケンです'
+        },
+
+        {
+          bot:'Nice to meet you.',
+          answers:[
+            'Nice to meet you, too.'
+          ],
+          hint:'こちらこそよろしく'
+        }
+      ]
+    },
+
+    {
+      title:'聞き返す',
+      scene:'英語が聞き取れません',
+      turns:[
+        {
+          bot:"Let's start!",
+          answers:[
+            'One more time, please.',
+            'Please say it again.'
+          ],
+          hint:'もう一度お願いします'
+        }
+      ]
+    }
+  ]
+
 };
+
+/* =====================================================
+   状態
+===================================================== */
 
 let state={
+
   name:'プレイヤー',
+
   grade:1,
+
   points:0,
+
   streak:0,
+
   lastStudy:'',
+
   page:'home',
+
   dailyStep:0,
+
   dailyItems:[],
+
   dailyMission:null,
+
   practiceMode:'',
+
   practiceIndex:0,
+
   mission:null,
+
   missionTurn:0,
+
   missionDaily:false,
+
   recognition:null,
+
   listening:false,
+
   micPreparing:false,
+
   micFailures:0
+
 };
 
-const screen=document.getElementById('screen');
+const screen=
+  document.getElementById(
+    'screen'
+  );
 
 let utteranceRef=null;
+
 let speakSerial=0;
+
 let lastSpeechEndedAt=0;
+
 let recognitionWatchdog=null;
 
-const isIOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
+let transitionTimer=null;
+
+const isIOS=
+  /iPhone|iPad|iPod/i
+    .test(
+      navigator.userAgent
+    );
 
 boot();
 
+/* =====================================================
+   起動
+===================================================== */
+
 function boot(){
-  document.getElementById('brandLogo').src=ASSETS.mascot_chick;
-  document.getElementById('navHomeImg').src=ASSETS.icon_home;
-  document.getElementById('navTrainImg').src=ASSETS.icon_train;
-  document.getElementById('navTalkImg').src=ASSETS.icon_talk;
-  document.getElementById('navRewardImg').src=ASSETS.icon_reward;
-  document.getElementById('profileArt').src=ASSETS.avatar_chick;
+
+  document
+    .getElementById(
+      'brandArt'
+    )
+    .innerHTML=
+      art(
+        'mascot',
+        '',
+        'ひよこ'
+      );
+
+  document
+    .getElementById(
+      'headerProfileArt'
+    )
+    .innerHTML=
+      art(
+        'profile'
+      );
+
+  document
+    .getElementById(
+      'profileArt'
+    )
+    .innerHTML=
+      art(
+        'mascot'
+      );
+
+  document
+    .getElementById(
+      'micHelpArt'
+    )
+    .innerHTML=
+      art(
+        'mic'
+      );
+
+  document
+    .getElementById(
+      'navHomeArt'
+    )
+    .innerHTML=
+      art(
+        'home'
+      );
+
+  document
+    .getElementById(
+      'navTrainArt'
+    )
+    .innerHTML=
+      art(
+        'headphones'
+      );
+
+  document
+    .getElementById(
+      'navTalkArt'
+    )
+    .innerHTML=
+      art(
+        'chat'
+      );
+
+  document
+    .getElementById(
+      'navRewardArt'
+    )
+    .innerHTML=
+      art(
+        'gift'
+      );
 
   loadState();
+
   updateHeader();
-  go('home');
+
+  go(
+    'home'
+  );
 }
 
 function loadState(){
+
   try{
-    const saved=JSON.parse(localStorage.getItem('eigoTalkState')||'{}');
+
+    const saved=
+      JSON.parse(
+        localStorage.getItem(
+          'eigoTalkState'
+        )||
+        '{}'
+      );
 
     state={
       ...state,
       ...saved,
+
       recognition:null,
+
       listening:false,
+
       micPreparing:false,
+
       micFailures:0
     };
-  }catch(e){}
+
+  }catch(error){}
 }
 
 function saveState(){
-  const c={...state};
 
-  delete c.recognition;
-  delete c.listening;
-  delete c.micPreparing;
-  delete c.micFailures;
+  const copy={
+    ...state
+  };
+
+  delete copy.recognition;
+
+  delete copy.listening;
+
+  delete copy.micPreparing;
+
+  delete copy.micFailures;
 
   localStorage.setItem(
     'eigoTalkState',
-    JSON.stringify(c)
+    JSON.stringify(
+      copy
+    )
   );
 }
 
 function updateHeader(){
-  document.getElementById('gradeBtn').textContent=
-    state.grade+'ねん';
+
+  document
+    .getElementById(
+      'gradeBtn'
+    )
+    .textContent=
+      state.grade+
+      'ねん';
 }
 
+/* =====================================================
+   画面移動
+===================================================== */
+
 function go(page){
+
   stopRecognition();
 
-  state.page=page;
+  clearTimeout(
+    transitionTimer
+  );
+
+  state.page=
+    page;
+
+  if(
+    page!==
+    'talk'
+  ){
+    state.mission=null;
+  }
+
   saveState();
 
   document
-    .querySelectorAll('.navBtn')
-    .forEach(el=>el.classList.remove('active'));
+    .querySelectorAll(
+      '.navBtn'
+    )
+    .forEach(
+      element=>{
+
+        element
+          .classList
+          .remove(
+            'active'
+          );
+      }
+    );
 
   const ids={
+
     home:'navHome',
+
     train:'navTrain',
+
     talk:'navTalk',
+
     reward:'navReward'
   };
 
-  if(ids[page]){
+  if(
+    ids[
+      page
+    ]
+  ){
+
     document
-      .getElementById(ids[page])
-      .classList.add('active');
+      .getElementById(
+        ids[
+          page
+        ]
+      )
+      .classList
+      .add(
+        'active'
+      );
   }
 
-  window.scrollTo(0,0);
+  window.scrollTo(
+    0,
+    0
+  );
 
-  if(page==='home'){
+  if(
+    page===
+    'home'
+  ){
     renderHome();
   }
 
-  if(page==='train'){
+  if(
+    page===
+    'train'
+  ){
     renderTraining();
   }
 
-  if(page==='talk'){
+  if(
+    page===
+    'talk'
+  ){
+    state.mission=null;
     renderMissionList();
   }
 
-  if(page==='reward'){
+  if(
+    page===
+    'reward'
+  ){
     renderReward();
   }
 }
 
+/* =====================================================
+   ホーム
+===================================================== */
+
 function renderHome(){
+
   screen.innerHTML=`
+
     <section class="card center">
 
-      ${assetImg(
-        'mascot_chick',
+      ${art(
+        'mascot',
         'heroArt',
         'ひよこ'
       )}
 
       <div class="title">
-        ${escapeHtml(state.name)}さん
+
+        ${escapeHtml(
+          state.name
+        )}さん
+
         <br>
+
         きょうも やってみよう！
+
       </div>
 
       <div class="sub">
-        きく・はなす・かいわする
-        をれんしゅうしよう
+
+        きく・はなす・かいわする を
+        <br>
+        少しずつ れんしゅうしよう
+
       </div>
 
       <button
@@ -522,14 +3072,18 @@ function renderHome(){
 
       <div class="stat">
 
-        ${assetImg(
-          'icon_coin',
-          'statImg',
-          'ポイント'
-        )}
+        <div class="statArt">
+
+          ${art(
+            'coin'
+          )}
+
+        </div>
 
         <div class="statValue">
+
           ${state.points}
+
         </div>
 
         <div class="statLabel">
@@ -540,14 +3094,18 @@ function renderHome(){
 
       <div class="stat">
 
-        ${assetImg(
-          'icon_streak',
-          'statImg',
-          'れんぞく'
-        )}
+        <div class="statArt">
+
+          ${art(
+            'flame'
+          )}
+
+        </div>
 
         <div class="statValue">
+
           ${state.streak}
+
         </div>
 
         <div class="statLabel">
@@ -561,14 +3119,14 @@ function renderHome(){
     <section class="menu">
 
       ${menuHtml(
-        'icon_train',
+        'headphones',
         'じぶんで れんしゅう',
         'きく・まねする・おもいだす',
         "go('train')"
       )}
 
       ${menuHtml(
-        'icon_talk',
+        'chat',
         'かいわチャレンジ',
         '英語でおはなししてみよう',
         "go('talk')"
@@ -578,30 +3136,40 @@ function renderHome(){
   `;
 }
 
-function menuHtml(icon,title,text,action){
-  const visual=
-    ASSETS[icon]
-      ? assetImg(icon,'assetImg',title)
-      : icon;
+function menuHtml(
+  icon,
+  title,
+  text,
+  action
+){
 
   return `
+
     <button
       class="menuBtn"
       onclick="${action}"
     >
 
       <div class="menuIcon">
-        ${visual}
+
+        ${art(
+          icon
+        )}
+
       </div>
 
       <div>
 
         <div class="menuTitle">
+
           ${title}
+
         </div>
 
         <div class="menuText">
+
           ${text}
+
         </div>
 
       </div>
@@ -614,12 +3182,18 @@ function menuHtml(icon,title,text,action){
   `;
 }
 
+/* =====================================================
+   れんしゅう
+===================================================== */
+
 function renderTraining(){
+
   screen.innerHTML=`
+
     <section class="card center">
 
-      ${assetImg(
-        'bear_book',
+      ${art(
+        'bearSpeak',
         'heroArt',
         'くま先生'
       )}
@@ -638,28 +3212,28 @@ function renderTraining(){
     <section class="training">
 
       ${trainingHtml(
-        'chick_listen',
+        'listen',
         'きく',
         '英語をきこう',
         "startPractice('listen')"
       )}
 
       ${trainingHtml(
-        'bear_speak',
+        'bearSpeak',
         'まねする',
         '声にだそう',
         "startPractice('repeat')"
       )}
 
       ${trainingHtml(
-        'chick_review',
+        'review',
         'おもいだす',
         '自分で言おう',
         "startPractice('recall')"
       )}
 
       ${trainingHtml(
-        'chick_quiz',
+        'quiz',
         '3たく',
         '聞いてえらぼう',
         "startPractice('quiz')"
@@ -669,8 +3243,15 @@ function renderTraining(){
   `;
 }
 
-function trainingHtml(icon,title,text,action){
+function trainingHtml(
+  icon,
+  title,
+  text,
+  action
+){
+
   return `
+
     <button
       class="trainingBtn"
       onclick="${action}"
@@ -678,59 +3259,131 @@ function trainingHtml(icon,title,text,action){
 
       <div class="trainingIcon">
 
-        ${assetImg(
-          icon,
-          'assetImg',
-          title
+        ${art(
+          icon
         )}
 
       </div>
 
       <div class="trainingTitle">
+
         ${title}
+
       </div>
 
       <div class="trainingText">
+
         ${text}
+
       </div>
 
     </button>
   `;
 }
 
+/* =====================================================
+   問題
+===================================================== */
+
 function getProblems(){
+
   const rows=
-    WORDS[state.grade]||
+    WORDS[
+      state.grade
+    ]||
     [];
 
   return rows.map(
-    (row,index)=>
-      state.grade===4
-      ?{
-        id:'g4_'+(index+1),
-        prompt:row[0],
-        answer:row[1],
-        ja:row[2]
+    (
+      row,
+      index
+    )=>{
+
+      if(
+        state.grade===
+        4
+      ){
+
+        return{
+
+          id:
+            'g4_'+
+            (
+              index+
+              1
+            ),
+
+          prompt:
+            row[
+              0
+            ],
+
+          answer:
+            row[
+              1
+            ],
+
+          ja:
+            row[
+              2
+            ]
+        };
       }
-      :{
-        id:'g'+state.grade+'_'+(index+1),
-        prompt:row[0],
-        answer:row[0],
-        ja:row[1]
-      }
+
+      return{
+
+        id:
+          'g'+
+          state.grade+
+          '_'+
+          (
+            index+
+            1
+          ),
+
+        prompt:
+          row[
+            0
+          ],
+
+        answer:
+          row[
+            0
+          ],
+
+        ja:
+          row[
+            1
+          ]
+      };
+    }
   );
 }
 
-function startPractice(mode){
-  state.practiceMode=mode;
-  state.practiceIndex=0;
-  state.micFailures=0;
+/* =====================================================
+   個別練習
+===================================================== */
+
+function startPractice(
+  mode
+){
+
+  state.practiceMode=
+    mode;
+
+  state.practiceIndex=
+    0;
+
+  state.micFailures=
+    0;
 
   renderPractice();
 }
 
 function currentProblem(){
-  const list=getProblems();
+
+  const list=
+    getProblems();
 
   return list[
     state.practiceIndex%
@@ -739,24 +3392,33 @@ function currentProblem(){
 }
 
 function renderPractice(){
-  const list=getProblems();
-  const item=currentProblem();
+
+  const list=
+    getProblems();
+
+  const item=
+    currentProblem();
 
   const progress=
     progressHtml(
-      state.practiceIndex+1,
+      state.practiceIndex+
+      1,
       list.length
     );
 
-  if(state.practiceMode==='listen'){
+  if(
+    state.practiceMode===
+    'listen'
+  ){
 
     screen.innerHTML=`
+
       ${progress}
 
       <section class="card center">
 
-        ${assetImg(
-          'chick_listen',
+        ${art(
+          'listen',
           'lessonArt',
           'きく'
         )}
@@ -766,18 +3428,28 @@ function renderPractice(){
         </div>
 
         <div class="english">
-          ${escapeHtml(item.answer)}
+
+          ${escapeHtml(
+            item.answer
+          )}
+
         </div>
 
         <div class="japanese">
-          ${escapeHtml(item.ja)}
+
+          ${escapeHtml(
+            item.ja
+          )}
+
         </div>
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(item.answer)}',
+              '${escapeJs(
+                item.answer
+              )}',
               false
             )
           "
@@ -789,7 +3461,9 @@ function renderPractice(){
           class="plain"
           onclick="
             speakEnglish(
-              '${escapeJs(item.answer)}',
+              '${escapeJs(
+                item.answer
+              )}',
               true
             )
           "
@@ -811,27 +3485,31 @@ function renderPractice(){
   }
 
   if(
-    state.practiceMode==='repeat'||
-    state.practiceMode==='recall'
+    state.practiceMode===
+      'repeat'||
+    state.practiceMode===
+      'recall'
   ){
 
     const recall=
-      state.practiceMode==='recall';
+      state.practiceMode===
+      'recall';
 
     screen.innerHTML=`
+
       ${progress}
 
       <section class="card center">
 
         ${
           recall
-          ? assetImg(
-              'chick_review',
+          ? art(
+              'review',
               'lessonArt',
               'おもいだす'
             )
-          : assetImg(
-              'bear_speak',
+          : art(
+              'bearSpeak',
               'lessonArt',
               'まねする'
             )
@@ -849,23 +3527,33 @@ function renderPractice(){
 
         ${
           recall
-          ?`
-            <div class="prompt">
-              ${escapeHtml(item.ja)}
-            </div>
-          `
-          :`
-            <div class="english">
-              ${escapeHtml(item.answer)}
-            </div>
-          `
+          ? `
+              <div class="prompt">
+
+                ${escapeHtml(
+                  item.ja
+                )}
+
+              </div>
+            `
+          : `
+              <div class="english">
+
+                ${escapeHtml(
+                  item.answer
+                )}
+
+              </div>
+            `
         }
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(item.answer)}',
+              '${escapeJs(
+                item.answer
+              )}',
               true
             )
           "
@@ -892,57 +3580,79 @@ function renderPractice(){
 }
 
 function finishListen(){
-  addPoints(2);
+
+  addPoints(
+    2
+  );
+
   nextPractice();
 }
 
 function practiceVoice(){
-  const item=currentProblem();
+
+  const item=
+    currentProblem();
 
   recognizeEnglish(
-    [item.answer],
+    [
+      item.answer
+    ],
     result=>{
 
-      if(result.success){
+      if(
+        !result.success
+      ){
+        return;
+      }
 
-        addPoints(
-          state.practiceMode==='recall'
-          ? 8
-          : 5
-        );
+      addPoints(
+        state.practiceMode===
+        'recall'
+        ? 8
+        : 5
+      );
 
-        feedback(
-          'Great！ つぎへすすむよ',
-          true
-        );
-
+      transitionTimer=
         setTimeout(
           nextPractice,
           2000
         );
-      }
     }
   );
 }
 
 function nextPractice(){
+
   state.practiceIndex++;
-  state.micFailures=0;
+
+  state.micFailures=
+    0;
 
   renderPractice();
 }
 
-function renderQuiz(item,progress){
+/* =====================================================
+   3択
+===================================================== */
+
+function renderQuiz(
+  item,
+  progress
+){
+
   const choices=
-    makeChoices(item);
+    makeChoices(
+      item
+    );
 
   screen.innerHTML=`
+
     ${progress}
 
     <section class="card center">
 
-      ${assetImg(
-        'chick_quiz',
+      ${art(
+        'quiz',
         'lessonArt',
         'クイズ'
       )}
@@ -955,7 +3665,9 @@ function renderQuiz(item,progress){
         class="secondary"
         onclick="
           speakEnglish(
-            '${escapeJs(item.prompt)}',
+            '${escapeJs(
+              item.prompt
+            )}',
             false
           )
         "
@@ -969,16 +3681,25 @@ function renderQuiz(item,progress){
           choices
             .map(
               value=>`
+
                 <button
                   class="choice"
                   onclick="
                     answerQuiz(
-                      '${escapeJs(value)}',
-                      '${escapeJs(item.answer)}'
+                      '${escapeJs(
+                        value
+                      )}',
+                      '${escapeJs(
+                        item.answer
+                      )}'
                     )
                   "
                 >
-                  ${escapeHtml(value)}
+
+                  ${escapeHtml(
+                    value
+                  )}
+
                 </button>
               `
             )
@@ -987,13 +3708,19 @@ function renderQuiz(item,progress){
 
       </div>
 
-      ${voiceHtml()}
+      <div
+        id="feedback"
+        class="feedback"
+      ></div>
 
     </section>
   `;
 }
 
-function makeChoices(item){
+function makeChoices(
+  item
+){
+
   const all=
     getProblems()
       .map(
@@ -1002,63 +3729,103 @@ function makeChoices(item){
       )
       .filter(
         value=>
-          normalize(value)!==
-          normalize(item.answer)
+          normalize(
+            value
+          )!==
+          normalize(
+            item.answer
+          )
       );
 
   return shuffle([
     item.answer,
-    ...shuffle(all)
-      .slice(0,2)
+    ...shuffle(
+      all
+    )
+    .slice(
+      0,
+      2
+    )
   ]);
 }
 
-function answerQuiz(selected,answer){
+function answerQuiz(
+  selected,
+  answer
+){
 
   if(
-    normalize(selected)!==
-    normalize(answer)
+    normalize(
+      selected
+    )!==
+    normalize(
+      answer
+    )
   ){
 
     feedback(
-      'もう一度やってみよう！',
+      '💪 おしい！ もう一回えらんでみよう',
       false
     );
 
     return;
   }
 
-  addPoints(5);
+  addPoints(
+    5
+  );
 
   feedback(
-    'せいかい！',
+    '🌟 せいかい！',
     true
   );
 
-  setTimeout(
-    nextPractice,
-    1200
-  );
+  transitionTimer=
+    setTimeout(
+      nextPractice,
+      1500
+    );
 }
 
+/* =====================================================
+   今日のレッスン
+===================================================== */
+
 function startDaily(){
+
+  clearTimeout(
+    transitionTimer
+  );
+
+  state.mission=null;
+
   const items=
     shuffle(
       getProblems()
     );
 
   state.dailyItems=
-    items.slice(0,3);
+    items.slice(
+      0,
+      3
+    );
 
   state.dailyMission=
     shuffle(
-      MISSIONS[state.grade]||
+      MISSIONS[
+        state.grade
+      ]||
       []
-    )[0]||
+    )[
+      0
+    ]||
     null;
 
-  state.dailyStep=0;
-  state.micFailures=0;
+  state.dailyStep=
+    0;
+
+  state.micFailures=
+    0;
 
   markStudyDay();
 
@@ -1067,23 +3834,37 @@ function startDaily(){
 
 function renderDaily(){
 
-  if(state.dailyStep>=5){
+  if(
+    state.dailyStep>=
+    5
+  ){
+
     finishDaily();
+
     return;
   }
 
-  if(state.dailyStep===0){
+  if(
+    state.dailyStep===
+    0
+  ){
 
     const item=
-      state.dailyItems[0];
+      state.dailyItems[
+        0
+      ];
 
     screen.innerHTML=`
-      ${progressHtml(1,5)}
+
+      ${progressHtml(
+        1,
+        5
+      )}
 
       <section class="card center">
 
-        ${assetImg(
-          'chick_listen',
+        ${art(
+          'listen',
           'lessonArt',
           'きく'
         )}
@@ -1093,18 +3874,28 @@ function renderDaily(){
         </div>
 
         <div class="english">
-          ${escapeHtml(item.answer)}
+
+          ${escapeHtml(
+            item.answer
+          )}
+
         </div>
 
         <div class="japanese">
-          ${escapeHtml(item.ja)}
+
+          ${escapeHtml(
+            item.ja
+          )}
+
         </div>
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(item.answer)}',
+              '${escapeJs(
+                item.answer
+              )}',
               true
             )
           "
@@ -1125,18 +3916,27 @@ function renderDaily(){
     return;
   }
 
-  if(state.dailyStep===1){
+  if(
+    state.dailyStep===
+    1
+  ){
 
     const item=
-      state.dailyItems[1];
+      state.dailyItems[
+        1
+      ];
 
     screen.innerHTML=`
-      ${progressHtml(2,5)}
+
+      ${progressHtml(
+        2,
+        5
+      )}
 
       <section class="card center">
 
-        ${assetImg(
-          'bear_speak',
+        ${art(
+          'bearSpeak',
           'lessonArt',
           'まねする'
         )}
@@ -1146,14 +3946,20 @@ function renderDaily(){
         </div>
 
         <div class="english">
-          ${escapeHtml(item.answer)}
+
+          ${escapeHtml(
+            item.answer
+          )}
+
         </div>
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(item.answer)}',
+              '${escapeJs(
+                item.answer
+              )}',
               true
             )
           "
@@ -1173,18 +3979,27 @@ function renderDaily(){
     return;
   }
 
-  if(state.dailyStep===2){
+  if(
+    state.dailyStep===
+    2
+  ){
 
     const item=
-      state.dailyItems[2];
+      state.dailyItems[
+        2
+      ];
 
     screen.innerHTML=`
-      ${progressHtml(3,5)}
+
+      ${progressHtml(
+        3,
+        5
+      )}
 
       <section class="card center">
 
-        ${assetImg(
-          'chick_review',
+        ${art(
+          'review',
           'lessonArt',
           'おもいだす'
         )}
@@ -1194,7 +4009,11 @@ function renderDaily(){
         </div>
 
         <div class="prompt">
-          ${escapeHtml(item.ja)}
+
+          ${escapeHtml(
+            item.ja
+          )}
+
         </div>
 
         ${micHtml(
@@ -1205,7 +4024,9 @@ function renderDaily(){
           class="plain"
           onclick="
             speakEnglish(
-              '${escapeJs(item.answer)}',
+              '${escapeJs(
+                item.answer
+              )}',
               true
             )
           "
@@ -1221,8 +4042,13 @@ function renderDaily(){
     return;
   }
 
-  if(state.dailyStep===3){
+  if(
+    state.dailyStep===
+    3
+  ){
+
     renderDailyReply();
+
     return;
   }
 
@@ -1230,63 +4056,95 @@ function renderDaily(){
 }
 
 function dailyListenDone(){
-  addPoints(2);
 
-  state.dailyStep=1;
-  state.micFailures=0;
+  addPoints(
+    2
+  );
+
+  state.dailyStep=
+    1;
+
+  state.micFailures=
+    0;
 
   renderDaily();
 }
 
-function dailyWordVoice(index){
+function dailyWordVoice(
+  index
+){
+
   const item=
-    state.dailyItems[index];
+    state.dailyItems[
+      index
+    ];
 
   recognizeEnglish(
-    [item.answer],
+    [
+      item.answer
+    ],
     result=>{
 
-      if(!result.success){
+      if(
+        !result.success
+      ){
         return;
       }
 
       addPoints(
-        index===1
+        index===
+        1
         ? 5
         : 8
       );
 
       state.dailyStep++;
-      state.micFailures=0;
 
-      setTimeout(
-        renderDaily,
-        2000
-      );
+      state.micFailures=
+        0;
+
+      transitionTimer=
+        setTimeout(
+          renderDaily,
+          2000
+        );
     }
   );
 }
 
 function renderDailyReply(){
+
   const turn=
     state.dailyMission
-      ?.turns?.[0];
+      ?.turns?.[
+        0
+      ];
 
-  if(!turn){
-    state.dailyStep=4;
+  if(
+    !turn
+  ){
+
+    state.dailyStep=
+      4;
+
     renderDaily();
+
     return;
   }
 
   screen.innerHTML=`
-    ${progressHtml(4,5)}
+
+    ${progressHtml(
+      4,
+      5
+    )}
 
     <section class="card center">
 
-      ${assetImg(
+      ${art(
         'conversation',
         'lessonArt',
-        '会話'
+        '英会話'
       )}
 
       <div class="title">
@@ -1294,14 +4152,20 @@ function renderDailyReply(){
       </div>
 
       <div class="prompt">
-        ${escapeHtml(turn.bot)}
+
+        ${escapeHtml(
+          turn.bot
+        )}
+
       </div>
 
       <button
         class="secondary"
         onclick="
           speakEnglish(
-            '${escapeJs(turn.bot)}',
+            '${escapeJs(
+              turn.bot
+            )}',
             false
           )
         "
@@ -1317,7 +4181,9 @@ function renderDailyReply(){
         class="plain"
         onclick="
           alert(
-            'ヒント：${escapeJs(turn.hint)}'
+            'ヒント：${escapeJs(
+              turn.hint
+            )}'
           )
         "
       >
@@ -1331,35 +4197,50 @@ function renderDailyReply(){
 }
 
 function dailyReplyVoice(){
+
   const turn=
     state.dailyMission
-      .turns[0];
+      .turns[
+        0
+      ];
 
   recognizeEnglish(
     turn.answers,
     result=>{
 
-      if(!result.success){
+      if(
+        !result.success
+      ){
         return;
       }
 
-      addPoints(8);
-
-      state.dailyStep=4;
-      state.micFailures=0;
-
-      setTimeout(
-        renderDaily,
-        2000
+      addPoints(
+        8
       );
+
+      state.dailyStep=
+        4;
+
+      state.micFailures=
+        0;
+
+      transitionTimer=
+        setTimeout(
+          renderDaily,
+          2000
+        );
     }
   );
 }
 
 function startDailyMission(){
 
-  if(!state.dailyMission){
+  if(
+    !state.dailyMission
+  ){
+
     finishDaily();
+
     return;
   }
 
@@ -1370,13 +4251,19 @@ function startDailyMission(){
 }
 
 function finishDaily(){
-  addPoints(10);
+
+  addPoints(
+    10
+  );
+
+  state.mission=null;
 
   screen.innerHTML=`
+
     <section class="card center">
 
-      ${assetImg(
-        'icon_trophy',
+      ${art(
+        'trophy',
         'heroArt',
         'トロフィー'
       )}
@@ -1386,8 +4273,11 @@ function finishDaily(){
       </div>
 
       <div class="sub">
+
         きいて・はなして・
+        <br>
         かいわまでできたよ
+
       </div>
 
       <button
@@ -1401,18 +4291,26 @@ function finishDaily(){
   `;
 }
 
+/* =====================================================
+   会話
+===================================================== */
+
 function renderMissionList(){
+
   const list=
-    MISSIONS[state.grade]||
+    MISSIONS[
+      state.grade
+    ]||
     [];
 
   screen.innerHTML=`
+
     <section class="card center">
 
-      ${assetImg(
+      ${art(
         'conversation',
         'heroArt',
-        '会話'
+        '英会話'
       )}
 
       <div class="title">
@@ -1420,8 +4318,11 @@ function renderMissionList(){
       </div>
 
       <div class="sub">
+
         場面をえらんで
+        <br>
         英語でおはなししよう
+
       </div>
 
     </section>
@@ -1431,9 +4332,12 @@ function renderMissionList(){
       ${
         list
           .map(
-            (mission,index)=>
+            (
+              mission,
+              index
+            )=>
               menuHtml(
-                '💬',
+                'chat',
                 escapeHtml(
                   mission.title
                 ),
@@ -1450,13 +4354,20 @@ function renderMissionList(){
   `;
 }
 
-function startMission(index){
+function startMission(
+  index
+){
+
   const list=
-    MISSIONS[state.grade]||
+    MISSIONS[
+      state.grade
+    ]||
     [];
 
   startMissionObject(
-    list[index],
+    list[
+      index
+    ],
     false
   );
 }
@@ -1465,15 +4376,24 @@ function startMissionObject(
   mission,
   daily
 ){
-  state.mission=mission;
-  state.missionTurn=0;
-  state.missionDaily=daily;
-  state.micFailures=0;
+
+  state.mission=
+    mission;
+
+  state.missionTurn=
+    0;
+
+  state.missionDaily=
+    daily;
+
+  state.micFailures=
+    0;
 
   renderMissionTurn();
 }
 
 function renderMissionTurn(){
+
   const mission=
     state.mission;
 
@@ -1483,43 +4403,65 @@ function renderMissionTurn(){
         state.missionTurn
       ];
 
-  if(!turn){
+  if(
+    !turn
+  ){
+
     finishMission();
+
     return;
   }
 
   screen.innerHTML=`
+
     ${
       state.missionDaily
-      ? progressHtml(5,5)
+      ? progressHtml(
+          5,
+          5
+        )
       : ''
     }
 
     <section class="card center">
 
-      ${assetImg(
+      ${art(
         'conversation',
         'lessonArt',
-        '会話'
+        '英会話'
       )}
 
       <div class="title">
-        ${escapeHtml(mission.title)}
+
+        ${escapeHtml(
+          mission.title
+        )}
+
       </div>
 
       <div class="sub">
-        ${escapeHtml(mission.scene)}
+
+        ${escapeHtml(
+          mission.scene
+        )}
+
       </div>
 
       <div class="prompt">
-        ${escapeHtml(turn.bot)}
+
+        ${escapeHtml(
+          turn.bot
+        )}
+
       </div>
 
       <button
         class="secondary"
         onclick="
           speakEnglish(
-            '${escapeJs(turn.bot)}',
+            '${escapeJs(
+              turn.bot
+            )}',
             false
           )
         "
@@ -1535,7 +4477,9 @@ function renderMissionTurn(){
         class="plain"
         onclick="
           alert(
-            'ヒント：${escapeJs(turn.hint)}'
+            'ヒント：${escapeJs(
+              turn.hint
+            )}'
           )
         "
       >
@@ -1548,9 +4492,16 @@ function renderMissionTurn(){
         class="sub"
         style="margin-top:15px"
       >
-        ${state.missionTurn+1}
+
+        ${
+          state.missionTurn+
+          1
+        }
         /
-        ${mission.turns.length}
+        ${
+          mission.turns.length
+        }
+
       </div>
 
     </section>
@@ -1558,6 +4509,7 @@ function renderMissionTurn(){
 }
 
 function missionVoice(){
+
   const turn=
     state.mission
       .turns[
@@ -1568,36 +4520,55 @@ function missionVoice(){
     turn.answers,
     result=>{
 
-      if(!result.success){
+      if(
+        !result.success
+      ){
         return;
       }
 
-      addPoints(4);
+      addPoints(
+        4
+      );
 
       state.missionTurn++;
-      state.micFailures=0;
 
-      setTimeout(
-        renderMissionTurn,
-        2000
-      );
+      state.micFailures=
+        0;
+
+      transitionTimer=
+        setTimeout(
+          renderMissionTurn,
+          2000
+        );
     }
   );
 }
 
 function finishMission(){
-  addPoints(10);
 
-  if(state.missionDaily){
+  addPoints(
+    10
+  );
+
+  if(
+    state.missionDaily
+  ){
+
+    state.mission=null;
+
     finishDaily();
+
     return;
   }
 
+  state.mission=null;
+
   screen.innerHTML=`
+
     <section class="card center">
 
-      ${assetImg(
-        'icon_trophy',
+      ${art(
+        'trophy',
         'heroArt',
         'トロフィー'
       )}
@@ -1617,12 +4588,18 @@ function finishMission(){
   `;
 }
 
+/* =====================================================
+   ごほうび
+===================================================== */
+
 function renderReward(){
+
   screen.innerHTML=`
+
     <section class="card center">
 
-      ${assetImg(
-        'icon_reward',
+      ${art(
+        'gift',
         'heroArt',
         'ごほうび'
       )}
@@ -1631,26 +4608,63 @@ function renderReward(){
         ごほうび
       </div>
 
-      ${assetImg(
-        'icon_coin',
-        'statImg',
-        'ポイント'
-      )}
+      <div
+        class="statArt"
+        style="width:60px;height:60px"
+      >
+
+        ${art(
+          'coin'
+        )}
+
+      </div>
 
       <div class="english">
+
         ${state.points} pt
+
       </div>
 
       <div class="sub">
-        ポイントは
+
+        レッスンをすると
+        <br>
+        ポイントがたまるよ！
+
+      </div>
+
+    </section>
+
+    <section class="card center">
+
+      ${art(
+        'trophy',
+        'lessonArt',
+        'トロフィー'
+      )}
+
+      <div class="title">
+        もっと英語を話してみよう！
+      </div>
+
+      <div class="sub">
+
+        がんばった記録は
+        <br>
         このスマホに保存されます
+
       </div>
 
     </section>
   `;
 }
 
+/* =====================================================
+   プロフィール
+===================================================== */
+
 function openProfile(){
+
   document
     .getElementById(
       'nameInput'
@@ -1671,6 +4685,7 @@ function openProfile(){
 }
 
 function saveProfile(){
+
   state.name=
     document
       .getElementById(
@@ -1690,34 +4705,51 @@ function saveProfile(){
     );
 
   saveState();
+
   updateHeader();
 
   closeModal(
     'profileModal'
   );
 
-  go('home');
+  go(
+    'home'
+  );
 }
 
-function addPoints(amount){
+/* =====================================================
+   ポイント
+===================================================== */
+
+function addPoints(
+  amount
+){
+
   state.points+=
-    Number(amount)||
+    Number(
+      amount
+    )||
     0;
 
   saveState();
 }
 
 function markStudyDay(){
+
   const today=
     new Date()
       .toLocaleDateString(
         'sv-SE',
         {
-          timeZone:'Asia/Tokyo'
+          timeZone:
+            'Asia/Tokyo'
         }
       );
 
-  if(state.lastStudy===today){
+  if(
+    state.lastStudy===
+    today
+  ){
     return;
   }
 
@@ -1729,13 +4761,16 @@ function markStudyDay(){
     .toLocaleDateString(
       'sv-SE',
       {
-        timeZone:'Asia/Tokyo'
+        timeZone:
+          'Asia/Tokyo'
       }
     );
 
   state.streak=
-    state.lastStudy===yesterday
-    ? state.streak+1
+    state.lastStudy===
+    yesterday
+    ? state.streak+
+      1
     : 1;
 
   state.lastStudy=
@@ -1748,9 +4783,15 @@ function markStudyDay(){
    英語音声
 ===================================================== */
 
-function speakEnglish(text,slow){
+function speakEnglish(
+  text,
+  slow
+){
 
-  if(!window.speechSynthesis){
+  if(
+    !window
+      .speechSynthesis
+  ){
 
     showToast(
       'このブラウザでは音声再生が使えません'
@@ -1765,21 +4806,27 @@ function speakEnglish(text,slow){
     ++speakSerial;
 
   const synth=
-    window.speechSynthesis;
+    window
+      .speechSynthesis;
 
   try{
     synth.resume();
-  }catch(e){}
+  }catch(error){}
 
   const play=()=>{
 
-    if(serial!==speakSerial){
+    if(
+      serial!==
+      speakSerial
+    ){
       return;
     }
 
     const utterance=
       new SpeechSynthesisUtterance(
-        String(text)
+        String(
+          text
+        )
       );
 
     utteranceRef=
@@ -1824,7 +4871,7 @@ function speakEnglish(text,slow){
         utterance
       );
 
-    }catch(e){
+    }catch(error){
 
       showToast(
         'もう一度「きく」を押してね'
@@ -1852,13 +4899,18 @@ function speakEnglish(text,slow){
 
 function stopSpeech(){
 
-  if(window.speechSynthesis){
+  if(
+    window
+      .speechSynthesis
+  ){
 
     try{
+
       window
         .speechSynthesis
         .cancel();
-    }catch(e){}
+
+    }catch(error){}
   }
 
   lastSpeechEndedAt=
@@ -1866,7 +4918,7 @@ function stopSpeech(){
 }
 
 /* =====================================================
-   iPhoneマイク安定化
+   iPhoneマイク対策
 ===================================================== */
 
 const sleep=
@@ -1910,18 +4962,22 @@ async function primeMicForIOS(){
           }
         });
 
-    await sleep(180);
+    await sleep(
+      180
+    );
 
-  }catch(e){
+  }catch(error){
 
     console.log(
       'mic prime:',
-      e
+      error
     );
 
   }finally{
 
-    if(stream){
+    if(
+      stream
+    ){
 
       stream
         .getTracks()
@@ -1932,7 +4988,9 @@ async function primeMicForIOS(){
     }
   }
 
-  await sleep(320);
+  await sleep(
+    320
+  );
 }
 
 async function recognizeEnglish(
@@ -1948,13 +5006,17 @@ async function recognizeEnglish(
   }
 
   const Recognition=
-    window.SpeechRecognition||
-    window.webkitSpeechRecognition;
+    window
+      .SpeechRecognition||
+    window
+      .webkitSpeechRecognition;
 
-  if(!Recognition){
+  if(
+    !Recognition
+  ){
 
     showMicHelp(
-      'このSafariでは音声認識APIを利用できません。'
+      'このSafariでは音声認識を利用できません。'
     );
 
     return;
@@ -1965,9 +5027,13 @@ async function recognizeEnglish(
       answers||
       []
     )
-    .filter(Boolean);
+    .filter(
+      Boolean
+    );
 
-  if(!allowed.length){
+  if(
+    !allowed.length
+  ){
 
     showToast(
       '答えのデータがありません'
@@ -1984,7 +5050,8 @@ async function recognizeEnglish(
 
   if(
     isIOS&&
-    sinceSpeech<450
+    sinceSpeech<
+    450
   ){
 
     setMicPreparing(
@@ -1998,7 +5065,10 @@ async function recognizeEnglish(
     );
   }
 
-  if(isIOS){
+  if(
+    isIOS
+  ){
+
     await primeMicForIOS();
   }
 
@@ -2021,8 +5091,10 @@ function startRecognitionAttempt(
 ){
 
   const Recognition=
-    window.SpeechRecognition||
-    window.webkitSpeechRecognition;
+    window
+      .SpeechRecognition||
+    window
+      .webkitSpeechRecognition;
 
   const recognition=
     new Recognition();
@@ -2031,6 +5103,7 @@ function startRecognitionAttempt(
     recognition;
 
   let gotResult=false;
+
   let ended=false;
 
   recognition.lang=
@@ -2054,12 +5127,14 @@ function startRecognitionAttempt(
     state.listening=
       true;
 
-    setMicUI(true);
+    setMicUI(
+      true
+    );
 
     feedback(
       retryNo
-      ? 'もう一度きいているよ…'
-      : 'きいているよ…',
+      ? '🎤 もう一度きいているよ…'
+      : '🎤 きいているよ…',
       true
     );
 
@@ -2075,24 +5150,36 @@ function startRecognitionAttempt(
           }
 
           try{
+
             recognition.abort();
-          }catch(e){}
+
+          }catch(error){}
 
           state.listening=
             false;
 
-          setMicUI(false);
+          setMicUI(
+            false
+          );
 
-          if(retryNo<1){
+          if(
+            retryNo<
+            1
+          ){
 
             feedback(
-              'マイクをつなぎ直しているよ…',
+              '🎤 マイクをつなぎ直しているよ…',
               true
             );
 
-            await sleep(650);
+            await sleep(
+              650
+            );
 
-            if(isIOS){
+            if(
+              isIOS
+            ){
+
               await primeMicForIOS();
             }
 
@@ -2113,7 +5200,6 @@ function startRecognitionAttempt(
 
             showFallback();
           }
-
         },
         7500
       );
@@ -2125,9 +5211,10 @@ function startRecognitionAttempt(
       ()=>{
 
         try{
-          recognition.stop();
-        }catch(e){}
 
+          recognition.stop();
+
+        }catch(error){}
       },
       120
     );
@@ -2136,52 +5223,72 @@ function startRecognitionAttempt(
   recognition.onresult=
     event=>{
 
-      gotResult=true;
+      gotResult=
+        true;
 
       clearTimeout(
         recognitionWatchdog
       );
 
       let best={
+
         spoken:'',
-        target:allowed[0],
+
+        target:
+          allowed[
+            0
+          ],
+
         score:0
       };
 
       for(
         let index=0;
         index<
-        event.results[0].length;
+        event.results[
+          0
+        ].length;
         index++
       ){
 
         const spoken=
           event
-            .results[0][index]
+            .results[
+              0
+            ][
+              index
+            ]
             .transcript;
 
-        allowed.forEach(
-          target=>{
+        allowed
+          .forEach(
+            target=>{
 
-            const score=
-              similarity(
-                spoken,
-                target
-              );
+              const score=
+                similarity(
+                  spoken,
+                  target
+                );
 
-            if(
-              score>
-              best.score
-            ){
+              if(
+                score>
+                best.score
+              ){
 
-              best={
-                spoken,
-                target,
-                score
-              };
+                best={
+
+                  spoken:
+                    spoken,
+
+                  target:
+                    target,
+
+                  score:
+                    score
+                };
+              }
             }
-          }
-        );
+          );
       }
 
       const score=
@@ -2190,21 +5297,27 @@ function startRecognitionAttempt(
           100
         );
 
-      const words=
+      const wordCount=
         normalize(
           best.target
         )
-        .split(' ')
-        .filter(Boolean)
+        .split(
+          ' '
+        )
+        .filter(
+          Boolean
+        )
         .length;
 
       const threshold=
-        words<=1
+        wordCount<=
+        1
         ? 62
         : 70;
 
       const success=
-        score>=threshold;
+        score>=
+        threshold;
 
       showVoice(
         best.spoken,
@@ -2213,10 +5326,18 @@ function startRecognitionAttempt(
       );
 
       callback({
-        spoken:best.spoken,
-        target:best.target,
-        score,
-        success
+
+        spoken:
+          best.spoken,
+
+        target:
+          best.target,
+
+        score:
+          score,
+
+        success:
+          success
       });
     };
 
@@ -2266,7 +5387,8 @@ function startRecognitionAttempt(
 
   recognition.onend=()=>{
 
-    ended=true;
+    ended=
+      true;
 
     clearTimeout(
       recognitionWatchdog
@@ -2279,14 +5401,19 @@ function startRecognitionAttempt(
       state.recognition===
       recognition
     ){
-      state.recognition=null;
+
+      state.recognition=
+        null;
     }
 
-    setMicUI(false);
+    setMicUI(
+      false
+    );
 
     if(
       !gotResult&&
-      retryNo===0
+      retryNo===
+      0
     ){
 
       feedback(
@@ -2300,16 +5427,21 @@ function startRecognitionAttempt(
 
     recognition.start();
 
-  }catch(e){
+  }catch(error){
 
     clearTimeout(
       recognitionWatchdog
     );
 
-    state.listening=false;
-    state.recognition=null;
+    state.listening=
+      false;
 
-    setMicUI(false);
+    state.recognition=
+      null;
+
+    setMicUI(
+      false
+    );
 
     feedback(
       'もう一度マイクを押してね',
@@ -2324,18 +5456,26 @@ function stopRecognition(){
     recognitionWatchdog
   );
 
-  if(state.recognition){
+  if(
+    state.recognition
+  ){
 
     try{
-      state
-        .recognition
+
+      state.recognition
         .abort();
-    }catch(e){}
+
+    }catch(error){}
   }
 
-  state.recognition=null;
-  state.listening=false;
-  state.micPreparing=false;
+  state.recognition=
+    null;
+
+  state.listening=
+    false;
+
+  state.micPreparing=
+    false;
 }
 
 function setMicPreparing(
@@ -2347,7 +5487,9 @@ function setMicPreparing(
     active;
 
   document
-    .querySelectorAll('.mic')
+    .querySelectorAll(
+      '.mic'
+    )
     .forEach(
       button=>{
 
@@ -2373,14 +5515,20 @@ function setMicPreparing(
     element&&
     text
   ){
-    element.textContent=text;
+
+    element.textContent=
+      text;
   }
 }
 
-function setMicUI(active){
+function setMicUI(
+  active
+){
 
   document
-    .querySelectorAll('.mic')
+    .querySelectorAll(
+      '.mic'
+    )
     .forEach(
       button=>{
 
@@ -2408,7 +5556,9 @@ function setMicUI(active){
         '.micText'
       );
 
-  if(element){
+  if(
+    element
+  ){
 
     element.textContent=
       active
@@ -2416,6 +5566,10 @@ function setMicUI(active){
       : 'タップして英語を話そう';
   }
 }
+
+/* =====================================================
+   マイク補助
+===================================================== */
 
 function showFallback(){
 
@@ -2425,69 +5579,85 @@ function showFallback(){
         'micFallback'
       );
 
-  if(box){
+  if(
+    box
+  ){
+
     box
       .classList
-      .add('show');
+      .add(
+        'show'
+      );
   }
 }
 
 function fallbackAdvance(){
 
   if(
-    state.page==='talk'||
     state.mission
   ){
 
-    if(state.mission){
+    state.missionTurn++;
 
-      state.missionTurn++;
-      state.micFailures=0;
+    state.micFailures=
+      0;
 
-      renderMissionTurn();
-    }
+    renderMissionTurn();
 
     return;
   }
 
   if(
     state.dailyItems.length&&
-    state.dailyStep>0&&
-    state.dailyStep<5
+    state.dailyStep>
+      0&&
+    state.dailyStep<
+      5
   ){
 
     state.dailyStep++;
-    state.micFailures=0;
+
+    state.micFailures=
+      0;
 
     renderDaily();
 
     return;
   }
 
-  if(state.practiceMode){
+  if(
+    state.practiceMode
+  ){
 
-    state.micFailures=0;
+    state.micFailures=
+      0;
 
     nextPractice();
   }
 }
 
 /* =====================================================
-   音声UI
+   マイク画面
 ===================================================== */
 
-function micHtml(action){
+function micHtml(
+  action
+){
+
   return `
+
     <div class="micArea">
 
       <button
         class="mic"
         onclick="${action}"
+        aria-label="マイク"
       >
-        <img
-          src="${ASSETS.icon_mic}"
-          alt="マイク"
-        >
+
+        ${art(
+          'mic'
+        )}
+
       </button>
 
       <div class="micText">
@@ -2499,13 +5669,18 @@ function micHtml(action){
 }
 
 function voiceHtml(){
+
   return `
+
     <div
       id="voiceResult"
       class="voiceResult"
     >
+
       話した英語が
+      <br>
       ここに出るよ
+
     </div>
 
     <div
@@ -2519,8 +5694,11 @@ function voiceHtml(){
     >
 
       <div class="fallbackText">
+
         iPhone側の音声認識が
+        <br>
         止まったときだけ使ってね
+
       </div>
 
       <button
@@ -2546,12 +5724,14 @@ function showVoice(
         'voiceResult'
       );
 
-  if(!box){
+  if(
+    !box
+  ){
     return;
   }
 
-  let art=
-    'result_retry';
+  let picture=
+    'retry';
 
   let title=
     '💪 おしい！もう一回';
@@ -2559,10 +5739,13 @@ function showVoice(
   let next=
     'ゆっくり、もう一度言ってみよう';
 
-  if(score>=85){
+  if(
+    score>=
+    85
+  ){
 
-    art=
-      'result_great';
+    picture=
+      'great';
 
     title=
       '🌟 とてもよく言えた！';
@@ -2570,10 +5753,12 @@ function showVoice(
     next=
       '2秒後につぎへすすむよ';
 
-  }else if(success){
+  }else if(
+    success
+  ){
 
-    art=
-      'result_good';
+    picture=
+      'good';
 
     title=
       '👍 ちゃんと伝わったよ！';
@@ -2584,8 +5769,8 @@ function showVoice(
 
   box.innerHTML=`
 
-    ${assetImg(
-      art,
+    ${art(
+      picture,
       'resultArt',
       title
     )}
@@ -2596,7 +5781,11 @@ function showVoice(
         font-weight:900
       "
     >
-      「${escapeHtml(spoken)}」
+
+      「${escapeHtml(
+        spoken
+      )}」
+
     </div>
 
     <div
@@ -2606,42 +5795,53 @@ function showVoice(
         font-weight:900
       "
     >
+
       ${title}
+
     </div>
 
     <div
       style="
-        margin-top:4px;
-        font-size:15px;
+        margin-top:5px;
+        font-size:16px;
         font-weight:900
       "
     >
-      つたわり度 ${score}%
+
+      つたわり度
+      ${score}%
+
     </div>
 
     <div
       style="
-        margin-top:6px;
+        margin-top:7px;
         font-size:13px
       "
     >
+
       ${next}
+
     </div>
   `;
 
   feedback(
     success
-    ?(
-      score>=85
-      ? 'Great！すごくよく伝わったよ！'
-      : 'Good！ちゃんと伝わったよ！'
-    )
-    :'もう一回、ゆっくり言ってみよう',
+    ? (
+        score>=
+        85
+        ? 'Great！すごくよく伝わったよ！'
+        : 'Good！ちゃんと伝わったよ！'
+      )
+    : 'もう一回、ゆっくり言ってみよう',
     success
   );
 }
 
-function feedback(text,good){
+function feedback(
+  text,
+  good
+){
 
   const box=
     document
@@ -2649,7 +5849,9 @@ function feedback(text,good){
         'feedback'
       );
 
-  if(!box){
+  if(
+    !box
+  ){
     return;
   }
 
@@ -2662,18 +5864,29 @@ function feedback(text,good){
     text;
 }
 
-function showMicHelp(message){
+function showMicHelp(
+  message
+){
 
   document
     .getElementById(
       'micHelpText'
     )
     .innerHTML=`
-      ${escapeHtml(message)}
+
+      ${escapeHtml(
+        message
+      )}
+
       <br><br>
+
       <b>iPhone：</b>
-      設定 → アプリ → Safari
-      → マイク → 許可
+
+      設定
+      → アプリ
+      → Safari
+      → マイク
+      → 許可
     `;
 
   openModal(
@@ -2696,6 +5909,7 @@ function progressHtml(
     100;
 
   return `
+
     <div class="progressCard">
 
       <div class="progress">
@@ -2710,30 +5924,50 @@ function progressHtml(
       </div>
 
       <div class="progressText">
-        ${current} / ${total}
+
+        ${current}
+        /
+        ${total}
+
       </div>
 
     </div>
   `;
 }
 
-function openModal(id){
+function openModal(
+  id
+){
+
   document
-    .getElementById(id)
+    .getElementById(
+      id
+    )
     .classList
-    .add('show');
+    .add(
+      'show'
+    );
 }
 
-function closeModal(id){
+function closeModal(
+  id
+){
+
   document
-    .getElementById(id)
+    .getElementById(
+      id
+    )
     .classList
-    .remove('show');
+    .remove(
+      'show'
+    );
 }
 
 let toastTimer=null;
 
-function showToast(text){
+function showToast(
+  text
+){
 
   const toast=
     document
@@ -2746,7 +5980,9 @@ function showToast(text){
 
   toast
     .classList
-    .add('show');
+    .add(
+      'show'
+    );
 
   clearTimeout(
     toastTimer
@@ -2758,14 +5994,17 @@ function showToast(text){
 
         toast
           .classList
-          .remove('show');
-
+          .remove(
+            'show'
+          );
       },
       1800
     );
 }
 
-function normalize(text){
+function normalize(
+  text
+){
 
   return String(
     text||
@@ -2789,12 +6028,19 @@ function similarity(
 ){
 
   const a=
-    normalize(first);
+    normalize(
+      first
+    );
 
   const b=
-    normalize(second);
+    normalize(
+      second
+    );
 
-  if(a===b){
+  if(
+    a===
+    b
+  ){
     return 1;
   }
 
@@ -2806,8 +6052,12 @@ function similarity(
   }
 
   if(
-    a.includes(b)||
-    b.includes(a)
+    a.includes(
+      b
+    )||
+    b.includes(
+      a
+    )
   ){
     return .94;
   }
@@ -2829,60 +6079,115 @@ function similarity(
   );
 }
 
-function levenshtein(a,b){
+function levenshtein(
+  a,
+  b
+){
 
   const matrix=
     Array.from(
       {
         length:
-          b.length+1
+          b.length+
+          1
       },
       ()=>
         Array(
-          a.length+1
+          a.length+
+          1
         )
-        .fill(0)
+        .fill(
+          0
+        )
     );
 
   for(
     let row=0;
-    row<=b.length;
+    row<=
+    b.length;
     row++
   ){
-    matrix[row][0]=row;
+
+    matrix[
+      row
+    ][
+      0
+    ]=
+      row;
   }
 
   for(
     let column=0;
-    column<=a.length;
+    column<=
+    a.length;
     column++
   ){
-    matrix[0][column]=column;
+
+    matrix[
+      0
+    ][
+      column
+    ]=
+      column;
   }
 
   for(
     let row=1;
-    row<=b.length;
+    row<=
+    b.length;
     row++
   ){
 
     for(
       let column=1;
-      column<=a.length;
+      column<=
+      a.length;
       column++
     ){
 
       const cost=
-        b[row-1]===
-        a[column-1]
+        b[
+          row-
+          1
+        ]===
+        a[
+          column-
+          1
+        ]
         ? 0
         : 1;
 
-      matrix[row][column]=
+      matrix[
+        row
+      ][
+        column
+      ]=
         Math.min(
-          matrix[row-1][column]+1,
-          matrix[row][column-1]+1,
-          matrix[row-1][column-1]+cost
+
+          matrix[
+            row-
+            1
+          ][
+            column
+          ]+
+          1,
+
+          matrix[
+            row
+          ][
+            column-
+            1
+          ]+
+          1,
+
+          matrix[
+            row-
+            1
+          ][
+            column-
+            1
+          ]+
+          cost
         );
     }
   }
@@ -2894,7 +6199,9 @@ function levenshtein(a,b){
   ];
 }
 
-function shuffle(input){
+function shuffle(
+  input
+){
 
   const array=[
     ...input
@@ -2902,8 +6209,10 @@ function shuffle(input){
 
   for(
     let index=
-      array.length-1;
-    index>0;
+      array.length-
+      1;
+    index>
+    0;
     index--
   ){
 
@@ -2911,23 +6220,34 @@ function shuffle(input){
       Math.floor(
         Math.random()*
         (
-          index+1
+          index+
+          1
         )
       );
 
     [
-      array[index],
-      array[randomIndex]
+      array[
+        index
+      ],
+      array[
+        randomIndex
+      ]
     ]=[
-      array[randomIndex],
-      array[index]
+      array[
+        randomIndex
+      ],
+      array[
+        index
+      ]
     ];
   }
 
   return array;
 }
 
-function escapeHtml(text){
+function escapeHtml(
+  text
+){
 
   return String(
     text||
@@ -2951,7 +6271,9 @@ function escapeHtml(text){
   );
 }
 
-function escapeJs(text){
+function escapeJs(
+  text
+){
 
   return String(
     text||
