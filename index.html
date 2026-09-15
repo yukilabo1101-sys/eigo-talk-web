@@ -5,1388 +5,503 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fff8e8">
 <title>えいごトーク！</title>
-
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-:root{
-  --text:#49392f;
-  --sub:#75665d;
-  --paper:#fffdf8;
-  --line:#dfcdb8;
-  --green:#bce9cd;
-  --green2:#57966e;
-  --blue:#d6eef8;
-  --blue2:#588fa7;
-  --pink:#f6d3de;
-  --pink2:#aa6579;
-  --yellow:#f6dfa0;
-  --nav:84px;
-}
-
-html,body{
-  margin:0;
-  width:100%;
-  min-height:100%;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Hiragino Maru Gothic ProN",
-    "Yu Gothic",
-    Meiryo,
-    sans-serif;
-  color:var(--text);
-  background:#f3efe5;
-  font-size:17px;
-  -webkit-text-size-adjust:100%;
-}
-
-body{
-  overflow-x:hidden;
-}
-
-button,input,select{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-  touch-action:manipulation;
-}
-
-button:disabled{
-  opacity:.55;
-}
-
-#app{
-  width:100%;
-  max-width:480px;
-  min-height:100dvh;
-  margin:auto;
-  background:
-    linear-gradient(
-      180deg,
-      #fff8e6 0%,
-      #e8f7f1 63%,
-      #f5efe4 100%
-    );
-  position:relative;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  min-height:66px;
-  padding:
-    calc(8px + env(safe-area-inset-top))
-    13px
-    8px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:rgba(255,250,239,.97);
-  border-bottom:2px solid rgba(90,65,47,.12);
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:21px;
-  font-weight:900;
-}
-
-.brandIcon{
-  font-size:34px;
-}
-
-.headerRight{
-  display:flex;
-  gap:7px;
-}
-
-.headerBtn{
-  min-height:44px;
-  min-width:48px;
-  padding:6px 11px;
-  border:2px solid #e2cfb9;
-  border-radius:999px;
-  background:white;
-  color:var(--text);
-  font-weight:900;
-}
-
-main{
-  padding:
-    14px
-    13px
-    calc(var(--nav) + 28px + env(safe-area-inset-bottom));
-}
-
-.card{
-  width:100%;
-  margin-bottom:14px;
-  padding:20px 16px;
-  border:3px solid var(--line);
-  border-radius:27px;
-  background:rgba(255,253,248,.98);
-  box-shadow:0 5px 0 rgba(88,64,45,.10);
-}
-
-.center{
-  text-align:center;
-}
-
-.bigEmoji{
-  font-size:78px;
-  line-height:1.15;
-}
-
-.lessonEmoji{
-  font-size:68px;
-  line-height:1.15;
-}
-
-.title{
-  margin:9px 0 7px;
-  font-size:27px;
-  font-weight:900;
-  line-height:1.35;
-}
-
-.sub{
-  color:var(--sub);
-  font-size:16px;
-  font-weight:700;
-  line-height:1.6;
-}
-
-.english{
-  margin:18px 0 6px;
-  color:#28627f;
-  font-size:41px;
-  font-weight:900;
-  line-height:1.15;
-}
-
-.japanese{
-  margin-bottom:14px;
-  color:var(--sub);
-  font-size:21px;
-  font-weight:900;
-}
-
-.prompt{
-  margin:17px 0;
-  padding:17px;
-  border:3px solid #d0aa4f;
-  border-radius:22px;
-  background:#fff0ba;
-  font-size:22px;
-  font-weight:900;
-  line-height:1.5;
-}
-
-.primary,
-.secondary,
-.plain{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-weight:900;
-}
-
-.primary{
-  min-height:68px;
-  margin-top:15px;
-  border:3px solid var(--green2);
-  border-radius:22px;
-  background:var(--green);
-  color:#31553e;
-  box-shadow:0 5px 0 #77b48a;
-  font-size:20px;
-}
-
-.secondary{
-  min-height:61px;
-  margin-top:11px;
-  border:3px solid var(--blue2);
-  border-radius:21px;
-  background:var(--blue);
-  color:#315a70;
-  font-size:19px;
-}
-
-.plain{
-  min-height:57px;
-  margin-top:10px;
-  border:3px solid #dbc8b5;
-  border-radius:20px;
-  background:white;
-  color:var(--text);
-  font-size:17px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-  margin-bottom:15px;
-}
-
-.stat{
-  padding:15px 8px;
-  border:3px solid #876955;
-  border-radius:24px;
-  background:white;
-  text-align:center;
-}
-
-.statIcon{
-  font-size:33px;
-}
-
-.statValue{
-  font-size:37px;
-  font-weight:900;
-}
-
-.statLabel{
-  color:var(--sub);
-  font-size:14px;
-  font-weight:900;
-}
-
-.menu{
-  display:grid;
-  gap:11px;
-}
-
-.menuBtn{
-  width:100%;
-  min-height:93px;
-  padding:12px;
-  display:grid;
-  grid-template-columns:58px minmax(0,1fr) 20px;
-  gap:10px;
-  align-items:center;
-  border:3px solid #dac8b7;
-  border-radius:23px;
-  background:white;
-  text-align:left;
-}
-
-.menuIcon{
-  width:56px;
-  height:56px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:18px;
-  background:#fff0c7;
-  font-size:32px;
-}
-
-.menuTitle{
-  font-size:19px;
-  font-weight:900;
-}
-
-.menuText{
-  margin-top:3px;
-  color:var(--sub);
-  font-size:14px;
-  font-weight:700;
-}
-
-.arrow{
-  font-size:28px;
-  color:#9e8878;
-}
-
-.training{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-}
-
-.trainingBtn{
-  min-height:144px;
-  padding:14px 8px;
-  border:3px solid #dbc8b6;
-  border-radius:24px;
-  background:white;
-  text-align:center;
-}
-
-.trainingIcon{
-  font-size:50px;
-}
-
-.trainingTitle{
-  margin-top:5px;
-  font-size:19px;
-  font-weight:900;
-}
-
-.trainingText{
-  margin-top:3px;
-  color:var(--sub);
-  font-size:13px;
-  font-weight:700;
-}
-
-.progressCard{
-  margin-bottom:13px;
-  padding:12px 14px;
-  border:3px solid rgba(100,70,50,.17);
-  border-radius:20px;
-  background:rgba(255,253,248,.98);
-}
-
-.progress{
-  height:13px;
-  overflow:hidden;
-  border-radius:999px;
-  background:#e7ddd2;
-}
-
-.progressFill{
-  height:100%;
-  background:linear-gradient(90deg,#efc64e,#e9a5b7);
-}
-
-.progressText{
-  margin-top:5px;
-  text-align:right;
-  color:var(--sub);
-  font-size:14px;
-  font-weight:900;
-}
-
-.micArea{
-  margin:23px 0 15px;
-  text-align:center;
-}
-
-.mic{
-  width:134px;
-  height:134px;
-  border:4px solid var(--pink2);
-  border-radius:50%;
-  background:var(--pink);
-  box-shadow:0 8px 0 #c57e92;
-  font-size:63px;
-}
-
-.mic.listening{
-  animation:pulse .6s infinite alternate;
-}
-
-.mic.preparing{
-  animation:pulse .9s infinite alternate;
-  background:#f7e5b8;
-}
-
-@keyframes pulse{
-  to{
-    transform:scale(1.07);
-  }
-}
-
-.micText{
-  margin-top:13px;
-  color:var(--sub);
-  font-size:16px;
-  font-weight:900;
-}
-
-.voiceResult{
-  min-height:105px;
-  margin-top:14px;
-  padding:15px;
-  border:3px solid #b8dce9;
-  border-radius:20px;
-  background:#effaff;
-  color:#416a7c;
-  font-weight:800;
-  text-align:center;
-}
-
-.resultSpoken{
-  font-size:20px;
-  font-weight:900;
-}
-
-.resultTitle{
-  margin-top:7px;
-  font-size:24px;
-  font-weight:900;
-}
-
-.resultScore{
-  margin-top:6px;
-  font-size:15px;
-  font-weight:900;
-}
-
-.resultNext{
-  margin-top:8px;
-  color:#6d645d;
-  font-size:14px;
-  font-weight:800;
-}
-
-.feedback{
-  display:none;
-  margin-top:12px;
-  padding:13px;
-  border-radius:18px;
-  font-size:16px;
-  font-weight:900;
-}
-
-.feedback.good{
-  display:block;
-  background:#e1f5e8;
-  border:2px solid #96d2aa;
-  color:#315d40;
-}
-
-.feedback.retry{
-  display:block;
-  background:#fff0d4;
-  border:2px solid #e2bd74;
-  color:#76501e;
-}
-
-.choices{
-  display:grid;
-  gap:11px;
-  margin-top:15px;
-}
-
-.choice{
-  min-height:73px;
-  padding:11px;
-  border:3px solid #80b2c8;
-  border-radius:21px;
-  background:#edf9fd;
-  color:#315d74;
-  font-size:21px;
-  font-weight:900;
-}
-
-.fallback{
-  display:none;
-  margin-top:10px;
-  padding:12px;
-  border:2px dashed #c9a973;
-  border-radius:17px;
-  background:#fff9e9;
-}
-
-.fallback.show{
-  display:block;
-}
-
-.fallbackText{
-  font-size:14px;
-  color:#776351;
-  font-weight:700;
-  line-height:1.5;
-}
-
-nav{
-  position:fixed;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  z-index:200;
-  width:100%;
-  max-width:480px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:4px;
-  padding:
-    6px 6px calc(6px + env(safe-area-inset-bottom));
-  border-top:2px solid #dfcdb9;
-  background:rgba(255,250,240,.99);
-}
-
-.navBtn{
-  min-height:72px;
-  border-radius:18px;
-  background:transparent;
-  color:#65574e;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:2px;
-  font-size:12px;
-  font-weight:900;
-}
-
-.navIcon{
-  font-size:28px;
-}
-
-.navBtn.active{
-  background:#f6e3a1;
-  color:#714e18;
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  padding:14px;
-  background:rgba(48,37,30,.54);
-  align-items:center;
-  justify-content:center;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modalBox{
-  width:100%;
-  max-width:420px;
-  padding:22px 16px;
-  border:4px solid #896854;
-  border-radius:27px;
-  background:#fffdf8;
-  text-align:center;
-}
-
-.field{
-  width:100%;
-  min-height:58px;
-  margin:7px 0;
-  padding:12px;
-  border:3px solid #d8c5b2;
-  border-radius:17px;
-  background:white;
-  font-size:18px;
-  font-weight:800;
-}
-
-.notice{
-  margin-top:12px;
-  padding:13px;
-  border-radius:18px;
-  background:#eef9fd;
-  color:#426776;
-  text-align:left;
-  font-size:14px;
-  font-weight:700;
-  line-height:1.65;
-}
-
-#toast{
-  position:fixed;
-  left:50%;
-  bottom:
-    calc(var(--nav) + 23px + env(safe-area-inset-bottom));
-  transform:translateX(-50%);
-  z-index:2000;
-  width:calc(100% - 30px);
-  max-width:410px;
-  padding:12px;
-  border-radius:17px;
-  background:rgba(65,51,42,.95);
-  color:white;
-  text-align:center;
-  font-size:15px;
-  font-weight:900;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .18s;
-}
-
-#toast.show{
-  opacity:1;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--text:#49392f;--sub:#75665d;--paper:#fffdf8;--line:#dfcdb8;--green:#bce9cd;--green2:#57966e;--blue:#d6eef8;--blue2:#588fa7;--pink:#f6d3de;--pink2:#aa6579;--yellow:#f6dfa0;--nav:84px}
+html,body{margin:0;width:100%;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--text);background:#f3efe5;font-size:17px;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}button,input,select{font:inherit}button{border:0;cursor:pointer;touch-action:manipulation}button:disabled{opacity:.55}
+#app{width:100%;max-width:480px;min-height:100dvh;margin:auto;background-image:linear-gradient(rgba(255,249,233,.84),rgba(232,247,241,.88)),url('assets/bg_school.webp');background-size:cover;background-position:center;background-attachment:fixed;position:relative}
+header{position:sticky;top:0;z-index:100;min-height:66px;padding:calc(8px + env(safe-area-inset-top)) 13px 8px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,250,239,.97);border-bottom:2px solid rgba(90,65,47,.12)}
+.brand{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:900}.brandIcon{font-size:34px}.headerRight{display:flex;gap:7px}.headerBtn{min-height:44px;min-width:48px;padding:6px 11px;border:2px solid #e2cfb9;border-radius:999px;background:white;color:var(--text);font-weight:900}
+main{padding:14px 13px calc(var(--nav) + 28px + env(safe-area-inset-bottom))}
+.card{width:100%;margin-bottom:14px;padding:20px 16px;border:3px solid var(--line);border-radius:27px;background:rgba(255,253,248,.98);box-shadow:0 5px 0 rgba(88,64,45,.10)}.center{text-align:center}
+.bigEmoji{font-size:78px;line-height:1.15}.lessonEmoji{font-size:68px;line-height:1.15}.title{margin:9px 0 7px;font-size:27px;font-weight:900;line-height:1.35}.sub{color:var(--sub);font-size:16px;font-weight:700;line-height:1.6}
+.english{margin:18px 0 6px;color:#28627f;font-size:41px;font-weight:900;line-height:1.15}.japanese{margin-bottom:14px;color:var(--sub);font-size:21px;font-weight:900}.prompt{margin:17px 0;padding:17px;border:3px solid #d0aa4f;border-radius:22px;background:#fff0ba;font-size:22px;font-weight:900;line-height:1.5}
+.primary,.secondary,.plain{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:900}.primary{min-height:68px;margin-top:15px;border:3px solid var(--green2);border-radius:22px;background:var(--green);color:#31553e;box-shadow:0 5px 0 #77b48a;font-size:20px}.secondary{min-height:61px;margin-top:11px;border:3px solid var(--blue2);border-radius:21px;background:var(--blue);color:#315a70;font-size:19px}.plain{min-height:57px;margin-top:10px;border:3px solid #dbc8b5;border-radius:20px;background:white;color:var(--text);font-size:17px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:15px}.stat{padding:15px 8px;border:3px solid #876955;border-radius:24px;background:white;text-align:center}.statIcon{font-size:33px}.statValue{font-size:37px;font-weight:900}.statLabel{color:var(--sub);font-size:14px;font-weight:900}
+.menu{display:grid;gap:11px}.menuBtn{width:100%;min-height:93px;padding:12px;display:grid;grid-template-columns:58px minmax(0,1fr) 20px;gap:10px;align-items:center;border:3px solid #dac8b7;border-radius:23px;background:white;text-align:left}.menuIcon{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:#fff0c7;font-size:32px}.menuTitle{font-size:19px;font-weight:900}.menuText{margin-top:3px;color:var(--sub);font-size:14px;font-weight:700}.arrow{font-size:28px;color:#9e8878}
+.training{display:grid;grid-template-columns:1fr 1fr;gap:11px}.trainingBtn{min-height:144px;padding:14px 8px;border:3px solid #dbc8b6;border-radius:24px;background:white;text-align:center}.trainingIcon{font-size:50px}.trainingTitle{margin-top:5px;font-size:19px;font-weight:900}.trainingText{margin-top:3px;color:var(--sub);font-size:13px;font-weight:700}
+.progressCard{margin-bottom:13px;padding:12px 14px;border:3px solid rgba(100,70,50,.17);border-radius:20px;background:rgba(255,253,248,.98)}.progress{height:13px;overflow:hidden;border-radius:999px;background:#e7ddd2}.progressFill{height:100%;background:linear-gradient(90deg,#efc64e,#e9a5b7)}.progressText{margin-top:5px;text-align:right;color:var(--sub);font-size:14px;font-weight:900}
+.micArea{margin:23px 0 15px;text-align:center}.mic{width:134px;height:134px;border:4px solid var(--pink2);border-radius:50%;background:var(--pink);box-shadow:0 8px 0 #c57e92;font-size:63px}.mic.listening{animation:pulse .6s infinite alternate}.mic.preparing{animation:pulse .9s infinite alternate;background:#f7e5b8}@keyframes pulse{to{transform:scale(1.07)}}.micText{margin-top:13px;color:var(--sub);font-size:16px;font-weight:900}
+.voiceResult{min-height:84px;margin-top:14px;padding:13px;border:3px solid #b8dce9;border-radius:20px;background:#effaff;color:#416a7c;font-weight:800;text-align:center}.feedback{display:none;margin-top:12px;padding:13px;border-radius:18px;font-size:16px;font-weight:900}.feedback.good{display:block;background:#e1f5e8;border:2px solid #96d2aa;color:#315d40}.feedback.retry{display:block;background:#fff0d4;border:2px solid #e2bd74;color:#76501e}
+.choices{display:grid;gap:11px;margin-top:15px}.choice{min-height:73px;padding:11px;border:3px solid #80b2c8;border-radius:21px;background:#edf9fd;color:#315d74;font-size:21px;font-weight:900}
+.fallback{display:none;margin-top:10px;padding:12px;border:2px dashed #c9a973;border-radius:17px;background:#fff9e9}.fallback.show{display:block}.fallbackText{font-size:14px;color:#776351;font-weight:700;line-height:1.5}
+nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:200;width:100%;max-width:480px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));border-top:2px solid #dfcdb9;background:rgba(255,250,240,.99)}.navBtn{min-height:72px;border-radius:18px;background:transparent;color:#65574e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:900}.navIcon{font-size:28px}.navBtn.active{background:#f6e3a1;color:#714e18}
+.modal{display:none;position:fixed;inset:0;z-index:1000;padding:14px;background:rgba(48,37,30,.54);align-items:center;justify-content:center}.modal.show{display:flex}.modalBox{width:100%;max-width:420px;padding:22px 16px;border:4px solid #896854;border-radius:27px;background:#fffdf8;text-align:center}.field{width:100%;min-height:58px;margin:7px 0;padding:12px;border:3px solid #d8c5b2;border-radius:17px;background:white;font-size:18px;font-weight:800}.notice{margin-top:12px;padding:13px;border-radius:18px;background:#eef9fd;color:#426776;text-align:left;font-size:14px;font-weight:700;line-height:1.65}
+#toast{position:fixed;left:50%;bottom:calc(var(--nav) + 23px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2000;width:calc(100% - 30px);max-width:410px;padding:12px;border-radius:17px;background:rgba(65,51,42,.95);color:white;text-align:center;font-size:15px;font-weight:900;opacity:0;pointer-events:none;transition:opacity .18s}#toast.show{opacity:1}
+
+.assetImg{display:block;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.brandLogo{width:42px;height:42px;object-fit:contain}
+.heroArt{width:132px;height:132px;margin:0 auto 4px;filter:drop-shadow(0 7px 8px rgba(92,66,45,.12))}
+.lessonArt{width:100px;height:100px;margin:0 auto 4px;filter:drop-shadow(0 5px 7px rgba(92,66,45,.10))}
+.navImg{width:30px;height:30px;object-fit:contain}
+.statImg{width:36px;height:36px;margin:0 auto 4px;object-fit:contain}
+.menuIcon img{width:48px;height:48px;object-fit:contain}
+.trainingIcon img{width:62px;height:62px;object-fit:contain;margin:auto}
+.mic img{width:76px;height:76px;object-fit:contain;margin:auto}
+.resultArt{width:94px;height:94px;object-fit:contain;margin:0 auto 5px}
+.profileArt{width:92px;height:92px;object-fit:contain;margin:0 auto 8px}
+.card{backdrop-filter:blur(2px)}
 </style>
 </head>
-
 <body>
-
 <div id="app">
-
 <header>
-
-  <div class="brand">
-    <span class="brandIcon">🐥</span>
-    <span>えいごトーク！</span>
-  </div>
-
+  <div class="brand"><img class="brandLogo" id="brandLogo" alt="ひよこ"><span>えいごトーク！</span></div>
   <div class="headerRight">
-
-    <button
-      id="gradeBtn"
-      class="headerBtn"
-      onclick="openProfile()"
-    >
-      1ねん
-    </button>
-
-    <button
-      class="headerBtn"
-      onclick="openProfile()"
-    >
-      🙂
-    </button>
-
+    <button id="gradeBtn" class="headerBtn" onclick="openProfile()">1ねん</button>
+    <button class="headerBtn" onclick="openProfile()">🙂</button>
   </div>
-
 </header>
-
 <main id="screen"></main>
-
 <nav>
-
-  <button
-    id="navHome"
-    class="navBtn active"
-    onclick="go('home')"
-  >
-    <span class="navIcon">🏠</span>
-    きょう
-  </button>
-
-  <button
-    id="navTrain"
-    class="navBtn"
-    onclick="go('train')"
-  >
-    <span class="navIcon">🎧</span>
-    れんしゅう
-  </button>
-
-  <button
-    id="navTalk"
-    class="navBtn"
-    onclick="go('talk')"
-  >
-    <span class="navIcon">💬</span>
-    かいわ
-  </button>
-
-  <button
-    id="navReward"
-    class="navBtn"
-    onclick="go('reward')"
-  >
-    <span class="navIcon">🎁</span>
-    ごほうび
-  </button>
-
+  <button id="navHome" class="navBtn active" onclick="go('home')"><img class="navImg" id="navHomeImg" alt="ホーム">きょう</button>
+  <button id="navTrain" class="navBtn" onclick="go('train')"><img class="navImg" id="navTrainImg" alt="れんしゅう">れんしゅう</button>
+  <button id="navTalk" class="navBtn" onclick="go('talk')"><img class="navImg" id="navTalkImg" alt="かいわ">かいわ</button>
+  <button id="navReward" class="navBtn" onclick="go('reward')"><img class="navImg" id="navRewardImg" alt="ごほうび">ごほうび</button>
 </nav>
-
 </div>
-
 <div id="toast"></div>
 
 <div id="profileModal" class="modal">
-
   <div class="modalBox">
-
-    <div class="bigEmoji">
-      🙂
-    </div>
-
-    <div class="title">
-      プレイヤー
-    </div>
-
-    <input
-      id="nameInput"
-      class="field"
-      maxlength="20"
-      placeholder="ニックネーム"
-    >
-
-    <select
-      id="gradeInput"
-      class="field"
-    >
+    <img class="profileArt" id="profileArt" alt="プロフィール">
+    <div class="title">プレイヤー</div>
+    <input id="nameInput" class="field" maxlength="20" placeholder="ニックネーム">
+    <select id="gradeInput" class="field">
       <option value="1">1ねん</option>
       <option value="2">2ねん</option>
       <option value="3">3ねん</option>
       <option value="4">4ねん</option>
     </select>
-
-    <button
-      class="primary"
-      onclick="saveProfile()"
-    >
-      ✓ ほぞん
-    </button>
-
-    <button
-      class="plain"
-      onclick="closeModal('profileModal')"
-    >
-      とじる
-    </button>
-
+    <button class="primary" onclick="saveProfile()">✓ ほぞん</button>
+    <button class="plain" onclick="closeModal('profileModal')">とじる</button>
   </div>
-
 </div>
 
 <div id="micHelpModal" class="modal">
-
   <div class="modalBox">
-
-    <div class="bigEmoji">
-      🎤
-    </div>
-
-    <div class="title">
-      マイクについて
-    </div>
-
-    <div
-      id="micHelpText"
-      class="notice"
-    ></div>
-
-    <button
-      class="primary"
-      onclick="closeModal('micHelpModal')"
-    >
-      わかった
-    </button>
-
+    <div class="bigEmoji">🎤</div>
+    <div class="title">マイクについて</div>
+    <div id="micHelpText" class="notice"></div>
+    <button class="primary" onclick="closeModal('micHelpModal')">わかった</button>
   </div>
-
 </div>
 
 <script>
-
-/* =====================================================
-   学習データ
-===================================================== */
-
-const WORDS = {
-
-  1: [
-    ['Apple','りんご'],
-    ['Banana','バナナ'],
-    ['Orange','オレンジ'],
-    ['Dog','いぬ'],
-    ['Cat','ねこ'],
-    ['Bird','とり'],
-    ['Fish','さかな'],
-    ['Red','あか'],
-    ['Blue','あお'],
-    ['Yellow','きいろ'],
-    ['Green','みどり'],
-    ['Pink','ピンク'],
-    ['One','1'],
-    ['Two','2'],
-    ['Three','3'],
-    ['Four','4'],
-    ['Five','5'],
-    ['Sun','たいよう'],
-    ['Moon','つき'],
-    ['Star','ほし']
-  ],
-
-  2: [
-    ['Book','ほん'],
-    ['Pen','ペン'],
-    ['Pencil','えんぴつ'],
-    ['Bag','かばん'],
-    ['Desk','つくえ'],
-    ['Chair','いす'],
-    ['School','がっこう'],
-    ['House','いえ'],
-    ['Park','こうえん'],
-    ['Car','くるま'],
-    ['Bus','バス'],
-    ['Bike','じてんしゃ'],
-    ['Milk','ぎゅうにゅう'],
-    ['Water','みず'],
-    ['Rice','ごはん'],
-    ['Bread','パン'],
-    ['Eye','め'],
-    ['Nose','はな'],
-    ['Hand','て'],
-    ['Foot','あし']
-  ],
-
-  3: [
-    ['Father','おとうさん'],
-    ['Mother','おかあさん'],
-    ['Brother','おにいさん・おとうと'],
-    ['Sister','おねえさん・いもうと'],
-    ['Teacher','せんせい'],
-    ['Student','せいと'],
-    ['Soccer','サッカー'],
-    ['Baseball','やきゅう'],
-    ['Tennis','テニス'],
-    ['Swim','およぐ'],
-    ['Run','はしる'],
-    ['Walk','あるく'],
-    ['Jump','とぶ'],
-    ['Eat','たべる'],
-    ['Drink','のむ'],
-    ['Sleep','ねる'],
-    ['Sunny','はれ'],
-    ['Rainy','あめ'],
-    ['Cloudy','くもり'],
-    ['Snow','ゆき']
-  ],
-
-  4: [
-    ['Hello!','Hello!','こんにちは！'],
-    ['Good morning!','Good morning!','おはよう！'],
-    ['Good afternoon!','Good afternoon!','こんにちは！'],
-    ['Good night!','Good night!','おやすみなさい！'],
-    ['See you!','See you!','またね！'],
-    ['Bye!','Bye!','さようなら！'],
-    ['How are you?', "I'm fine.", '元気です'],
-    ["What's your name?", "My name is Ken.", 'ぼくの名前はケンです'],
-    ['How old are you?', "I'm ten.", '10さいです'],
-    ['Thank you!', "You're welcome.", 'どういたしまして'],
-    ["I'm sorry.", "That's OK.", 'だいじょうぶです'],
-    ['Nice to meet you.', 'Nice to meet you, too.', 'こちらこそよろしく'],
-    ['Do you like apples?', 'Yes, I do.', 'はい、好きです'],
-    ['Do you like soccer?', 'Yes, I do.', 'はい、好きです'],
-    ['What do you like?', 'I like cats.', 'ねこが好きです'],
-    ["What's this?", "It's a dog.", '犬です'],
-    ['What color is it?', "It's red.", '赤です'],
-    ['Can you swim?', 'Yes, I can.', 'はい、できます'],
-    ['Are you ready?', 'Yes!', 'はい！'],
-    ['Have a nice day!', 'You too!', 'あなたもね！']
-  ]
-
+const ASSETS={
+  "mascot_chick":"assets/mascot_chick_wave.webp",
+  "avatar_chick":"assets/avatar_chick.webp",
+  "bear_book":"assets/bear_teacher_book.webp",
+  "bear_speak":"assets/bear_teacher_speak.webp",
+  "chick_listen":"assets/chick_listen.webp",
+  "chick_review":"assets/chick_review.webp",
+  "chick_quiz":"assets/chick_quiz.webp",
+  "conversation":"assets/conversation_friends.webp",
+  "fox_happy":"assets/fox_happy.webp",
+  "result_great":"assets/result_great.webp",
+  "result_good":"assets/result_good.webp",
+  "result_retry":"assets/result_retry.webp",
+  "status_mic_ready":"assets/status_mic_ready.webp",
+  "icon_home":"assets/icon_home.webp",
+  "icon_train":"assets/icon_train.webp",
+  "icon_talk":"assets/icon_talk.webp",
+  "icon_reward":"assets/icon_reward.webp",
+  "icon_mic":"assets/icon_mic.webp",
+  "icon_coin":"assets/icon_coin.webp",
+  "icon_streak":"assets/icon_streak.webp",
+  "icon_trophy":"assets/icon_trophy.webp",
+  "bg_school":"assets/bg_school.webp"
 };
 
+function assetImg(name,cls="assetImg",alt=""){
+  return `<img class="${cls}" src="${ASSETS[name]}" alt="${escapeHtml(alt)}" decoding="async">`;
+}
 
-const MISSIONS = {
-
-  1: [
-
-    {
-      title:'こんにちは',
-      scene:'ともだちに会ったよ',
-      turns:[
-        {
-          bot:'Hello!',
-          answers:['Hello!','Hi!'],
-          hint:'こんにちは！'
-        }
-      ]
-    },
-
-    {
-      title:'ありがとう',
-      scene:'ものをもらったよ',
-      turns:[
-        {
-          bot:'Here you are.',
-          answers:['Thank you!','Thank you'],
-          hint:'ありがとう！'
-        }
-      ]
-    },
-
-    {
-      title:'またね',
-      scene:'ともだちと別れるよ',
-      turns:[
-        {
-          bot:'Bye!',
-          answers:['Bye!','Bye','See you!'],
-          hint:'またね！'
-        }
-      ]
-    }
-
-  ],
-
-  2: [
-
-    {
-      title:'なまえ',
-      scene:'はじめて会ったよ',
-      turns:[
-        {
-          bot:"What's your name?",
-          answers:['My name is Ken.',"I'm Ken."],
-          hint:'ぼくの名前はケンです'
-        }
-      ]
-    },
-
-    {
-      title:'すきなもの',
-      scene:'りんごが好きかな？',
-      turns:[
-        {
-          bot:'Do you like apples?',
-          answers:['Yes, I do.','Yes.'],
-          hint:'はい、好きです'
-        }
-      ]
-    },
-
-    {
-      title:'なんさい？',
-      scene:'自己紹介しよう',
-      turns:[
-        {
-          bot:'How old are you?',
-          answers:["I'm eight.","I'm nine.","I'm ten."],
-          hint:'自分の年齢を英語で言おう'
-        }
-      ]
-    }
-
-  ],
-
-  3: [
-
-    {
-      title:'げんき？',
-      scene:'朝、ともだちと会ったよ',
-      turns:[
-        {
-          bot:'How are you?',
-          answers:["I'm fine.","I'm good.","I'm great."],
-          hint:'元気です'
-        }
-      ]
-    },
-
-    {
-      title:'できること',
-      scene:'できることを話そう',
-      turns:[
-        {
-          bot:'Can you swim?',
-          answers:['Yes, I can.',"No, I can't."],
-          hint:'はい、できます／いいえ、できません'
-        }
-      ]
-    },
-
-    {
-      title:'もういちど',
-      scene:'聞き取れなかった！',
-      turns:[
-        {
-          bot:"Let's play soccer after school!",
-          answers:[
-            'One more time, please.',
-            'Please say it again.'
-          ],
-          hint:'もう一度お願いします'
-        }
-      ]
-    }
-
-  ],
-
-  4: [
-
-    {
-      title:'朝のあいさつ',
-      scene:'学校で友達に会いました',
-      turns:[
-
-        {
-          bot:'Good morning!',
-          answers:['Good morning!'],
-          hint:'おはよう！'
-        },
-
-        {
-          bot:'How are you?',
-          answers:["I'm fine.","I'm good.","I'm great."],
-          hint:'元気です'
-        },
-
-        {
-          bot:'Have a nice day!',
-          answers:['You too!'],
-          hint:'あなたもね！'
-        }
-
-      ]
-    },
-
-    {
-      title:'自己紹介',
-      scene:'新しい友達に会いました',
-      turns:[
-
-        {
-          bot:"What's your name?",
-          answers:['My name is Ken.',"I'm Ken."],
-          hint:'ぼくの名前はケンです'
-        },
-
-        {
-          bot:'Nice to meet you.',
-          answers:['Nice to meet you, too.'],
-          hint:'こちらこそよろしく'
-        }
-
-      ]
-    },
-
-    {
-      title:'聞き返す',
-      scene:'英語が聞き取れません',
-      turns:[
-
-        {
-          bot:"Let's start!",
-          answers:[
-            'One more time, please.',
-            'Please say it again.'
-          ],
-          hint:'もう一度お願いします'
-        }
-
-      ]
-    }
-
-  ]
-
+const WORDS={
+1:[
+  ['Apple','りんご'],
+  ['Banana','バナナ'],
+  ['Orange','オレンジ'],
+  ['Dog','いぬ'],
+  ['Cat','ねこ'],
+  ['Bird','とり'],
+  ['Fish','さかな'],
+  ['Red','あか'],
+  ['Blue','あお'],
+  ['Yellow','きいろ'],
+  ['Green','みどり'],
+  ['Pink','ピンク'],
+  ['One','1'],
+  ['Two','2'],
+  ['Three','3'],
+  ['Four','4'],
+  ['Five','5'],
+  ['Sun','たいよう'],
+  ['Moon','つき'],
+  ['Star','ほし']
+],
+2:[
+  ['Book','ほん'],
+  ['Pen','ペン'],
+  ['Pencil','えんぴつ'],
+  ['Bag','かばん'],
+  ['Desk','つくえ'],
+  ['Chair','いす'],
+  ['School','がっこう'],
+  ['House','いえ'],
+  ['Park','こうえん'],
+  ['Car','くるま'],
+  ['Bus','バス'],
+  ['Bike','じてんしゃ'],
+  ['Milk','ぎゅうにゅう'],
+  ['Water','みず'],
+  ['Rice','ごはん'],
+  ['Bread','パン'],
+  ['Eye','め'],
+  ['Nose','はな'],
+  ['Hand','て'],
+  ['Foot','あし']
+],
+3:[
+  ['Father','おとうさん'],
+  ['Mother','おかあさん'],
+  ['Brother','おにいさん・おとうと'],
+  ['Sister','おねえさん・いもうと'],
+  ['Teacher','せんせい'],
+  ['Student','せいと'],
+  ['Soccer','サッカー'],
+  ['Baseball','やきゅう'],
+  ['Tennis','テニス'],
+  ['Swim','およぐ'],
+  ['Run','はしる'],
+  ['Walk','あるく'],
+  ['Jump','とぶ'],
+  ['Eat','たべる'],
+  ['Drink','のむ'],
+  ['Sleep','ねる'],
+  ['Sunny','はれ'],
+  ['Rainy','あめ'],
+  ['Cloudy','くもり'],
+  ['Snow','ゆき']
+],
+4:[
+  ['Hello!','Hello!','こんにちは！'],
+  ['Good morning!','Good morning!','おはよう！'],
+  ['Good afternoon!','Good afternoon!','こんにちは！'],
+  ['Good night!','Good night!','おやすみなさい！'],
+  ['See you!','See you!','またね！'],
+  ['Bye!','Bye!','さようなら！'],
+  ['How are you?', "I'm fine.",'元気です'],
+  ["What's your name?","My name is Ken.",'ぼくの名前はケンです'],
+  ['How old are you?',"I'm ten.",'10さいです'],
+  ['Thank you!',"You're welcome.",'どういたしまして'],
+  ["I'm sorry.","That's OK.",'だいじょうぶです'],
+  ['Nice to meet you.','Nice to meet you, too.','こちらこそよろしく'],
+  ['Do you like apples?','Yes, I do.','はい、好きです'],
+  ['Do you like soccer?','Yes, I do.','はい、好きです'],
+  ['What do you like?','I like cats.','ねこが好きです'],
+  ["What's this?","It's a dog.",'犬です'],
+  ['What color is it?',"It's red.",'赤です'],
+  ['Can you swim?','Yes, I can.','はい、できます'],
+  ['Are you ready?','Yes!','はい！'],
+  ['Have a nice day!','You too!','あなたもね！']
+]
 };
 
+const MISSIONS={
+1:[
+ {
+   title:'こんにちは',
+   scene:'ともだちに会ったよ',
+   turns:[
+     {
+       bot:'Hello!',
+       answers:['Hello!','Hi!'],
+       hint:'こんにちは！'
+     }
+   ]
+ },
+ {
+   title:'ありがとう',
+   scene:'ものをもらったよ',
+   turns:[
+     {
+       bot:'Here you are.',
+       answers:['Thank you!','Thank you'],
+       hint:'ありがとう！'
+     }
+   ]
+ },
+ {
+   title:'またね',
+   scene:'ともだちと別れるよ',
+   turns:[
+     {
+       bot:'Bye!',
+       answers:['Bye!','Bye','See you!'],
+       hint:'またね！'
+     }
+   ]
+ }
+],
+2:[
+ {
+   title:'なまえ',
+   scene:'はじめて会ったよ',
+   turns:[
+     {
+       bot:"What's your name?",
+       answers:['My name is Ken.',"I'm Ken."],
+       hint:'ぼくの名前はケンです'
+     }
+   ]
+ },
+ {
+   title:'すきなもの',
+   scene:'りんごが好きかな？',
+   turns:[
+     {
+       bot:'Do you like apples?',
+       answers:['Yes, I do.','Yes.'],
+       hint:'はい、好きです'
+     }
+   ]
+ },
+ {
+   title:'なんさい？',
+   scene:'自己紹介しよう',
+   turns:[
+     {
+       bot:'How old are you?',
+       answers:["I'm eight.","I'm nine.","I'm ten."],
+       hint:'自分の年齢を英語で言おう'
+     }
+   ]
+ }
+],
+3:[
+ {
+   title:'げんき？',
+   scene:'朝、ともだちと会ったよ',
+   turns:[
+     {
+       bot:'How are you?',
+       answers:["I'm fine.","I'm good.","I'm great."],
+       hint:'元気です'
+     }
+   ]
+ },
+ {
+   title:'できること',
+   scene:'できることを話そう',
+   turns:[
+     {
+       bot:'Can you swim?',
+       answers:['Yes, I can.',"No, I can't."],
+       hint:'はい、できます／いいえ、できません'
+     }
+   ]
+ },
+ {
+   title:'もういちど',
+   scene:'聞き取れなかった！',
+   turns:[
+     {
+       bot:"Let's play soccer after school!",
+       answers:['One more time, please.','Please say it again.'],
+       hint:'もう一度お願いします'
+     }
+   ]
+ }
+],
+4:[
+ {
+   title:'朝のあいさつ',
+   scene:'学校で友達に会いました',
+   turns:[
+     {
+       bot:'Good morning!',
+       answers:['Good morning!'],
+       hint:'おはよう！'
+     },
+     {
+       bot:'How are you?',
+       answers:["I'm fine.","I'm good.","I'm great."],
+       hint:'元気です'
+     },
+     {
+       bot:'Have a nice day!',
+       answers:['You too!'],
+       hint:'あなたもね！'
+     }
+   ]
+ },
+ {
+   title:'自己紹介',
+   scene:'新しい友達に会いました',
+   turns:[
+     {
+       bot:"What's your name?",
+       answers:['My name is Ken.',"I'm Ken."],
+       hint:'ぼくの名前はケンです'
+     },
+     {
+       bot:'Nice to meet you.',
+       answers:['Nice to meet you, too.'],
+       hint:'こちらこそよろしく'
+     }
+   ]
+ },
+ {
+   title:'聞き返す',
+   scene:'英語が聞き取れません',
+   turns:[
+     {
+       bot:"Let's start!",
+       answers:['One more time, please.','Please say it again.'],
+       hint:'もう一度お願いします'
+     }
+   ]
+ }
+]
+};
 
-/* =====================================================
-   STATE
-===================================================== */
-
-let state = {
-
+let state={
   name:'プレイヤー',
   grade:1,
-
   points:0,
   streak:0,
-
   lastStudy:'',
-
   page:'home',
-
   dailyStep:0,
   dailyItems:[],
   dailyMission:null,
-
   practiceMode:'',
   practiceIndex:0,
-
   mission:null,
   missionTurn:0,
   missionDaily:false,
-
   recognition:null,
-
   listening:false,
   micPreparing:false,
-
-  micFailures:0,
-
-  transitionLock:false
-
+  micFailures:0
 };
 
+const screen=document.getElementById('screen');
 
-const screen =
-  document.getElementById(
-    'screen'
-  );
+let utteranceRef=null;
+let speakSerial=0;
+let lastSpeechEndedAt=0;
+let recognitionWatchdog=null;
 
-
-let utteranceRef =
-  null;
-
-let speakSerial =
-  0;
-
-let lastSpeechEndedAt =
-  0;
-
-let recognitionWatchdog =
-  null;
-
-let transitionTimer =
-  null;
-
-
-const isIOS =
-  /iPhone|iPad|iPod/i
-    .test(
-      navigator.userAgent
-    );
-
+const isIOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 boot();
 
-
-/* =====================================================
-   BOOT
-===================================================== */
-
 function boot(){
+  document.getElementById('brandLogo').src=ASSETS.mascot_chick;
+  document.getElementById('navHomeImg').src=ASSETS.icon_home;
+  document.getElementById('navTrainImg').src=ASSETS.icon_train;
+  document.getElementById('navTalkImg').src=ASSETS.icon_talk;
+  document.getElementById('navRewardImg').src=ASSETS.icon_reward;
+  document.getElementById('profileArt').src=ASSETS.avatar_chick;
 
   loadState();
-
   updateHeader();
-
-  go(
-    'home'
-  );
-
+  go('home');
 }
-
 
 function loadState(){
-
   try{
+    const saved=JSON.parse(localStorage.getItem('eigoTalkState')||'{}');
 
-    const saved =
-      JSON.parse(
-        localStorage.getItem(
-          'eigoTalkState'
-        ) ||
-        '{}'
-      );
-
-
-    state = {
-
+    state={
       ...state,
       ...saved,
-
       recognition:null,
-
       listening:false,
-
       micPreparing:false,
-
-      micFailures:0,
-
-      transitionLock:false
-
+      micFailures:0
     };
-
-  }
-
-  catch(error){}
-
+  }catch(e){}
 }
 
-
 function saveState(){
+  const c={...state};
 
-  const copy = {
-    ...state
-  };
-
-
-  delete copy.recognition;
-  delete copy.listening;
-  delete copy.micPreparing;
-  delete copy.micFailures;
-  delete copy.transitionLock;
-
+  delete c.recognition;
+  delete c.listening;
+  delete c.micPreparing;
+  delete c.micFailures;
 
   localStorage.setItem(
     'eigoTalkState',
-    JSON.stringify(
-      copy
-    )
+    JSON.stringify(c)
   );
-
 }
-
 
 function updateHeader(){
-
-  document
-    .getElementById(
-      'gradeBtn'
-    )
-    .textContent =
-      state.grade +
-      'ねん';
-
+  document.getElementById('gradeBtn').textContent=
+    state.grade+'ねん';
 }
 
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
 function go(page){
-
   stopRecognition();
 
-  clearTimeout(
-    transitionTimer
-  );
-
-
-  state.transitionLock =
-    false;
-
-
-  state.page =
-    page;
-
-
-  if(
-    page ===
-    'home'
-  ){
-
-    state.mission =
-      null;
-
-  }
-
-
+  state.page=page;
   saveState();
 
-
   document
-    .querySelectorAll(
-      '.navBtn'
-    )
-    .forEach(
-      element => {
+    .querySelectorAll('.navBtn')
+    .forEach(el=>el.classList.remove('active'));
 
-        element
-          .classList
-          .remove(
-            'active'
-          );
-
-      }
-    );
-
-
-  const ids = {
-
+  const ids={
     home:'navHome',
     train:'navTrain',
     talk:'navTalk',
     reward:'navReward'
-
   };
 
-
-  if(
-    ids[
-      page
-    ]
-  ){
-
+  if(ids[page]){
     document
-      .getElementById(
-        ids[
-          page
-        ]
-      )
-      .classList
-      .add(
-        'active'
-      );
-
+      .getElementById(ids[page])
+      .classList.add('active');
   }
 
+  window.scrollTo(0,0);
 
-  window.scrollTo(
-    0,
-    0
-  );
-
-
-  if(
-    page ===
-    'home'
-  ){
-
+  if(page==='home'){
     renderHome();
-
   }
 
-
-  if(
-    page ===
-    'train'
-  ){
-
+  if(page==='train'){
     renderTraining();
-
   }
 
-
-  if(
-    page ===
-    'talk'
-  ){
-
+  if(page==='talk'){
     renderMissionList();
-
   }
 
-
-  if(
-    page ===
-    'reward'
-  ){
-
+  if(page==='reward'){
     renderReward();
-
   }
-
 }
 
-
-/* =====================================================
-   HOME
-===================================================== */
-
 function renderHome(){
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     <section class="card center">
 
-      <div class="bigEmoji">
-        🐥
-      </div>
+      ${assetImg(
+        'mascot_chick',
+        'heroArt',
+        'ひよこ'
+      )}
 
       <div class="title">
-
-        ${escapeHtml(
-          state.name
-        )}さん
-
+        ${escapeHtml(state.name)}さん
         <br>
-
         きょうも やってみよう！
-
       </div>
 
       <div class="sub">
@@ -1403,14 +518,15 @@ function renderHome(){
 
     </section>
 
-
     <section class="stats">
 
       <div class="stat">
 
-        <div class="statIcon">
-          🪙
-        </div>
+        ${assetImg(
+          'icon_coin',
+          'statImg',
+          'ポイント'
+        )}
 
         <div class="statValue">
           ${state.points}
@@ -1422,12 +538,13 @@ function renderHome(){
 
       </div>
 
-
       <div class="stat">
 
-        <div class="statIcon">
-          🔥
-        </div>
+        ${assetImg(
+          'icon_streak',
+          'statImg',
+          'れんぞく'
+        )}
 
         <div class="statValue">
           ${state.streak}
@@ -1441,46 +558,40 @@ function renderHome(){
 
     </section>
 
-
     <section class="menu">
 
       ${menuHtml(
-        '🎧',
+        'icon_train',
         'じぶんで れんしゅう',
         'きく・まねする・おもいだす',
         "go('train')"
       )}
 
       ${menuHtml(
-        '💬',
+        'icon_talk',
         'かいわチャレンジ',
         '英語でおはなししてみよう',
         "go('talk')"
       )}
 
     </section>
-
   `;
-
 }
 
-
-function menuHtml(
-  icon,
-  title,
-  text,
-  action
-){
+function menuHtml(icon,title,text,action){
+  const visual=
+    ASSETS[icon]
+      ? assetImg(icon,'assetImg',title)
+      : icon;
 
   return `
-
     <button
       class="menuBtn"
       onclick="${action}"
     >
 
       <div class="menuIcon">
-        ${icon}
+        ${visual}
       </div>
 
       <div>
@@ -1500,29 +611,18 @@ function menuHtml(
       </div>
 
     </button>
-
   `;
-
 }
 
-
-/* =====================================================
-   TRAINING
-===================================================== */
-
 function renderTraining(){
-
-  state.mission =
-    null;
-
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     <section class="card center">
 
-      <div class="bigEmoji">
-        🐻
-      </div>
+      ${assetImg(
+        'bear_book',
+        'heroArt',
+        'くま先生'
+      )}
 
       <div class="title">
         れんしゅう
@@ -1535,60 +635,55 @@ function renderTraining(){
 
     </section>
 
-
     <section class="training">
 
       ${trainingHtml(
-        '👂',
+        'chick_listen',
         'きく',
         '英語をきこう',
         "startPractice('listen')"
       )}
 
       ${trainingHtml(
-        '🎤',
+        'bear_speak',
         'まねする',
         '声にだそう',
         "startPractice('repeat')"
       )}
 
       ${trainingHtml(
-        '💭',
+        'chick_review',
         'おもいだす',
         '自分で言おう',
         "startPractice('recall')"
       )}
 
       ${trainingHtml(
-        '🎯',
+        'chick_quiz',
         '3たく',
         '聞いてえらぼう',
         "startPractice('quiz')"
       )}
 
     </section>
-
   `;
-
 }
 
-
-function trainingHtml(
-  icon,
-  title,
-  text,
-  action
-){
-
+function trainingHtml(icon,title,text,action){
   return `
-
     <button
       class="trainingBtn"
       onclick="${action}"
     >
 
       <div class="trainingIcon">
-        ${icon}
+
+        ${assetImg(
+          icon,
+          'assetImg',
+          title
+        )}
+
       </div>
 
       <div class="trainingTitle">
@@ -1600,206 +695,89 @@ function trainingHtml(
       </div>
 
     </button>
-
   `;
-
 }
-
-
-/* =====================================================
-   PROBLEMS
-===================================================== */
 
 function getProblems(){
-
-  const rows =
-    WORDS[
-      state.grade
-    ] ||
+  const rows=
+    WORDS[state.grade]||
     [];
 
-
   return rows.map(
-    (
-      row,
-      index
-    ) => {
-
-      if(
-        state.grade ===
-        4
-      ){
-
-        return {
-
-          id:
-            'g4_' +
-            (
-              index +
-              1
-            ),
-
-          prompt:
-            row[
-              0
-            ],
-
-          answer:
-            row[
-              1
-            ],
-
-          ja:
-            row[
-              2
-            ]
-
-        };
-
+    (row,index)=>
+      state.grade===4
+      ?{
+        id:'g4_'+(index+1),
+        prompt:row[0],
+        answer:row[1],
+        ja:row[2]
       }
-
-
-      return {
-
-        id:
-          'g' +
-          state.grade +
-          '_' +
-          (
-            index +
-            1
-          ),
-
-        prompt:
-          row[
-            0
-          ],
-
-        answer:
-          row[
-            0
-          ],
-
-        ja:
-          row[
-            1
-          ]
-
-      };
-
-    }
+      :{
+        id:'g'+state.grade+'_'+(index+1),
+        prompt:row[0],
+        answer:row[0],
+        ja:row[1]
+      }
   );
-
 }
 
-
-/* =====================================================
-   PRACTICE
-===================================================== */
-
-function startPractice(
-  mode
-){
-
-  state.mission =
-    null;
-
-
-  state.practiceMode =
-    mode;
-
-
-  state.practiceIndex =
-    0;
-
-
-  state.micFailures =
-    0;
-
-
-  state.transitionLock =
-    false;
-
+function startPractice(mode){
+  state.practiceMode=mode;
+  state.practiceIndex=0;
+  state.micFailures=0;
 
   renderPractice();
-
 }
-
 
 function currentProblem(){
-
-  const list =
-    getProblems();
-
+  const list=getProblems();
 
   return list[
-    state.practiceIndex %
+    state.practiceIndex%
     list.length
   ];
-
 }
 
-
 function renderPractice(){
+  const list=getProblems();
+  const item=currentProblem();
 
-  state.transitionLock =
-    false;
-
-
-  const list =
-    getProblems();
-
-
-  const item =
-    currentProblem();
-
-
-  const progress =
+  const progress=
     progressHtml(
-      state.practiceIndex +
-      1,
+      state.practiceIndex+1,
       list.length
     );
 
+  if(state.practiceMode==='listen'){
 
-  if(
-    state.practiceMode ===
-    'listen'
-  ){
-
-    screen.innerHTML = `
-
+    screen.innerHTML=`
       ${progress}
 
       <section class="card center">
 
-        <div class="lessonEmoji">
-          👂
-        </div>
+        ${assetImg(
+          'chick_listen',
+          'lessonArt',
+          'きく'
+        )}
 
         <div class="title">
           よく きこう
         </div>
 
         <div class="english">
-          ${escapeHtml(
-            item.answer
-          )}
+          ${escapeHtml(item.answer)}
         </div>
 
         <div class="japanese">
-          ${escapeHtml(
-            item.ja
-          )}
+          ${escapeHtml(item.ja)}
         </div>
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(
-                item.answer
-              )}',
+              '${escapeJs(item.answer)}',
               false
             )
           "
@@ -1811,9 +789,7 @@ function renderPractice(){
           class="plain"
           onclick="
             speakEnglish(
-              '${escapeJs(
-                item.answer
-              )}',
+              '${escapeJs(item.answer)}',
               true
             )
           "
@@ -1829,73 +805,59 @@ function renderPractice(){
         </button>
 
       </section>
-
     `;
 
     return;
-
   }
 
-
   if(
-    state.practiceMode ===
-      'repeat' ||
-    state.practiceMode ===
-      'recall'
+    state.practiceMode==='repeat'||
+    state.practiceMode==='recall'
   ){
 
-    const recall =
-      state.practiceMode ===
-      'recall';
+    const recall=
+      state.practiceMode==='recall';
 
-
-    screen.innerHTML = `
-
+    screen.innerHTML=`
       ${progress}
 
       <section class="card center">
 
-        <div class="lessonEmoji">
-
-          ${
-            recall
-              ? '💭'
-              : '🎤'
-          }
-
-        </div>
+        ${
+          recall
+          ? assetImg(
+              'chick_review',
+              'lessonArt',
+              'おもいだす'
+            )
+          : assetImg(
+              'bear_speak',
+              'lessonArt',
+              'まねする'
+            )
+        }
 
         <div class="title">
 
           ${
             recall
-              ? 'おもいだそう'
-              : 'まねして はなそう'
+            ? 'おもいだそう'
+            : 'まねして はなそう'
           }
 
         </div>
 
         ${
           recall
-
-          ? `
-
+          ?`
             <div class="prompt">
-              ${escapeHtml(
-                item.ja
-              )}
+              ${escapeHtml(item.ja)}
             </div>
-
           `
-
-          : `
-
+          :`
             <div class="english">
-              ${escapeHtml(
-                item.answer
-              )}
+              ${escapeHtml(item.answer)}
             </div>
-
           `
         }
 
@@ -1903,9 +865,7 @@ function renderPractice(){
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(
-                item.answer
-              )}',
+              '${escapeJs(item.answer)}',
               true
             )
           "
@@ -1920,129 +880,72 @@ function renderPractice(){
         ${voiceHtml()}
 
       </section>
-
     `;
 
     return;
-
   }
-
 
   renderQuiz(
     item,
     progress
   );
-
 }
-
 
 function finishListen(){
-
-  addPoints(
-    2
-  );
-
-
+  addPoints(2);
   nextPractice();
-
 }
-
 
 function practiceVoice(){
-
-  if(
-    state.transitionLock
-  ){
-
-    return;
-
-  }
-
-
-  const item =
-    currentProblem();
-
+  const item=currentProblem();
 
   recognizeEnglish(
-    [
-      item.answer
-    ],
+    [item.answer],
+    result=>{
 
-    result => {
+      if(result.success){
 
-      if(
-        !result.success
-      ){
-
-        return;
-
-      }
-
-
-      state.transitionLock =
-        true;
-
-
-      addPoints(
-        state.practiceMode ===
-        'recall'
+        addPoints(
+          state.practiceMode==='recall'
           ? 8
           : 5
-      );
+        );
 
+        feedback(
+          'Great！ つぎへすすむよ',
+          true
+        );
 
-      scheduleNext(
-        nextPractice
-      );
-
+        setTimeout(
+          nextPractice,
+          2000
+        );
+      }
     }
   );
-
 }
-
 
 function nextPractice(){
-
   state.practiceIndex++;
-
-
-  state.micFailures =
-    0;
-
-
-  state.transitionLock =
-    false;
-
+  state.micFailures=0;
 
   renderPractice();
-
 }
 
+function renderQuiz(item,progress){
+  const choices=
+    makeChoices(item);
 
-/* =====================================================
-   QUIZ
-===================================================== */
-
-function renderQuiz(
-  item,
-  progress
-){
-
-  const choices =
-    makeChoices(
-      item
-    );
-
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     ${progress}
 
     <section class="card center">
 
-      <div class="lessonEmoji">
-        🎯
-      </div>
+      ${assetImg(
+        'chick_quiz',
+        'lessonArt',
+        'クイズ'
+      )}
 
       <div class="title">
         3たくクイズ
@@ -2052,9 +955,7 @@ function renderQuiz(
         class="secondary"
         onclick="
           speakEnglish(
-            '${escapeJs(
-              item.prompt
-            )}',
+            '${escapeJs(item.prompt)}',
             false
           )
         "
@@ -2067,26 +968,18 @@ function renderQuiz(
         ${
           choices
             .map(
-              value => `
-
+              value=>`
                 <button
                   class="choice"
                   onclick="
                     answerQuiz(
-                      '${escapeJs(
-                        value
-                      )}',
-                      '${escapeJs(
-                        item.answer
-                      )}'
+                      '${escapeJs(value)}',
+                      '${escapeJs(item.answer)}'
                     )
                   "
                 >
-                  ${escapeHtml(
-                    value
-                  )}
+                  ${escapeHtml(value)}
                 </button>
-
               `
             )
             .join('')
@@ -2097,229 +990,121 @@ function renderQuiz(
       ${voiceHtml()}
 
     </section>
-
   `;
-
 }
 
-
-function makeChoices(
-  item
-){
-
-  const all =
+function makeChoices(item){
+  const all=
     getProblems()
       .map(
-        value =>
+        value=>
           value.answer
       )
       .filter(
-        value =>
-          normalize(
-            value
-          ) !==
-          normalize(
-            item.answer
-          )
+        value=>
+          normalize(value)!==
+          normalize(item.answer)
       );
 
-
-  return shuffle(
-    [
-      item.answer,
-      ...shuffle(
-        all
-      )
-      .slice(
-        0,
-        2
-      )
-    ]
-  );
-
+  return shuffle([
+    item.answer,
+    ...shuffle(all)
+      .slice(0,2)
+  ]);
 }
 
-
-function answerQuiz(
-  selected,
-  answer
-){
+function answerQuiz(selected,answer){
 
   if(
-    state.transitionLock
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    normalize(
-      selected
-    ) !==
-    normalize(
-      answer
-    )
+    normalize(selected)!==
+    normalize(answer)
   ){
 
     feedback(
-      '💪 おしい！もう一度やってみよう',
+      'もう一度やってみよう！',
       false
     );
 
     return;
-
   }
 
-
-  state.transitionLock =
-    true;
-
-
-  addPoints(
-    5
-  );
-
+  addPoints(5);
 
   feedback(
-    '🌟 せいかい！ つぎへすすむよ',
+    'せいかい！',
     true
   );
 
-
-  scheduleNext(
-    nextPractice
+  setTimeout(
+    nextPractice,
+    1200
   );
-
 }
 
-
-/* =====================================================
-   DAILY
-===================================================== */
-
 function startDaily(){
-
-  clearTimeout(
-    transitionTimer
-  );
-
-
-  state.mission =
-    null;
-
-
-  const items =
+  const items=
     shuffle(
       getProblems()
     );
 
+  state.dailyItems=
+    items.slice(0,3);
 
-  state.dailyItems =
-    items.slice(
-      0,
-      3
-    );
-
-
-  state.dailyMission =
+  state.dailyMission=
     shuffle(
-      MISSIONS[
-        state.grade
-      ] ||
+      MISSIONS[state.grade]||
       []
-    )[
-      0
-    ] ||
+    )[0]||
     null;
 
-
-  state.dailyStep =
-    0;
-
-
-  state.micFailures =
-    0;
-
-
-  state.transitionLock =
-    false;
-
+  state.dailyStep=0;
+  state.micFailures=0;
 
   markStudyDay();
 
-
   renderDaily();
-
 }
-
 
 function renderDaily(){
 
-  state.transitionLock =
-    false;
-
-
-  if(
-    state.dailyStep >=
-    5
-  ){
-
+  if(state.dailyStep>=5){
     finishDaily();
-
     return;
-
   }
 
+  if(state.dailyStep===0){
 
-  if(
-    state.dailyStep ===
-    0
-  ){
+    const item=
+      state.dailyItems[0];
 
-    const item =
-      state.dailyItems[
-        0
-      ];
-
-
-    screen.innerHTML = `
-
-      ${progressHtml(
-        1,
-        5
-      )}
+    screen.innerHTML=`
+      ${progressHtml(1,5)}
 
       <section class="card center">
 
-        <div class="lessonEmoji">
-          👂
-        </div>
+        ${assetImg(
+          'chick_listen',
+          'lessonArt',
+          'きく'
+        )}
 
         <div class="title">
           ① まずは きこう
         </div>
 
         <div class="english">
-          ${escapeHtml(
-            item.answer
-          )}
+          ${escapeHtml(item.answer)}
         </div>
 
         <div class="japanese">
-          ${escapeHtml(
-            item.ja
-          )}
+          ${escapeHtml(item.ja)}
         </div>
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(
-                item.answer
-              )}',
+              '${escapeJs(item.answer)}',
               true
             )
           "
@@ -2335,55 +1120,40 @@ function renderDaily(){
         </button>
 
       </section>
-
     `;
 
     return;
-
   }
 
+  if(state.dailyStep===1){
 
-  if(
-    state.dailyStep ===
-    1
-  ){
+    const item=
+      state.dailyItems[1];
 
-    const item =
-      state.dailyItems[
-        1
-      ];
-
-
-    screen.innerHTML = `
-
-      ${progressHtml(
-        2,
-        5
-      )}
+    screen.innerHTML=`
+      ${progressHtml(2,5)}
 
       <section class="card center">
 
-        <div class="lessonEmoji">
-          🎤
-        </div>
+        ${assetImg(
+          'bear_speak',
+          'lessonArt',
+          'まねする'
+        )}
 
         <div class="title">
           ② まねして はなそう
         </div>
 
         <div class="english">
-          ${escapeHtml(
-            item.answer
-          )}
+          ${escapeHtml(item.answer)}
         </div>
 
         <button
           class="secondary"
           onclick="
             speakEnglish(
-              '${escapeJs(
-                item.answer
-              )}',
+              '${escapeJs(item.answer)}',
               true
             )
           "
@@ -2398,46 +1168,33 @@ function renderDaily(){
         ${voiceHtml()}
 
       </section>
-
     `;
 
     return;
-
   }
 
+  if(state.dailyStep===2){
 
-  if(
-    state.dailyStep ===
-    2
-  ){
+    const item=
+      state.dailyItems[2];
 
-    const item =
-      state.dailyItems[
-        2
-      ];
-
-
-    screen.innerHTML = `
-
-      ${progressHtml(
-        3,
-        5
-      )}
+    screen.innerHTML=`
+      ${progressHtml(3,5)}
 
       <section class="card center">
 
-        <div class="lessonEmoji">
-          💭
-        </div>
+        ${assetImg(
+          'chick_review',
+          'lessonArt',
+          'おもいだす'
+        )}
 
         <div class="title">
           ③ おもいだそう
         </div>
 
         <div class="prompt">
-          ${escapeHtml(
-            item.ja
-          )}
+          ${escapeHtml(item.ja)}
         </div>
 
         ${micHtml(
@@ -2448,9 +1205,7 @@ function renderDaily(){
           class="plain"
           onclick="
             speakEnglish(
-              '${escapeJs(
-                item.answer
-              )}',
+              '${escapeJs(item.answer)}',
               true
             )
           "
@@ -2461,172 +1216,92 @@ function renderDaily(){
         ${voiceHtml()}
 
       </section>
-
     `;
 
     return;
-
   }
 
-
-  if(
-    state.dailyStep ===
-    3
-  ){
-
+  if(state.dailyStep===3){
     renderDailyReply();
-
     return;
-
   }
-
 
   startDailyMission();
-
 }
-
 
 function dailyListenDone(){
+  addPoints(2);
 
-  addPoints(
-    2
-  );
-
-
-  state.dailyStep =
-    1;
-
-
-  state.micFailures =
-    0;
-
+  state.dailyStep=1;
+  state.micFailures=0;
 
   renderDaily();
-
 }
 
-
-function dailyWordVoice(
-  index
-){
-
-  if(
-    state.transitionLock
-  ){
-
-    return;
-
-  }
-
-
-  const item =
-    state.dailyItems[
-      index
-    ];
-
+function dailyWordVoice(index){
+  const item=
+    state.dailyItems[index];
 
   recognizeEnglish(
-    [
-      item.answer
-    ],
+    [item.answer],
+    result=>{
 
-    result => {
-
-      if(
-        !result.success
-      ){
-
+      if(!result.success){
         return;
-
       }
 
-
-      state.transitionLock =
-        true;
-
-
       addPoints(
-        index ===
-        1
-          ? 5
-          : 8
+        index===1
+        ? 5
+        : 8
       );
 
+      state.dailyStep++;
+      state.micFailures=0;
 
-      scheduleNext(
-        () => {
-
-          state.dailyStep++;
-
-          state.micFailures =
-            0;
-
-          renderDaily();
-
-        }
+      setTimeout(
+        renderDaily,
+        2000
       );
-
     }
   );
-
 }
 
-
 function renderDailyReply(){
-
-  const turn =
+  const turn=
     state.dailyMission
-      ?.turns?.[
-        0
-      ];
+      ?.turns?.[0];
 
-
-  if(
-    !turn
-  ){
-
-    state.dailyStep =
-      4;
-
-
+  if(!turn){
+    state.dailyStep=4;
     renderDaily();
-
-
     return;
-
   }
 
-
-  screen.innerHTML = `
-
-    ${progressHtml(
-      4,
-      5
-    )}
+  screen.innerHTML=`
+    ${progressHtml(4,5)}
 
     <section class="card center">
 
-      <div class="lessonEmoji">
-        🐻
-      </div>
+      ${assetImg(
+        'conversation',
+        'lessonArt',
+        '会話'
+      )}
 
       <div class="title">
         ④ きいて 返そう
       </div>
 
       <div class="prompt">
-        ${escapeHtml(
-          turn.bot
-        )}
+        ${escapeHtml(turn.bot)}
       </div>
 
       <button
         class="secondary"
         onclick="
           speakEnglish(
-            '${escapeJs(
-              turn.bot
-            )}',
+            '${escapeJs(turn.bot)}',
             false
           )
         "
@@ -2642,9 +1317,7 @@ function renderDailyReply(){
         class="plain"
         onclick="
           alert(
-            'ヒント：${escapeJs(
-              turn.hint
-            )}'
+            'ヒント：${escapeJs(turn.hint)}'
           )
         "
       >
@@ -2654,108 +1327,59 @@ function renderDailyReply(){
       ${voiceHtml()}
 
     </section>
-
   `;
-
 }
 
-
 function dailyReplyVoice(){
-
-  if(
-    state.transitionLock
-  ){
-
-    return;
-
-  }
-
-
-  const turn =
+  const turn=
     state.dailyMission
-      .turns[
-        0
-      ];
-
+      .turns[0];
 
   recognizeEnglish(
     turn.answers,
+    result=>{
 
-    result => {
-
-      if(
-        !result.success
-      ){
-
+      if(!result.success){
         return;
-
       }
 
+      addPoints(8);
 
-      state.transitionLock =
-        true;
+      state.dailyStep=4;
+      state.micFailures=0;
 
-
-      addPoints(
-        8
+      setTimeout(
+        renderDaily,
+        2000
       );
-
-
-      scheduleNext(
-        () => {
-
-          state.dailyStep =
-            4;
-
-          state.micFailures =
-            0;
-
-          renderDaily();
-
-        }
-      );
-
     }
   );
-
 }
-
 
 function startDailyMission(){
 
-  if(
-    !state.dailyMission
-  ){
-
+  if(!state.dailyMission){
     finishDaily();
-
     return;
-
   }
-
 
   startMissionObject(
     state.dailyMission,
     true
   );
-
 }
 
-
 function finishDaily(){
+  addPoints(10);
 
-  addPoints(
-    10
-  );
-
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     <section class="card center">
 
-      <div class="bigEmoji">
-        🏆
-      </div>
+      ${assetImg(
+        'icon_trophy',
+        'heroArt',
+        'トロフィー'
+      )}
 
       <div class="title">
         きょうも できた！
@@ -2774,32 +1398,22 @@ function finishDaily(){
       </button>
 
     </section>
-
   `;
-
 }
 
-
-/* =====================================================
-   MISSION
-===================================================== */
-
 function renderMissionList(){
-
-  const list =
-    MISSIONS[
-      state.grade
-    ] ||
+  const list=
+    MISSIONS[state.grade]||
     [];
 
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     <section class="card center">
 
-      <div class="bigEmoji">
-        💬
-      </div>
+      ${assetImg(
+        'conversation',
+        'heroArt',
+        '会話'
+      )}
 
       <div class="title">
         かいわ
@@ -2812,17 +1426,12 @@ function renderMissionList(){
 
     </section>
 
-
     <section class="menu">
 
       ${
         list
           .map(
-            (
-              mission,
-              index
-            ) =>
-
+            (mission,index)=>
               menuHtml(
                 '💬',
                 escapeHtml(
@@ -2833,139 +1442,84 @@ function renderMissionList(){
                 ),
                 `startMission(${index})`
               )
-
           )
           .join('')
       }
 
     </section>
-
   `;
-
 }
 
-
-function startMission(
-  index
-){
-
-  const list =
-    MISSIONS[
-      state.grade
-    ] ||
+function startMission(index){
+  const list=
+    MISSIONS[state.grade]||
     [];
 
-
   startMissionObject(
-    list[
-      index
-    ],
+    list[index],
     false
   );
-
 }
-
 
 function startMissionObject(
   mission,
   daily
 ){
-
-  state.mission =
-    mission;
-
-
-  state.missionTurn =
-    0;
-
-
-  state.missionDaily =
-    daily;
-
-
-  state.micFailures =
-    0;
-
-
-  state.transitionLock =
-    false;
-
+  state.mission=mission;
+  state.missionTurn=0;
+  state.missionDaily=daily;
+  state.micFailures=0;
 
   renderMissionTurn();
-
 }
 
-
 function renderMissionTurn(){
-
-  state.transitionLock =
-    false;
-
-
-  const mission =
+  const mission=
     state.mission;
 
-
-  const turn =
+  const turn=
     mission
       ?.turns?.[
         state.missionTurn
       ];
 
-
-  if(
-    !turn
-  ){
-
+  if(!turn){
     finishMission();
-
     return;
-
   }
 
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     ${
       state.missionDaily
-        ? progressHtml(
-            5,
-            5
-          )
-        : ''
+      ? progressHtml(5,5)
+      : ''
     }
 
     <section class="card center">
 
-      <div class="lessonEmoji">
-        🐻
-      </div>
+      ${assetImg(
+        'conversation',
+        'lessonArt',
+        '会話'
+      )}
 
       <div class="title">
-        ${escapeHtml(
-          mission.title
-        )}
+        ${escapeHtml(mission.title)}
       </div>
 
       <div class="sub">
-        ${escapeHtml(
-          mission.scene
-        )}
+        ${escapeHtml(mission.scene)}
       </div>
 
       <div class="prompt">
-        ${escapeHtml(
-          turn.bot
-        )}
+        ${escapeHtml(turn.bot)}
       </div>
 
       <button
         class="secondary"
         onclick="
           speakEnglish(
-            '${escapeJs(
-              turn.bot
-            )}',
+            '${escapeJs(turn.bot)}',
             false
           )
         "
@@ -2981,9 +1535,7 @@ function renderMissionTurn(){
         class="plain"
         onclick="
           alert(
-            'ヒント：${escapeJs(
-              turn.hint
-            )}'
+            'ヒント：${escapeJs(turn.hint)}'
           )
         "
       >
@@ -2996,108 +1548,59 @@ function renderMissionTurn(){
         class="sub"
         style="margin-top:15px"
       >
-        ${
-          state.missionTurn +
-          1
-        }
+        ${state.missionTurn+1}
         /
-        ${
-          mission.turns.length
-        }
+        ${mission.turns.length}
       </div>
 
     </section>
-
   `;
-
 }
 
-
 function missionVoice(){
-
-  if(
-    state.transitionLock
-  ){
-
-    return;
-
-  }
-
-
-  const turn =
+  const turn=
     state.mission
       .turns[
         state.missionTurn
       ];
 
-
   recognizeEnglish(
     turn.answers,
+    result=>{
 
-    result => {
-
-      if(
-        !result.success
-      ){
-
+      if(!result.success){
         return;
-
       }
 
+      addPoints(4);
 
-      state.transitionLock =
-        true;
+      state.missionTurn++;
+      state.micFailures=0;
 
-
-      addPoints(
-        4
+      setTimeout(
+        renderMissionTurn,
+        2000
       );
-
-
-      scheduleNext(
-        () => {
-
-          state.missionTurn++;
-
-          state.micFailures =
-            0;
-
-          renderMissionTurn();
-
-        }
-      );
-
     }
   );
-
 }
 
-
 function finishMission(){
+  addPoints(10);
 
-  addPoints(
-    10
-  );
-
-
-  if(
-    state.missionDaily
-  ){
-
+  if(state.missionDaily){
     finishDaily();
-
     return;
-
   }
 
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     <section class="card center">
 
-      <div class="bigEmoji">
-        🏆
-      </div>
+      ${assetImg(
+        'icon_trophy',
+        'heroArt',
+        'トロフィー'
+      )}
 
       <div class="title">
         ミッション クリア！
@@ -3111,32 +1614,31 @@ function finishMission(){
       </button>
 
     </section>
-
   `;
-
 }
 
-
-/* =====================================================
-   REWARD
-===================================================== */
-
 function renderReward(){
-
-  screen.innerHTML = `
-
+  screen.innerHTML=`
     <section class="card center">
 
-      <div class="bigEmoji">
-        🎁
-      </div>
+      ${assetImg(
+        'icon_reward',
+        'heroArt',
+        'ごほうび'
+      )}
 
       <div class="title">
         ごほうび
       </div>
 
+      ${assetImg(
+        'icon_coin',
+        'statImg',
+        'ポイント'
+      )}
+
       <div class="english">
-        🪙 ${state.points}
+        ${state.points} pt
       </div>
 
       <div class="sub">
@@ -3145,54 +1647,40 @@ function renderReward(){
       </div>
 
     </section>
-
   `;
-
 }
 
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
 function openProfile(){
-
   document
     .getElementById(
       'nameInput'
     )
-    .value =
+    .value=
       state.name;
-
 
   document
     .getElementById(
       'gradeInput'
     )
-    .value =
+    .value=
       state.grade;
-
 
   openModal(
     'profileModal'
   );
-
 }
 
-
 function saveProfile(){
-
-  state.name =
+  state.name=
     document
       .getElementById(
         'nameInput'
       )
       .value
-      .trim() ||
+      .trim()||
     'プレイヤー';
 
-
-  state.grade =
+  state.grade=
     Number(
       document
         .getElementById(
@@ -3201,48 +1689,26 @@ function saveProfile(){
         .value
     );
 
-
   saveState();
-
-
   updateHeader();
-
 
   closeModal(
     'profileModal'
   );
 
-
-  go(
-    'home'
-  );
-
+  go('home');
 }
 
-
-/* =====================================================
-   POINT / STREAK
-===================================================== */
-
-function addPoints(
-  amount
-){
-
-  state.points +=
-    Number(
-      amount
-    ) ||
+function addPoints(amount){
+  state.points+=
+    Number(amount)||
     0;
 
-
   saveState();
-
 }
 
-
 function markStudyDay(){
-
-  const today =
+  const today=
     new Date()
       .toLocaleDateString(
         'sv-SE',
@@ -3251,20 +1717,13 @@ function markStudyDay(){
         }
       );
 
-
-  if(
-    state.lastStudy ===
-    today
-  ){
-
+  if(state.lastStudy===today){
     return;
-
   }
 
-
-  const yesterday =
+  const yesterday=
     new Date(
-      Date.now() -
+      Date.now()-
       86400000
     )
     .toLocaleDateString(
@@ -3274,271 +1733,164 @@ function markStudyDay(){
       }
     );
 
+  state.streak=
+    state.lastStudy===yesterday
+    ? state.streak+1
+    : 1;
 
-  state.streak =
-    state.lastStudy ===
-    yesterday
-      ? state.streak +
-        1
-      : 1;
-
-
-  state.lastStudy =
+  state.lastStudy=
     today;
 
-
   saveState();
-
 }
 
-
 /* =====================================================
-   RESULT WAIT
+   英語音声
 ===================================================== */
 
-function scheduleNext(
-  callback
-){
+function speakEnglish(text,slow){
 
-  clearTimeout(
-    transitionTimer
-  );
-
-
-  transitionTimer =
-    setTimeout(
-      () => {
-
-        state.transitionLock =
-          false;
-
-
-        callback();
-
-      },
-      2000
-    );
-
-}
-
-
-/* =====================================================
-   TEXT TO SPEECH
-===================================================== */
-
-function speakEnglish(
-  text,
-  slow
-){
-
-  if(
-    !window
-      .speechSynthesis
-  ){
+  if(!window.speechSynthesis){
 
     showToast(
       'このブラウザでは音声再生が使えません'
     );
 
     return;
-
   }
-
 
   stopRecognition();
 
-
-  const serial =
+  const serial=
     ++speakSerial;
 
-
-  const synth =
-    window
-      .speechSynthesis;
-
+  const synth=
+    window.speechSynthesis;
 
   try{
-
     synth.resume();
+  }catch(e){}
 
-  }
+  const play=()=>{
 
-  catch(error){}
+    if(serial!==speakSerial){
+      return;
+    }
 
+    const utterance=
+      new SpeechSynthesisUtterance(
+        String(text)
+      );
 
-  const play =
-    () => {
+    utteranceRef=
+      utterance;
+
+    utterance.lang=
+      'en-US';
+
+    utterance.rate=
+      slow
+      ? .67
+      : .82;
+
+    utterance.pitch=
+      1.02;
+
+    utterance.volume=
+      1;
+
+    utterance.onend=()=>{
+
+      lastSpeechEndedAt=
+        Date.now();
 
       if(
-        serial !==
-        speakSerial
+        utteranceRef===
+        utterance
       ){
-
-        return;
-
+        utteranceRef=null;
       }
-
-
-      const utterance =
-        new SpeechSynthesisUtterance(
-          String(
-            text
-          )
-        );
-
-
-      utteranceRef =
-        utterance;
-
-
-      utterance.lang =
-        'en-US';
-
-
-      utterance.rate =
-        slow
-          ? .67
-          : .82;
-
-
-      utterance.pitch =
-        1.02;
-
-
-      utterance.volume =
-        1;
-
-
-      utterance.onend =
-        () => {
-
-          lastSpeechEndedAt =
-            Date.now();
-
-
-          if(
-            utteranceRef ===
-            utterance
-          ){
-
-            utteranceRef =
-              null;
-
-          }
-
-        };
-
-
-      utterance.onerror =
-        () => {
-
-          lastSpeechEndedAt =
-            Date.now();
-
-        };
-
-
-      try{
-
-        synth.speak(
-          utterance
-        );
-
-      }
-
-      catch(error){
-
-        showToast(
-          'もう一度「きく」を押してね'
-        );
-
-      }
-
     };
 
+    utterance.onerror=()=>{
+
+      lastSpeechEndedAt=
+        Date.now();
+    };
+
+    try{
+
+      synth.speak(
+        utterance
+      );
+
+    }catch(e){
+
+      showToast(
+        'もう一度「きく」を押してね'
+      );
+    }
+  };
 
   if(
-    synth.speaking ||
+    synth.speaking||
     synth.pending
   ){
 
     synth.cancel();
-
 
     setTimeout(
       play,
       100
     );
 
-  }
-
-  else{
+  }else{
 
     play();
-
   }
-
 }
-
 
 function stopSpeech(){
 
-  if(
-    window
-      .speechSynthesis
-  ){
+  if(window.speechSynthesis){
 
     try{
-
       window
         .speechSynthesis
         .cancel();
-
-    }
-
-    catch(error){}
-
+    }catch(e){}
   }
 
-
-  lastSpeechEndedAt =
+  lastSpeechEndedAt=
     Date.now();
-
 }
 
-
 /* =====================================================
-   IOS MIC
+   iPhoneマイク安定化
 ===================================================== */
 
-const sleep =
-  milliseconds =>
+const sleep=
+  milliseconds=>
     new Promise(
-      resolve =>
+      resolve=>
         setTimeout(
           resolve,
           milliseconds
         )
     );
 
-
 async function primeMicForIOS(){
 
   if(
-    !isIOS ||
+    !isIOS||
     !navigator
       .mediaDevices
       ?.getUserMedia
   ){
-
     return;
-
   }
 
-
-  let stream =
-    null;
-
+  let stream=null;
 
   try{
 
@@ -3547,71 +1899,41 @@ async function primeMicForIOS(){
       'マイクを準備中…'
     );
 
-
-    stream =
+    stream=
       await navigator
         .mediaDevices
         .getUserMedia({
-
           audio:{
-
-            echoCancellation:
-              true,
-
-            noiseSuppression:
-              true,
-
-            autoGainControl:
-              true
-
+            echoCancellation:true,
+            noiseSuppression:true,
+            autoGainControl:true
           }
-
         });
 
+    await sleep(180);
 
-    await sleep(
-      180
-    );
-
-  }
-
-  catch(error){
+  }catch(e){
 
     console.log(
-      'mic prime',
-      error
+      'mic prime:',
+      e
     );
 
-  }
+  }finally{
 
-  finally{
-
-    if(
-      stream
-    ){
+    if(stream){
 
       stream
         .getTracks()
         .forEach(
-          track =>
+          track=>
             track.stop()
         );
-
     }
-
   }
 
-
-  await sleep(
-    320
-  );
-
+  await sleep(320);
 }
-
-
-/* =====================================================
-   SPEECH RECOGNITION
-===================================================== */
 
 async function recognizeEnglish(
   answers,
@@ -3619,71 +1941,50 @@ async function recognizeEnglish(
 ){
 
   if(
-    state.listening ||
-    state.micPreparing ||
-    state.transitionLock
+    state.listening||
+    state.micPreparing
   ){
-
     return;
-
   }
 
+  const Recognition=
+    window.SpeechRecognition||
+    window.webkitSpeechRecognition;
 
-  const Recognition =
-    window
-      .SpeechRecognition ||
-    window
-      .webkitSpeechRecognition;
-
-
-  if(
-    !Recognition
-  ){
+  if(!Recognition){
 
     showMicHelp(
       'このSafariでは音声認識APIを利用できません。'
     );
 
     return;
-
   }
 
-
-  const allowed =
+  const allowed=
     (
-      answers ||
+      answers||
       []
     )
-    .filter(
-      Boolean
-    );
+    .filter(Boolean);
 
-
-  if(
-    !allowed.length
-  ){
+  if(!allowed.length){
 
     showToast(
       '答えのデータがありません'
     );
 
     return;
-
   }
-
 
   stopSpeech();
 
-
-  const sinceSpeech =
-    Date.now() -
+  const sinceSpeech=
+    Date.now()-
     lastSpeechEndedAt;
 
-
   if(
-    isIOS &&
-    sinceSpeech <
-    450
+    isIOS&&
+    sinceSpeech<450
   ){
 
     setMicPreparing(
@@ -3691,38 +1992,27 @@ async function recognizeEnglish(
       '音声を切り替え中…'
     );
 
-
     await sleep(
-      450 -
+      450-
       sinceSpeech
     );
-
   }
 
-
-  if(
-    isIOS
-  ){
-
+  if(isIOS){
     await primeMicForIOS();
-
   }
-
 
   setMicPreparing(
     false,
     'タップして英語を話そう'
   );
 
-
   startRecognitionAttempt(
     allowed,
     callback,
     0
   );
-
 }
-
 
 function startRecognitionAttempt(
   allowed,
@@ -3730,339 +2020,224 @@ function startRecognitionAttempt(
   retryNo
 ){
 
-  const Recognition =
-    window
-      .SpeechRecognition ||
-    window
-      .webkitSpeechRecognition;
+  const Recognition=
+    window.SpeechRecognition||
+    window.webkitSpeechRecognition;
 
-
-  const recognition =
+  const recognition=
     new Recognition();
 
-
-  state.recognition =
+  state.recognition=
     recognition;
 
+  let gotResult=false;
+  let ended=false;
 
-  let gotResult =
-    false;
-
-
-  let ended =
-    false;
-
-
-  recognition.lang =
+  recognition.lang=
     'en-US';
 
-
-  recognition.interimResults =
+  recognition.interimResults=
     false;
 
-
-  recognition.continuous =
+  recognition.continuous=
     false;
 
-
-  recognition.maxAlternatives =
+  recognition.maxAlternatives=
     5;
-
 
   clearTimeout(
     recognitionWatchdog
   );
 
+  recognition.onstart=()=>{
 
-  recognition.onstart =
-    () => {
+    state.listening=
+      true;
 
-      state.listening =
-        true;
+    setMicUI(true);
 
+    feedback(
+      retryNo
+      ? 'もう一度きいているよ…'
+      : 'きいているよ…',
+      true
+    );
 
-      setMicUI(
-        true
-      );
+    recognitionWatchdog=
+      setTimeout(
+        async()=>{
 
+          if(
+            gotResult||
+            ended
+          ){
+            return;
+          }
 
-      feedback(
-        retryNo
-          ? '🎤 もう一度きいているよ…'
-          : '🎤 きいているよ…',
-        true
-      );
+          try{
+            recognition.abort();
+          }catch(e){}
 
+          state.listening=
+            false;
 
-      recognitionWatchdog =
-        setTimeout(
-          async () => {
+          setMicUI(false);
 
-            if(
-              gotResult ||
-              ended
-            ){
+          if(retryNo<1){
 
-              return;
+            feedback(
+              'マイクをつなぎ直しているよ…',
+              true
+            );
 
+            await sleep(650);
+
+            if(isIOS){
+              await primeMicForIOS();
             }
 
+            startRecognitionAttempt(
+              allowed,
+              callback,
+              1
+            );
 
-            try{
+          }else{
 
-              recognition.abort();
+            state.micFailures++;
 
-            }
-
-            catch(error){}
-
-
-            state.listening =
-              false;
-
-
-            setMicUI(
+            feedback(
+              'うまく受け取れなかったよ。もう一度マイクを押してね',
               false
             );
 
-
-            if(
-              retryNo <
-              1
-            ){
-
-              feedback(
-                '🎤 マイクをつなぎ直しているよ…',
-                true
-              );
-
-
-              await sleep(
-                650
-              );
-
-
-              if(
-                isIOS
-              ){
-
-                await primeMicForIOS();
-
-              }
-
-
-              startRecognitionAttempt(
-                allowed,
-                callback,
-                1
-              );
-
-            }
-
-            else{
-
-              state.micFailures++;
-
-
-              feedback(
-                'うまく受け取れなかったよ。もう一度マイクを押してね',
-                false
-              );
-
-
-              showFallback();
-
-            }
-
-          },
-          7500
-        );
-
-    };
-
-
-  recognition.onspeechend =
-    () => {
-
-      setTimeout(
-        () => {
-
-          try{
-
-            recognition.stop();
-
+            showFallback();
           }
 
-          catch(error){}
-
         },
-        120
+        7500
       );
+  };
 
-    };
+  recognition.onspeechend=()=>{
 
+    setTimeout(
+      ()=>{
 
-  recognition.onresult =
-    event => {
+        try{
+          recognition.stop();
+        }catch(e){}
 
-      gotResult =
-        true;
+      },
+      120
+    );
+  };
 
+  recognition.onresult=
+    event=>{
+
+      gotResult=true;
 
       clearTimeout(
         recognitionWatchdog
       );
 
-
-      let best = {
-
+      let best={
         spoken:'',
         target:allowed[0],
         score:0
-
       };
 
-
       for(
-        let i = 0;
-        i <
-        event.results[
-          0
-        ].length;
-        i++
+        let index=0;
+        index<
+        event.results[0].length;
+        index++
       ){
 
-        const spoken =
+        const spoken=
           event
-            .results[
-              0
-            ][
-              i
-            ]
+            .results[0][index]
             .transcript;
 
+        allowed.forEach(
+          target=>{
 
-        allowed
-          .forEach(
-            target => {
+            const score=
+              similarity(
+                spoken,
+                target
+              );
 
-              const score =
-                similarity(
-                  spoken,
-                  target
-                );
+            if(
+              score>
+              best.score
+            ){
 
-
-              if(
-                score >
-                best.score
-              ){
-
-                best = {
-
-                  spoken:
-                    spoken,
-
-                  target:
-                    target,
-
-                  score:
-                    score
-
-                };
-
-              }
-
+              best={
+                spoken,
+                target,
+                score
+              };
             }
-          );
-
+          }
+        );
       }
 
-
-      const score =
+      const score=
         Math.round(
-          best.score *
+          best.score*
           100
         );
 
-
-      const words =
+      const words=
         normalize(
           best.target
         )
-        .split(
-          ' '
-        )
-        .filter(
-          Boolean
-        )
+        .split(' ')
+        .filter(Boolean)
         .length;
 
+      const threshold=
+        words<=1
+        ? 62
+        : 70;
 
-      const threshold =
-        words <=
-        1
-          ? 62
-          : 70;
-
-
-      const success =
-        score >=
-        threshold;
-
+      const success=
+        score>=threshold;
 
       showVoice(
         best.spoken,
         score,
-        success,
-        threshold
+        success
       );
 
-
       callback({
-
-        spoken:
-          best.spoken,
-
-        target:
-          best.target,
-
-        score:
-          score,
-
-        success:
-          success,
-
-        threshold:
-          threshold
-
+        spoken:best.spoken,
+        target:best.target,
+        score,
+        success
       });
-
     };
 
-
-  recognition.onerror =
-    event => {
+  recognition.onerror=
+    event=>{
 
       clearTimeout(
         recognitionWatchdog
       );
 
-
       if(
-        event.error ===
+        event.error===
         'aborted'
       ){
-
         return;
-
       }
 
-
       if(
-        event.error ===
-          'not-allowed' ||
-        event.error ===
+        event.error===
+          'not-allowed'||
+        event.error===
           'service-not-allowed'
       ){
 
@@ -4070,10 +2245,8 @@ function startRecognitionAttempt(
           'マイクの利用が許可されていません。Safariのサイト設定でマイクを「許可」にしてください。'
         );
 
-      }
-
-      else if(
-        event.error ===
+      }else if(
+        event.error===
         'network'
       ){
 
@@ -4082,107 +2255,68 @@ function startRecognitionAttempt(
           false
         );
 
-      }
-
-      else{
+      }else{
 
         feedback(
           'うまく聞き取れなかったよ。もう一度ためしてね',
           false
         );
-
       }
-
     };
 
+  recognition.onend=()=>{
 
-  recognition.onend =
-    () => {
-
-      ended =
-        true;
-
-
-      clearTimeout(
-        recognitionWatchdog
-      );
-
-
-      state.listening =
-        false;
-
-
-      if(
-        state.recognition ===
-        recognition
-      ){
-
-        state.recognition =
-          null;
-
-      }
-
-
-      setMicUI(
-        false
-      );
-
-
-      if(
-        !gotResult &&
-        retryNo ===
-        0
-      ){
-
-        feedback(
-          '声が聞こえなかったよ。もう一度マイクを押してね',
-          false
-        );
-
-      }
-
-    };
-
-
-  try{
-
-    recognition.start();
-
-  }
-
-  catch(error){
+    ended=true;
 
     clearTimeout(
       recognitionWatchdog
     );
 
-
-    state.listening =
+    state.listening=
       false;
 
+    if(
+      state.recognition===
+      recognition
+    ){
+      state.recognition=null;
+    }
 
-    state.recognition =
-      null;
+    setMicUI(false);
 
+    if(
+      !gotResult&&
+      retryNo===0
+    ){
 
-    setMicUI(
-      false
+      feedback(
+        '声が聞こえなかったよ。もう一度マイクを押してね',
+        false
+      );
+    }
+  };
+
+  try{
+
+    recognition.start();
+
+  }catch(e){
+
+    clearTimeout(
+      recognitionWatchdog
     );
 
+    state.listening=false;
+    state.recognition=null;
+
+    setMicUI(false);
 
     feedback(
       'もう一度マイクを押してね',
       false
     );
-
   }
-
 }
-
-
-/* =====================================================
-   STOP MIC
-===================================================== */
 
 function stopRecognition(){
 
@@ -4190,56 +2324,32 @@ function stopRecognition(){
     recognitionWatchdog
   );
 
-
-  if(
-    state.recognition
-  ){
+  if(state.recognition){
 
     try{
-
-      state.recognition
+      state
+        .recognition
         .abort();
-
-    }
-
-    catch(error){}
-
+    }catch(e){}
   }
 
-
-  state.recognition =
-    null;
-
-
-  state.listening =
-    false;
-
-
-  state.micPreparing =
-    false;
-
+  state.recognition=null;
+  state.listening=false;
+  state.micPreparing=false;
 }
-
-
-/* =====================================================
-   MIC UI
-===================================================== */
 
 function setMicPreparing(
   active,
   text
 ){
 
-  state.micPreparing =
+  state.micPreparing=
     active;
 
-
   document
-    .querySelectorAll(
-      '.mic'
-    )
+    .querySelectorAll('.mic')
     .forEach(
-      button => {
+      button=>{
 
         button
           .classList
@@ -4248,44 +2358,31 @@ function setMicPreparing(
             active
           );
 
-
-        button.disabled =
+        button.disabled=
           active;
-
       }
     );
 
-
-  const element =
+  const element=
     document
       .querySelector(
         '.micText'
       );
 
-
   if(
-    element &&
+    element&&
     text
   ){
-
-    element.textContent =
-      text;
-
+    element.textContent=text;
   }
-
 }
 
-
-function setMicUI(
-  active
-){
+function setMicUI(active){
 
   document
-    .querySelectorAll(
-      '.mic'
-    )
+    .querySelectorAll('.mic')
     .forEach(
-      button => {
+      button=>{
 
         button
           .classList
@@ -4294,147 +2391,103 @@ function setMicUI(
             active
           );
 
-
         button
           .classList
           .remove(
             'preparing'
           );
 
-
-        button.disabled =
+        button.disabled=
           active;
-
       }
     );
 
-
-  const element =
+  const element=
     document
       .querySelector(
         '.micText'
       );
 
+  if(element){
 
-  if(
-    element
-  ){
-
-    element.textContent =
+    element.textContent=
       active
-        ? '英語を話してね'
-        : 'タップして英語を話そう';
-
+      ? '英語を話してね'
+      : 'タップして英語を話そう';
   }
-
 }
-
-
-/* =====================================================
-   FALLBACK
-===================================================== */
 
 function showFallback(){
 
-  const box =
+  const box=
     document
       .getElementById(
         'micFallback'
       );
 
-
-  if(
-    box
-  ){
-
+  if(box){
     box
       .classList
-      .add(
-        'show'
-      );
-
+      .add('show');
   }
-
 }
-
 
 function fallbackAdvance(){
 
   if(
-    state.dailyItems.length &&
-    state.dailyStep >
-      0 &&
-    state.dailyStep <
-      5 &&
-    !state.mission
-  ){
-
-    state.dailyStep++;
-
-
-    state.micFailures =
-      0;
-
-
-    renderDaily();
-
-
-    return;
-
-  }
-
-
-  if(
+    state.page==='talk'||
     state.mission
   ){
 
-    state.missionTurn++;
+    if(state.mission){
 
+      state.missionTurn++;
+      state.micFailures=0;
 
-    state.micFailures =
-      0;
-
-
-    renderMissionTurn();
-
+      renderMissionTurn();
+    }
 
     return;
-
   }
-
 
   if(
-    state.practiceMode
+    state.dailyItems.length&&
+    state.dailyStep>0&&
+    state.dailyStep<5
   ){
 
-    state.micFailures =
-      0;
+    state.dailyStep++;
+    state.micFailures=0;
 
+    renderDaily();
 
-    nextPractice();
-
+    return;
   }
 
+  if(state.practiceMode){
+
+    state.micFailures=0;
+
+    nextPractice();
+  }
 }
 
-
 /* =====================================================
-   VOICE UI
+   音声UI
 ===================================================== */
 
-function micHtml(
-  action
-){
-
+function micHtml(action){
   return `
-
     <div class="micArea">
 
       <button
         class="mic"
         onclick="${action}"
       >
-        🎤
+        <img
+          src="${ASSETS.icon_mic}"
+          alt="マイク"
+        >
       </button>
 
       <div class="micText">
@@ -4442,16 +2495,11 @@ function micHtml(
       </div>
 
     </div>
-
   `;
-
 }
 
-
 function voiceHtml(){
-
   return `
-
     <div
       id="voiceResult"
       class="voiceResult"
@@ -4483,184 +2531,158 @@ function voiceHtml(){
       </button>
 
     </div>
-
   `;
-
 }
-
-
-/* =====================================================
-   3段階判定表示
-===================================================== */
 
 function showVoice(
   spoken,
   score,
-  success,
-  threshold
+  success
 ){
 
-  const box =
+  const box=
     document
       .getElementById(
         'voiceResult'
       );
 
-
-  if(
-    !box
-  ){
-
+  if(!box){
     return;
-
   }
 
+  let art=
+    'result_retry';
 
-  let title =
-    '';
+  let title=
+    '💪 おしい！もう一回';
 
+  let next=
+    'ゆっくり、もう一度言ってみよう';
 
-  let symbol =
-    '';
+  if(score>=85){
 
+    art=
+      'result_great';
 
-  let nextText =
-    '';
+    title=
+      '🌟 とてもよく言えた！';
 
-
-  if(
-    score >=
-    85
-  ){
-
-    symbol =
-      '🌟';
-
-    title =
-      'とてもよく言えた！';
-
-    nextText =
+    next=
       '2秒後につぎへすすむよ';
 
-  }
+  }else if(success){
 
-  else if(
-    success
-  ){
+    art=
+      'result_good';
 
-    symbol =
-      '👍';
+    title=
+      '👍 ちゃんと伝わったよ！';
 
-    title =
-      'ちゃんと伝わったよ！';
-
-    nextText =
+    next=
       '2秒後につぎへすすむよ';
-
   }
 
-  else{
+  box.innerHTML=`
 
-    symbol =
-      '💪';
+    ${assetImg(
+      art,
+      'resultArt',
+      title
+    )}
 
-    title =
-      'おしい！もう一回';
-
-    nextText =
-      'ゆっくり、もう一度言ってみよう';
-
-  }
-
-
-  box.innerHTML = `
-
-    <div class="resultSpoken">
-
-      「${escapeHtml(
-        spoken
-      )}」
-
+    <div
+      style="
+        font-size:20px;
+        font-weight:900
+      "
+    >
+      「${escapeHtml(spoken)}」
     </div>
 
-
-    <div class="resultTitle">
-
-      ${symbol}
+    <div
+      style="
+        margin-top:6px;
+        font-size:23px;
+        font-weight:900
+      "
+    >
       ${title}
-
     </div>
 
-
-    <div class="resultScore">
-
-      つたわり度
-      ${score}%
-
+    <div
+      style="
+        margin-top:4px;
+        font-size:15px;
+        font-weight:900
+      "
+    >
+      つたわり度 ${score}%
     </div>
 
-
-    <div class="resultNext">
-
-      ${nextText}
-
+    <div
+      style="
+        margin-top:6px;
+        font-size:13px
+      "
+    >
+      ${next}
     </div>
-
   `;
-
 
   feedback(
     success
-      ? score >= 85
-        ? 'Great! すごくよく伝わったよ！'
-        : 'Good! ちゃんと伝わったよ！'
-      : `あと少し！ ${threshold}%以上でクリアだよ`,
+    ?(
+      score>=85
+      ? 'Great！すごくよく伝わったよ！'
+      : 'Good！ちゃんと伝わったよ！'
+    )
+    :'もう一回、ゆっくり言ってみよう',
     success
   );
-
 }
 
+function feedback(text,good){
 
-/* =====================================================
-   HELP
-===================================================== */
+  const box=
+    document
+      .getElementById(
+        'feedback'
+      );
 
-function showMicHelp(
-  message
-){
+  if(!box){
+    return;
+  }
+
+  box.className=
+    good
+    ? 'feedback good'
+    : 'feedback retry';
+
+  box.textContent=
+    text;
+}
+
+function showMicHelp(message){
 
   document
     .getElementById(
       'micHelpText'
     )
-    .innerHTML = `
-
-      ${escapeHtml(
-        message
-      )}
-
+    .innerHTML=`
+      ${escapeHtml(message)}
       <br><br>
-
       <b>iPhone：</b>
-
-      設定
-      → アプリ
-      → Safari
-      → マイク
-      → 許可
-
+      設定 → アプリ → Safari
+      → マイク → 許可
     `;
-
 
   openModal(
     'micHelpModal'
   );
-
 }
 
-
 /* =====================================================
-   PROGRESS
+   その他
 ===================================================== */
 
 function progressHtml(
@@ -4668,14 +2690,12 @@ function progressHtml(
   total
 ){
 
-  const percent =
-    current /
-    total *
+  const percent=
+    current/
+    total*
     100;
 
-
   return `
-
     <div class="progressCard">
 
       <div class="progress">
@@ -4694,110 +2714,61 @@ function progressHtml(
       </div>
 
     </div>
-
   `;
-
 }
 
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-function openModal(
-  id
-){
-
+function openModal(id){
   document
-    .getElementById(
-      id
-    )
+    .getElementById(id)
     .classList
-    .add(
-      'show'
-    );
-
+    .add('show');
 }
 
-
-function closeModal(
-  id
-){
-
+function closeModal(id){
   document
-    .getElementById(
-      id
-    )
+    .getElementById(id)
     .classList
-    .remove(
-      'show'
-    );
-
+    .remove('show');
 }
 
+let toastTimer=null;
 
-/* =====================================================
-   TOAST
-===================================================== */
+function showToast(text){
 
-let toastTimer =
-  null;
-
-
-function showToast(
-  text
-){
-
-  const toast =
+  const toast=
     document
       .getElementById(
         'toast'
       );
 
-
-  toast.textContent =
+  toast.textContent=
     text;
-
 
   toast
     .classList
-    .add(
-      'show'
-    );
-
+    .add('show');
 
   clearTimeout(
     toastTimer
   );
 
-
-  toastTimer =
+  toastTimer=
     setTimeout(
-      () => {
+      ()=>{
 
         toast
           .classList
-          .remove(
-            'show'
-          );
+          .remove('show');
 
       },
       1800
     );
-
 }
 
-
-/* =====================================================
-   TEXT
-===================================================== */
-
-function normalize(
-  text
-){
+function normalize(text){
 
   return String(
-    text ||
+    text||
     ''
   )
   .toLowerCase()
@@ -4810,274 +2781,156 @@ function normalize(
     ' '
   )
   .trim();
-
 }
-
 
 function similarity(
   first,
   second
 ){
 
-  const a =
-    normalize(
-      first
-    );
+  const a=
+    normalize(first);
 
+  const b=
+    normalize(second);
 
-  const b =
-    normalize(
-      second
-    );
-
-
-  if(
-    a ===
-    b
-  ){
-
+  if(a===b){
     return 1;
-
   }
 
-
   if(
-    !a ||
+    !a||
     !b
   ){
-
     return 0;
-
   }
-
 
   if(
-    a.includes(
-      b
-    ) ||
-    b.includes(
-      a
-    )
+    a.includes(b)||
+    b.includes(a)
   ){
-
     return .94;
-
   }
 
-
-  const distance =
+  const distance=
     levenshtein(
       a,
       b
     );
 
-
   return Math.max(
     0,
-
-    1 -
-    distance /
+    1-
+    distance/
     Math.max(
       a.length,
       b.length
     )
   );
-
 }
 
+function levenshtein(a,b){
 
-function levenshtein(
-  a,
-  b
-){
-
-  const matrix =
+  const matrix=
     Array.from(
       {
         length:
-          b.length +
-          1
+          b.length+1
       },
-
-      () =>
+      ()=>
         Array(
-          a.length +
-          1
+          a.length+1
         )
-        .fill(
-          0
-        )
+        .fill(0)
     );
 
-
   for(
-    let row = 0;
-    row <=
-    b.length;
+    let row=0;
+    row<=b.length;
     row++
   ){
-
-    matrix[
-      row
-    ][
-      0
-    ] =
-      row;
-
+    matrix[row][0]=row;
   }
 
-
   for(
-    let column = 0;
-    column <=
-    a.length;
+    let column=0;
+    column<=a.length;
     column++
   ){
-
-    matrix[
-      0
-    ][
-      column
-    ] =
-      column;
-
+    matrix[0][column]=column;
   }
 
-
   for(
-    let row = 1;
-    row <=
-    b.length;
+    let row=1;
+    row<=b.length;
     row++
   ){
 
     for(
-      let column = 1;
-      column <=
-      a.length;
+      let column=1;
+      column<=a.length;
       column++
     ){
 
-      const cost =
-        b[
-          row -
-          1
-        ] ===
-        a[
-          column -
-          1
-        ]
-          ? 0
-          : 1;
+      const cost=
+        b[row-1]===
+        a[column-1]
+        ? 0
+        : 1;
 
-
-      matrix[
-        row
-      ][
-        column
-      ] =
+      matrix[row][column]=
         Math.min(
-
-          matrix[
-            row -
-            1
-          ][
-            column
-          ] +
-          1,
-
-          matrix[
-            row
-          ][
-            column -
-            1
-          ] +
-          1,
-
-          matrix[
-            row -
-            1
-          ][
-            column -
-            1
-          ] +
-          cost
-
+          matrix[row-1][column]+1,
+          matrix[row][column-1]+1,
+          matrix[row-1][column-1]+cost
         );
-
     }
-
   }
-
 
   return matrix[
     b.length
   ][
     a.length
   ];
-
 }
 
+function shuffle(input){
 
-function shuffle(
-  input
-){
-
-  const array =
-    [
-      ...input
-    ];
-
+  const array=[
+    ...input
+  ];
 
   for(
-    let i =
-      array.length -
-      1;
-    i >
-    0;
-    i--
+    let index=
+      array.length-1;
+    index>0;
+    index--
   ){
 
-    const j =
+    const randomIndex=
       Math.floor(
-        Math.random() *
+        Math.random()*
         (
-          i +
-          1
+          index+1
         )
       );
 
-
     [
-      array[
-        i
-      ],
-      array[
-        j
-      ]
-    ] = [
-      array[
-        j
-      ],
-      array[
-        i
-      ]
+      array[index],
+      array[randomIndex]
+    ]=[
+      array[randomIndex],
+      array[index]
     ];
-
   }
 
-
   return array;
-
 }
 
-
-function escapeHtml(
-  text
-){
+function escapeHtml(text){
 
   return String(
-    text ||
+    text||
     ''
   )
   .replace(
@@ -5096,16 +2949,12 @@ function escapeHtml(
     /"/g,
     '&quot;'
   );
-
 }
 
-
-function escapeJs(
-  text
-){
+function escapeJs(text){
 
   return String(
-    text ||
+    text||
     ''
   )
   .replace(
@@ -5120,7 +2969,6 @@ function escapeJs(
     /\r?\n/g,
     ' '
   );
-
 }
 
 </script>
